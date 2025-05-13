@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAN 2025 - Coupe d'Afrique des Nations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">CAN 2025</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="stades.html">Stades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="saviez-vous.html">Le Saviez-vous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="groupes.html">Groupes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="matchs.html">Matchs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="equipes.html">Équipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="boutique.html">Boutique</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="quiz.html">Quiz</a>
+                    </li>
+                </ul>
+                <form class="d-flex ms-3 search-navbar-form">
+                    <input type="text" class="form-control me-2" id="navbar-search-input" placeholder="Rechercher...">
+                    <button class="btn btn-primary" type="button" id="navbar-search-btn">Rechercher</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div id="search-result-message" class="text-center fw-bold py-2" style="display:none; background:#fff; color:#222;"></div>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <h1 class="display-4 text-white text-center">CAN 2025</h1>
+                    <p class="lead text-white text-center">La plus grande compétition de football africain</p>
+                </div>
+                <div class="col-12 mb-4">
+                    <div class="video-container">
+                        <video autoplay muted loop class="hero-video">
+                            <source src="assets/video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <div class="countdown-timer">
+                        <div id="timer" class="text-white"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Histoire Section -->
+    <section class="histoire-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-4 histoire-animated-title">
+                <span>L</span><span>'</span><span>H</span><span>i</span><span>s</span><span>t</span><span>o</span><span>i</span><span>r</span><span>e</span> <span>d</span><span>e</span> <span>l</span><span>a</span> <span>C</span><span>A</span><span>N</span>
+            </h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <p class="histoire-text">
+                        La Coupe d'Afrique des Nations (CAN) est la compétition phare du football africain, organisée par la Confédération Africaine de Football (CAF) depuis 1957. Elle rassemble tous les deux ans les meilleures équipes nationales du continent pour une célébration unique de la passion, du talent et de la diversité africaine. 
+                        <br><br>
+                        Au fil des décennies, la CAN a vu émerger des légendes du football, des moments historiques et des exploits inoubliables. Elle est bien plus qu'un simple tournoi : c'est un symbole d'unité, de fierté et d'espoir pour des millions de supporters à travers l'Afrique et le monde. 
+                        <br><br>
+                        La compétition a évolué, passant de trois équipes lors de la première édition à 24 aujourd'hui, reflétant la croissance et la popularité du football africain. Chaque édition est l'occasion de découvrir de nouveaux talents, de vibrer au rythme des stades et de partager des émotions fortes.
+                        <br><br>
+                        La CAN 2025 promet d'être exceptionnelle, avec des infrastructures modernes, des supporters passionnés et des équipes prêtes à écrire une nouvelle page de l'histoire du football africain.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partenariats Section -->
+    <section class="partenariats-section py-5">
+        <div class="container-fluid px-0">
+            <div class="row g-0 align-items-center">
+                <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-start justify-content-center bg-partenaire-title">
+                    <h2 class="text-white fw-bold ms-md-5 mb-0 partenaire-animated-title">
+                        <span>P</span><span>A</span><span>R</span><span>T</span><span>E</span><span>N</span><span>A</span><span>I</span><span>R</span><span>E</span><span>S</span>
+                    </h2>
+                </div>
+                <div class="col-12 col-md-10">
+                    <div class="row justify-content-center partenaires-gold mb-3 gx-4 gy-3">
+                        <div class="col-auto"><img src="assets/logo-bank-al-maghrib.png" alt="Bank Al Maghrib" class="img-fluid partenaire-gold"></div>
+                        <div class="col-auto"><img src="assets/CDG.svg.png" alt="CDG" class="img-fluid partenaire-gold"></div>
+                        <div class="col-auto"><img src="assets/MORROCO.jpeg" alt="Morocco" class="img-fluid partenaire-gold"></div>
+                        <div class="col-auto"><img src="assets/OCP-logo.jpg" alt="OCP" class="img-fluid partenaire-gold"></div>
+                        <div class="col-auto"><img src="assets/puma.png" alt="Puma" class="img-fluid partenaire-gold"></div>
+                        <div class="col-auto"><img src="assets/SNRT.jpg" alt="SNRT" class="img-fluid partenaire-gold"></div>
+                    </div>
+                    <div class="row justify-content-center partenaires-moyens gx-3 gy-2">
+                        <div class="col-auto"><img src="assets/AF.png" alt="AF" class="img-fluid partenaire-moyen"></div>
+                        <div class="col-auto"><img src="assets/HAIER.png" alt="Haier" class="img-fluid partenaire-moyen"></div>
+                        <div class="col-auto"><img src="assets/Pepsi-logo.png" alt="Pepsi" class="img-fluid partenaire-moyen"></div>
+                        <div class="col-auto"><img src="assets/skoda.png" alt="Skoda" class="img-fluid partenaire-moyen"></div>
+                    </div>
+                    <div class="row justify-content-center partenaires-petits gx-2 gy-2 mt-2">
+                        <div class="col-auto"><img src="assets/at.png" alt="at" class="img-fluid partenaire-petit"></div>
+                        <div class="col-auto"><img src="assets/inwi.png" alt="inwi" class="img-fluid partenaire-petit"></div>
+                        <div class="col-auto"><img src="assets/Logo-Centrale-Danone.png" alt="Danone" class="img-fluid partenaire-petit"></div>
+                        <div class="col-auto"><img src="assets/logo-dari.png" alt="Dari" class="img-fluid partenaire-petit"></div>
+                        <div class="col-auto"><img src="assets/mcdonalds-logo-png_seeklogo-370359.png" alt="McDonalds" class="img-fluid partenaire-petit"></div>
+                        <div class="col-auto"><img src="assets/Sanasid.jpeg" alt="Sanasid" class="img-fluid partenaire-petit"></div>
+                        <div class="col-auto"><img src="assets/sidiAli.png" alt="Sidi Ali" class="img-fluid partenaire-petit"></div>
+                        <div class="col-auto"><img src="assets/LCI.png" alt="LCI" class="img-fluid partenaire-petit"></div>
+                        <div class="col-auto"><img src="assets/wzbook.jpg" alt="wzbook" class="img-fluid partenaire-petit"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
