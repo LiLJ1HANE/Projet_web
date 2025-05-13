@@ -1,0 +1,112 @@
+:root {
+    --primary-green: #7FB069;
+    --light-green: #E8F5E9;
+    --primary-red: #E57373;
+    --light-red: #FFEBEE;
+    --accent-color: #4A4A4A;
+    --background-color: #F5F5F5;
+    --text-color: #333333;
+    --border-radius: 10px;
+    --box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.btn-primary {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+.btn-primary:hover {
+    background-color: #6A9D5D;
+    border-color: #6A9D5D;
+}
+
+.btn-danger {
+    background-color: var(--primary-red);
+    border-color: var(--primary-red);
+}
+
+.btn-danger:hover {
+    background-color: #D32F2F;
+    border-color: #D32F2F;
+}
+
+.form-control:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 0.25rem rgba(127, 176, 105, 0.25);
+}
+
+.bg-success {
+    background-color: var(--primary-green) !important;
+}
+
+.bg-danger {
+    background-color: var(--primary-red) !important;
+}
+
+.text-success {
+    color: var(--primary-green) !important;
+}
+
+.text-danger {
+    color: var(--primary-red) !important;
+}
+
+.price-tag {
+    background-color: var(--primary-green);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.seat {
+    transition: all 0.3s ease;
+}
+
+.seat:hover {
+    transform: scale(1.1);
+}
+
+.seat.selected {
+    background-color: var(--primary-green) !important;
+}
+
+.seat.reserved {
+    background-color: var(--primary-red) !important;
+}
+
+.seat.vip {
+    background-color: #FFD700;
+}
+
+.confirmation-icon {
+    color: var(--primary-green);
+}
+
+.ticket-info {
+    background-color: var(--light-green);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.payment-header {
+    background-color: var(--primary-green) !important;
+}
+
+.summary-item {
+    border-bottom: 1px solid var(--light-green);
+    padding: 10px 0;
+}
