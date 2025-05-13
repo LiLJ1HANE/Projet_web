@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Équipes participantes - CAN 2025</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a5d1a, #388e3c);
+            color: white;
+            padding: 2rem 0 1rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 18px 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .team-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+            padding: 0;
+            text-align: center;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
+            border: none;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 120px;
+        }
+        .team-card:hover {
+            box-shadow: 0 8px 24px rgba(44,62,80,0.16);
+            transform: scale(1.04);
+        }
+        .team-flag-img {
+            width: 100%;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+            box-shadow: none;
+            background: #fff;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: block;
+        }
+        .team-card:hover .team-flag-img {
+            transform: scale(1.06);
+            box-shadow: 0 4px 16px rgba(44,62,80,0.13);
+        }
+        .team-flag {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 70px;
+            font-size: 2.7rem;
+            background: #f8f8f8;
+            border-radius: 12px 12px 0 0;
+        }
+        .team-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #1a5d1a;
+            padding: 0.7rem 0 0.5rem 0;
+            flex: 1 0 auto;
+        }
+        .modal-header {
+            background: linear-gradient(135deg, #1a5d1a, #388e3c);
+            color: white;
+        }
+        .player-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .player-list li {
+            margin-bottom: 0.4rem;
+        }
+        .player-role {
+            font-weight: bold;
+            color: #388e3c;
+        }
+        .player-club {
+            color: #888;
+            font-size: 0.95em;
+        }
+        .team-img {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            display: block;
+            margin: 0 auto 1rem auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+        }
+        .coach-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 12px;
+            box-shadow: 0 1px 4px rgba(44,62,80,0.10);
+            background: #fff;
+        }
+        .coach-block {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .teams-bg {
+            background: linear-gradient(135deg, #e8f5e9 60%, #c8e6c9 100%);
+            min-height: 100vh;
+            padding-bottom: 2rem;
+        }
+        .flip-card {
+            background: transparent;
+            width: 100%;
+            height: 210px;
+            perspective: 900px;
+            border-radius: 18px;
+            margin-bottom: 0;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(.4,2,.6,1);
+            transform-style: preserve-3d;
+            border-radius: 18px;
+        }
+        .flip-card:hover .flip-card-inner, .flip-card:focus-within .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 18px;
+            box-shadow: 0 4px 16px rgba(44,62,80,0.10);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+        .flip-card-front {
+            background: linear-gradient(120deg, #e8f5e9 60%, #b2dfdb 100%);
+            z-index: 2;
+        }
+        .flip-card-back {
+            background: linear-gradient(120deg, #ffcccc 60%, #ffb3b3 100%);
+            transform: rotateY(180deg);
+            z-index: 3;
+        }
+        .team-flag-img, .team-flag {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.13);
+            background: #fff;
+            margin-bottom: 0.7rem;
+            border: 3px solid #1a5d1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+        }
+        .team-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #1a5d1a;
+            margin-bottom: 0.2rem;
+            text-shadow: 0 1px 0 #fff;
+        }
+        .badge-pays {
+            background: #388e3c;
+            color: #fff;
+            font-size: 0.8rem;
+            border-radius: 8px;
+            padding: 2px 10px;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+        .flip-card-back .team-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 0.7rem;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.13);
+        }
+        .flip-card-back .coach-block {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.7rem;
+        }
+        .flip-card-back .coach-img {
+            width: 38px;
+            height: 38px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 10px;
+            box-shadow: 0 1px 4px rgba(44,62,80,0.10);
+            background: #fff;
+        }
+        .flip-card-back .coach-block strong {
+            font-size: 0.95em;
+        }
+        .flip-card-back .see-squad-btn {
+            margin-top: 0.5rem;
+            background: #1a5d1a;
+            color: #fff;
+            border-radius: 20px;
+            border: none;
+            padding: 6px 18px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .flip-card-back .see-squad-btn:hover {
+            background: #388e3c;
+        }
+        @media (max-width: 900px) {
+            .flip-card { height: 150px; }
+            .team-flag-img, .team-flag { width: 38px; height: 38px; font-size: 1.3rem; }
+            .flip-card-back .team-img { width: 50px; height: 50px; }
+        }
+    </style>
+</head>
+<body>
+<div class="header text-center">
+    <div class="container">
+        <h1><i class="fas fa-users me-2"></i> Équipes participantes - CAN 2025</h1>
+        <p class="lead">Cliquez sur une équipe pour voir la liste des joueurs</p>
+    </div>
+</div>
+<div class="container mb-5">
+    <div class="row g-3" id="teamsGrid">
+        <!-- Les équipes seront injectées ici par JS -->
+    </div>
+</div>
+
+<!-- Modal Joueurs -->
+<div class="modal fade" id="playersModal" tabindex="-1" aria-labelledby="playersModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="playersModalLabel">Joueurs</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="playersModalBody">
+        <!-- Contenu dynamique -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const teams = [
+  { name: 'Maroc', flag: '🇲🇦', flagImg: "maroc.png", teamImg: 'equipemaroc.jpg', coachImg: 'walid.jpg', coach: 'Walid Regragui',
+    players: {
+      'Gardiens de but': [
+        { name: 'Yassine Bounou', club: 'Al Hilal, Arabie Saoudite' },
+        { name: 'Munir El Kajoui', club: 'RS Berkane' },
+        { name: 'Salaheddine Chihab', club: 'Maghreb Fès' },
+        { name: 'Ayoub El Khayati', club: 'AS FAR' }
+      ],
+      'Défenseurs': [
+        { name: 'Achraf Hakimi', club: 'Paris Saint-Germain, France' },
+        { name: 'Noussair Mazraoui', club: 'Manchester United, Angleterre' },
+        { name: 'Abdelkabir Abqar', club: 'Deportivo Alavés, Espagne' },
+        { name: 'Jamal Harkass', club: 'Wydad Casablanca' },
+        { name: 'Nayef Aguerd', club: 'Real Sociedad, Espagne' },
+        { name: 'Adam Massina', club: 'Torino, Italie' },
+        { name: 'Adam Aznou', club: 'Bayern Munich, Allemagne' },
+        { name: 'Yahya Attiat-Allah', club: 'Al Ahly, Égypte' }
+      ],
+      'Milieux de terrain': [
+        { name: 'Sofyan Amrabat', club: 'Fenerbahçe, Turquie' },
+        { name: 'Amir Richardson', club: 'Fiorentina, Italie' },
+        { name: 'Eliesse Ben Seghir', club: 'AS Monaco, France' },
+        { name: 'Oussama Targhaline', club: 'Le Havre, France' },
+        { name: 'Azzedine Ounahi', club: 'Panathinaïkos, Grèce' },
+        { name: 'Bilal El Khannouss', club: 'Leicester City, Angleterre' },
+        { name: 'Ismael Saibari', club: 'PSV Eindhoven, Pays-Bas' }
+      ],
+      'Attaquants': [
+        { name: 'Ilias Akhomach', club: 'Villarreal CF, Espagne' },
+        { name: 'Brahim Diaz', club: 'Real Madrid, Espagne' },
+        { name: 'Soufiane Rahimi', club: 'Al Ain, Émirats arabes unis' },
+        { name: 'Ayoub El Kaabi', club: 'Olympiacos, Grèce' },
+        { name: 'Youssef En-Nesyri', club: 'Fenerbahçe, Turquie' },
+        { name: 'Osame Sahraoui', club: 'Lille, France' },
+        { name: 'Abdessamad Ezzalzouli', club: 'Real Betis, Espagne' }
+      ]
+    }
+  },
+  { name: 'Algérie', flag: '🇩🇿', flagImg: '', teamImg: '', coachImg: '', coach: 'Vladimir Petkovic',
+    players: {
+      'Gardiens de but': [
+        { name: 'Alexis Guendouz', club: 'Persepolis FC, Iran' },
+        { name: 'Anthony Mandrea', club: 'SM Caen, France' },
+        { name: 'Alexandre Oukidja', club: 'FC Metz, France' }
+      ],
+      'Défenseurs': [
+        { name: 'Youcef Atal', club: 'Al-Sadd SC, Qatar' },
+        { name: 'Ryan Aït Nouri', club: 'Wolverhampton, Angleterre' },
+        { name: 'Ahmed Touba', club: 'KV Mechelen, Belgique' },
+        { name: 'Mohamed Amine Madani', club: 'JS Kabylie' },
+        { name: 'Aïssa Mandi', club: 'LOSC Lille, France' },
+        { name: 'Mohamed Amine Tougaï', club: 'ES Tunis, Tunisie' },
+        { name: 'Ramy Bensebaïni', club: 'Borussia Dortmund, Allemagne' },
+        { name: 'Mohamed Farsi', club: 'Columbus Crew, États-Unis' },
+        { name: 'Jaouen Hadjam', club: 'BSC Young Boys, Suisse' }
+      ],
+      'Milieux de terrain': [
+        { name: 'Ramiz Zerrouki', club: 'Feyenoord, Pays-Bas' },
+        { name: 'Adem Zorgane', club: 'Charleroi SC, Belgique' },
+        { name: 'Ahmed Kendouci', club: 'Cleopatra FC, Égypte' },
+        { name: 'Ibrahim Maza', club: 'Hertha Berlin, Allemagne' },
+        { name: 'Himad Abdelli', club: 'Angers SCO, France' }
+      ],
+      'Attaquants': [
+        { name: 'Mohamed Amine Amoura', club: 'VfL Wolfsburg, Allemagne' },
+        { name: 'Saïd Benrahma', club: 'Olympique Lyonnais, France' },
+        { name: 'Riyad Mahrez', club: 'Al-Ahli FC, Arabie Saoudite' },
+        { name: 'Yacine Benzia', club: 'Qarabag FK, Azerbaïdjan' },
+        { name: 'Baghdad Bounedjah', club: 'Al-Shamal SC, Qatar' },
+        { name: 'Amine Gouiri', club: 'Stade Rennais, France' },
+        { name: 'Amin Chiakha', club: 'FC Copenhague, Danemark' },
+        { name: 'Farès Chaïbi', club: 'Eintracht Francfort, Allemagne' },
+        { name: 'Bachir Belloumi', club: 'Hull City, Angleterre' }
+      ]
+    }
+  },
+  { name: 'Sénégal', flag: '🇸🇳', flagImg: '', teamImg: '', coachImg: '', coach: 'Aliou Cissé',
+    players: {
+      'Gardiens de but': [
+        { name: 'Édouard Mendy', club: 'Al-Ahli, Arabie Saoudite' },
+        { name: 'Mory Diaw', club: 'Clermont Foot, France' },
+        { name: 'Seny Dieng', club: 'Middlesbrough, Angleterre' }
+      ],
+      'Défenseurs': [
+        { name: 'Kalidou Koulibaly', club: 'Al-Hilal, Arabie Saoudite' },
+        { name: 'Abdou Diallo', club: 'Al-Arabi, Qatar' },
+        { name: 'Moussa Niakhaté', club: 'Olympique Lyonnais, France' },
+        { name: 'Abdoulaye Seck', club: 'Maccabi Haïfa, Israël' },
+        { name: 'Mikayil Ngor Faye', club: 'Stade Rennais, France' },
+        { name: 'Formose Mendy', club: 'FC Lorient, France' },
+        { name: 'Ismail Jakobs', club: 'AS Monaco, France' },
+        { name: 'Seydou Sano', club: 'Al-Gharafa, Qatar' },
+        { name: 'El Hadji Malick Diouf', club: 'Slavia Prague, République tchèque' }
+      ],
+      'Milieux de terrain': [
+        { name: 'Nampalys Mendy', club: 'RC Lens, France' },
+        { name: 'Pathé Ciss', club: 'Rayo Vallecano, Espagne' },
+        { name: 'Lamine Camara', club: 'AS Monaco, France' },
+        { name: 'Pape Matar Sarr', club: 'Tottenham Hotspur, Angleterre' },
+        { name: 'Pape Gueye', club: 'Villarreal CF, Espagne' },
+        { name: 'Habib Diarra', club: 'RC Strasbourg, France' },
+        { name: 'Idrissa Gueye', club: 'Everton, Angleterre' }
+      ],
+      'Attaquants': [
+        { name: 'Sadio Mané', club: 'Al-Nassr, Arabie Saoudite' },
+        { name: 'Ismaïla Sarr', club: 'Crystal Palace, Angleterre' },
+        { name: 'Habib Diallo', club: 'Damac FC, Arabie Saoudite' },
+        { name: 'Iliman Ndiaye', club: 'Everton, Angleterre' },
+        { name: 'Nicolas Jackson', club: 'Chelsea FC, Angleterre' },
+        { name: 'Cherif Ndiaye', club: 'Étoile Rouge de Belgrade, Serbie' },
+        { name: 'Abdallah Sima', club: 'Stade Brestois, France' }
+      ]
+    }
+  },
+  // Les autres équipes (drapeau emoji, effectif à venir)
+  { name: 'Angola', flag: '🇦🇴', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Afrique du Sud', flag: '🇿🇦', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Bénin', flag: '🇧🇯', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Botswana', flag: '🇧🇼', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Burkina Faso', flag: '🇧🇫', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Cameroun', flag: '🇨🇲', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Comores', flag: '🇰🇲', flagImg: '', teamImg: '', coachImg: '' },
+  { name: "Côte d'Ivoire", flag: '🇨🇮', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Égypte', flag: '🇪🇬', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Gabon', flag: '🇬🇦', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Guinée équatoriale', flag: '🇬🇶', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Mali', flag: '🇲🇱', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Mozambique', flag: '🇲🇿', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Nigeria', flag: '🇳🇬', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Ouganda', flag: '🇺🇬', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'RD Congo', flag: '🇨🇩', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Soudan', flag: '🇸🇩', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Tanzanie', flag: '🇹🇿', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Tunisie', flag: '🇹🇳', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Zambie', flag: '🇿🇲', flagImg: '', teamImg: '', coachImg: '' },
+  { name: 'Zimbabwe', flag: '🇿🇼', flagImg: '', teamImg: '', coachImg: '' }
+];
+
+// Génération de la grille
+const teamsGrid = document.getElementById('teamsGrid');
+teams.forEach((team, idx) => {
+  const col = document.createElement('div');
+  col.className = 'col-6 col-sm-4 col-md-3 col-lg-2';
+  // Flip card structure
+  const flipCard = document.createElement('div');
+  flipCard.className = 'flip-card';
+  flipCard.tabIndex = 0;
+  const flipInner = document.createElement('div');
+  flipInner.className = 'flip-card-inner';
+  // Front
+  const front = document.createElement('div');
+  front.className = 'flip-card-front';
+  front.innerHTML = `
+    ${team.flagImg ? `<img class='team-flag-img' src='assets/${team.flagImg}' alt='Drapeau ${team.name}'>` : `<div class='team-flag'>${team.flag}</div>`}
+    <div class='team-name'>${team.name}</div>
+    <div class='badge-pays'>${team.name}</div>
+  `;
+  // Back
+  const back = document.createElement('div');
+  back.className = 'flip-card-back';
+  back.innerHTML = `
+    ${team.teamImg ? `<img class='team-img' src='assets/${team.teamImg}' alt='Equipe ${team.name}'>` : ''}
+    <div class='coach-block'>
+      ${team.coachImg ? `<img class='coach-img' src='assets/${team.coachImg}' alt='Coach ${team.coach}'>` : ''}
+      <div><strong>Sélectionneur :</strong> ${team.coach ? team.coach : '-'}</div>
+    </div>
+    <button class='see-squad-btn' onclick='event.stopPropagation();showTeamModal(teams[${idx}])'>Voir effectif</button>
+  `;
+  flipInner.appendChild(front);
+  flipInner.appendChild(back);
+  flipCard.appendChild(flipInner);
+  col.appendChild(flipCard);
+  teamsGrid.appendChild(col);
+});
+
+function showTeamModal(team) {
+  const modalLabel = document.getElementById('playersModalLabel');
+  const modalBody = document.getElementById('playersModalBody');
+  modalLabel.textContent = team.flag + ' ' + team.name;
+  let html = '';
+  let teamImgSrc = team.teamImg ? `assets/${team.teamImg}` : '';
+  let coachImgSrc = team.coachImg ? `assets/${team.coachImg}` : '';
+  if (teamImgSrc) {
+    html += `<img class='team-img' src='${teamImgSrc}' alt='Photo équipe ${team.name}'>`;
+  }
+  if (coachImgSrc || team.coach) {
+    html += `<div class='coach-block'>`;
+    if (coachImgSrc) {
+      html += `<img class='coach-img' src='${coachImgSrc}' alt='Coach ${team.coach}'>`;
+    }
+    if (team.coach) {
+      html += `<div><strong>Sélectionneur :</strong> ${team.coach}</div>`;
+    }
+    html += `</div>`;
+  }
+  if (team.players) {
+    for (const [role, players] of Object.entries(team.players)) {
+      html += `<div class='player-role mt-3 mb-1'>${role}</div><ul class='player-list'>`;
+      players.forEach(p => {
+        html += `<li><span>${p.name}</span> <span class='player-club'>(${p.club})</span></li>`;
+      });
+      html += '</ul>';
+    }
+    modalBody.innerHTML = html;
+  } else {
+    html += `<div class='text-center py-4'><i class='fas fa-users fa-2x mb-3 text-secondary'></i><br><strong>Effectif à venir</strong></div>`;
+    modalBody.innerHTML = html;
+  }
+  const modal = new bootstrap.Modal(document.getElementById('playersModal'));
+  modal.show();
+}
+</script>
+</body>
+</html> 
