@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz sur la CAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="quiz-header">
+        <img src="assets/image.png" class="quiz-banner">
+        <h2>Quiz sur la Coupe d'Afrique des Nations</h2>
+    </div>
+
+    <div id="resultArea" style="display:none; text-align:center; margin-bottom:30px;">
+        <h3 id="resultTitle"></h3>
+        <div id="resultScore" style="font-size:2rem; color:#1a7f37; font-family:'Russo One',Arial,sans-serif;"></div>
+        <div id="resultMessage"></div>
+        <button id="restartBtn" style="margin-top:20px; padding:10px 24px; background:#006400; color:white; border:none; border-radius:5px; font-size:1.1rem; cursor:pointer; display:none;">
+            Recommencer
+        </button>
+    </div>
+
+    <div class="quiz-container">
+        <div id="quiz"></div>
+        <div class="question-nav">
+            <button id="prevBtn">Précédent</button>
+            <button id="nextBtn">Suivant</button>
+            <button id="submit" style="display:none;">Voir les résultats</button>
+        </div>
+    </div>
+    
+    <div class="result-popup" id="resultPopup">
+        ...
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "Quel pays a remporté le plus de titres de la CAN?",
+                answers: {
+                    a: "Égypte",
+                    b: "Cameroun",
+                    c: "Ghana",
+                    d: "Nigeria"
+                },
+                correctAnswer: "a"
+            },
+            {
+                question: "En quelle année a eu lieu la première CAN?",
+                answers: {
+                    a: "1957",
+                    b: "1962",
+                    c: "1970",
+                    d: "1980"
+                },
+                correctAnswer: "a"
+            },
+            {
+                question: "Quel joueur marocain détient le record de participations à la CAN?",
+                answers: {
+                    a: "Mustafa Hadji",
+                    b: "Noureddine Naybet",
+                    c: "Medhi Benatia",
+                    d: "Hakim Ziyech"
+                },
+                correctAnswer: "b"
+            },
+            {
+                question: "Où s'est déroulée la CAN 2022?",
+                answers: {
+                    a: "Maroc",
+                    b: "Égypte",
+                    c: "Cameroun",
+                    d: "Sénégal"
+                },
+                correctAnswer: "c"
+            },
+            {
+                question: "Quel pays a remporté la CAN 2022?",
+                answers: {
+                    a: "Sénégal",
+                    b: "Égypte",
+                    c: "Algérie",
+                    d: "Maroc"
+                },
+                correctAnswer: "a"
+            },
+            {
+                question: "Qui était le meilleur buteur de la CAN 2022?",
+                answers: {
+                    a: "Sadio Mané",
+                    b: "Vincent Aboubakar",
+                    c: "Mohamed Salah",
+                    d: "Riyad Mahrez"
+                },
+                correctAnswer: "b"
+            },
+            {
+                question: "Combien de fois le Maroc a-t-il remporté la CAN?",
+                answers: {
+                    a: "0",
+                    b: "1",
+                    c: "2",
+                    d: "3"
+                },
+                correctAnswer: "b"
+            },
+            {
+                question: "Quelle équipe a été finaliste de la CAN 2022?",
+                answers: {
+                    a: "Sénégal",
+                    b: "Égypte",
+                    c: "Cameroun",
+                    d: "Maroc"
+                },
+                correctAnswer: "b"
+            },
+            {
+                question: "En quelle année le Maroc a-t-il remporté la CAN?",
+                answers: {
+                    a: "1972",
+                    b: "1976",
+                    c: "1980",
+                    d: "1986"
+                },
+                correctAnswer: "b"
+            },
+            {
+                question: "Quelle ville marocaine a accueilli des matchs de la CAN?",
+                answers: {
+                    a: "Casablanca",
+                    b: "Marrakech",
+                    c: "Tanger",
+                    d: "Toutes ces réponses"
+                },
+                correctAnswer: "d"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let userAnswers = new Array(quizData.length);
+
+        function buildQuiz() {
+            showQuestion(currentQuestion);
+            updateNavButtons();
+        }
+
+        function showQuestion(index) {
+            const quizContainer = document.getElementById('quiz');
+            const q = quizData[index];
+            const answers = [];
+            for (const letter in q.answers) {
+                answers.push(
+                    `<label>
+                        <input type="radio" name="question${index}" value="${letter}" ${userAnswers[index] === letter ? 'checked' : ''}>
+                        ${letter.toUpperCase()}) ${q.answers[letter]}
+                    </label>`
+                );
+            }
+            quizContainer.innerHTML = `
+                <div class="question">${index + 1}. ${q.question}</div>
+                <div class="answers">${answers.join('<br>')}</div>
+            `;
+            highlightSelectedLabels();
+            attachProgressBarListeners();
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            document.getElementById('nextBtn').style.display = currentQuestion === quizData.length - 1 ? 'none' : '';
+            document.getElementById('submit').style.display = currentQuestion === quizData.length - 1 ? '' : 'none';
+        }
+
+        // Navigation events
+        document.getElementById('prevBtn').onclick = function() {
+            saveAnswer();
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+                updateNavButtons();
+            }
+        };
+        document.getElementById('nextBtn').onclick = function() {
+            saveAnswer();
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+                updateNavButtons();
+            }
+        };
+        document.getElementById('submit').onclick = function() {
+            saveAnswer();
+            showResults();
+        };
+
+        document.getElementById('restartBtn').onclick = function() {
+            // Réinitialise les réponses et l'affichage
+            userAnswers = new Array(quizData.length);
+            currentQuestion = 0;
+            document.getElementById('resultArea').style.display = 'none';
+            document.getElementById('restartBtn').style.display = 'none';
+            document.getElementById('prevBtn').style.display = '';
+            document.getElementById('nextBtn').style.display = '';
+            document.getElementById('submit').style.display = 'none';
+            document.getElementById('progressBar').style.width = '0%';
+            buildQuiz();
+        };
+
+        function saveAnswer() {
+            const selected = document.querySelector('.answers input[type="radio"]:checked');
+            userAnswers[currentQuestion] = selected ? selected.value : undefined;
+            // Update progress bar
+            const answered = userAnswers.filter(a => a !== undefined).length;
+            const progress = (answered / quizData.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Update highlightSelectedLabels to work for single question
+        function highlightSelectedLabels() {
+            document.querySelectorAll('.answers input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const labels = this.closest('.answers').querySelectorAll('label');
+                    labels.forEach(l => l.classList.remove('selected-answer'));
+                    this.parentElement.classList.add('selected-answer');
+                    saveAnswer();
+                });
+            });
+        }
+
+        // Update attachProgressBarListeners to work for single question
+        function attachProgressBarListeners() {
+            // Already handled in saveAnswer for this mode
+        }
+
+        // Modify showResults to use userAnswers
+        function showResults() {
+            let numCorrect = 0;
+            quizData.forEach((q, i) => {
+                if (userAnswers[i] === q.correctAnswer) numCorrect++;
+            });
+
+            // Score et message
+            const scorePercent = Math.round((numCorrect / quizData.length) * 100);
+            let message, title;
+            if (scorePercent >= 80) {
+                title = "🎉 Félicitations ! 🎉";
+                message = `<span style="font-size:2rem;">🏆</span><br><strong>Incroyable !</strong> Vous êtes un vrai expert de la CAN !<br>Continuez à briller et à partager vos connaissances !`;
+                showConfetti && showConfetti();
+                popCelebrationEmojis && popCelebrationEmojis();
+            } else if (scorePercent >= 50) {
+                title = "👏 Bravo !";
+                message = "👍 Bon travail! Vous connaissez bien le football africain!<br>Encore un petit effort pour devenir un expert !";
+            } else {
+                title = "Merci d'avoir participé !";
+                message = "📚 Continuez à apprendre! Regardez plus de matchs de la CAN!<br>La prochaine fois sera la bonne !";
+            }
+
+            // Affiche le résultat au-dessus du quiz
+            document.getElementById('resultTitle').innerHTML = title;
+            document.getElementById('resultScore').innerHTML = `Vous avez obtenu <strong>${numCorrect}</strong> bonnes réponses sur <strong>${quizData.length}</strong> (${scorePercent}%)`;
+            document.getElementById('resultMessage').innerHTML = message;
+            document.getElementById('resultArea').style.display = 'block';
+            document.getElementById('restartBtn').style.display = 'inline-block';
+
+            // Affiche toutes les questions avec la correction
+            const quizContainer = document.getElementById('quiz');
+            let html = '';
+            quizData.forEach((q, i) => {
+                let answers = '';
+                for (const letter in q.answers) {
+                    let labelClass = '';
+                    let style = '';
+                    if (userAnswers[i] === letter && letter === q.correctAnswer) {
+                        labelClass = 'selected-answer';
+                    } else if (userAnswers[i] === letter && letter !== q.correctAnswer) {
+                        style = 'color:#d32f2f;font-weight:bold;';
+                    } else if (letter === q.correctAnswer) {
+                        style = 'color:#006400;font-weight:bold;';
+                    }
+                    answers += `<label style="${style}" class="${labelClass}">
+                        <input type="radio" name="question${i}" value="${letter}" disabled ${userAnswers[i] === letter ? 'checked' : ''}>
+                        ${letter.toUpperCase()}) ${q.answers[letter]}
+                    </label>`;
+                    // Après la dernière réponse, ajoute la bonne réponse
+                    if (letter === 'd') {
+                        answers += `<div style="color:#006400;font-weight:bold;margin-top:5px;">Bonne réponse : ${q.correctAnswer.toUpperCase()}) ${q.answers[q.correctAnswer]}</div>`;
+                    }
+                }
+                html += `
+                    <div class="question">${i + 1}. ${q.question}</div>
+                    <div class="answers">${answers}</div>
+                `;
+            });
+            quizContainer.innerHTML = html;
+
+            // Désactive la navigation
+            document.getElementById('prevBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('submit').style.display = 'none';
+        }
+
+        function shareOnFacebook() {
+            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+            window.open(url, '_blank');
+        }
+        function shareOnTwitter() {
+            // Optionally, you can include the score in the tweet
+            const scoreText = document.getElementById('resultScore').innerText || '';
+            const tweet = `J'ai participé au Quiz CAN ! ${scoreText} #QuizCAN`;
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}&url=${encodeURIComponent(window.location.href)}`;
+            window.open(url, '_blank');
+        }
+
+        // Close popup
+        document.getElementById('closePopup').addEventListener('click', function() {
+            document.getElementById('resultPopup').style.display = 'none';
+        });
+
+        // Appel initial
+        buildQuiz();
+    </script>
+</body>
+</html>
