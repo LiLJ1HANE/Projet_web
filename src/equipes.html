@@ -80,7 +80,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 const teams = [
-  { name: 'Maroc', flag: '🇲🇦', flagImg: "maroc.png", teamImg: 'equipemaroc.jpg', coachImg: 'walid.jpg', coach: 'Walid Regragui',
+  { name: 'Maroc', flag: '🇲🇦', flagImg: "flags/maroc.jpg", teamImg: 'equipemaroc.jpg', coachImg: 'walid.jpg', coach: 'Walid Regragui',
     players: {
       'Gardiens de but': [
         { name: 'Yassine Bounou', club: 'Al Hilal, Arabie Saoudite' },
@@ -118,7 +118,7 @@ const teams = [
       ]
     }
   },
-  { name: 'Algérie', flag: '🇩🇿', flagImg: '', teamImg: '', coachImg: '', coach: 'Vladimir Petkovic',
+  { name: 'Algérie', flag: '🇩🇿', flagImg: "../assets/flags/algeria.jpeg", teamImg: 'algerie.jpeg', coachImg: 'vladimir.jpeg', coach: 'Vladimir Petkovic',
     players: {
       'Gardiens de but': [
         { name: 'Alexis Guendouz', club: 'Persepolis FC, Iran' },
@@ -156,7 +156,7 @@ const teams = [
       ]
     }
   },
-  { name: 'Sénégal', flag: '🇸🇳', flagImg: '', teamImg: '', coachImg: '', coach: 'Aliou Cissé',
+  { name: 'Sénégal', flag: '🇸🇳', flagImg: "../assets/flags/senegal.jpeg", teamImg: 'senegal.jpeg', coachImg: 'aliou.jpeg', coach: 'Aliou Cissé',
     players: {
       'Gardiens de but': [
         { name: 'Édouard Mendy', club: 'Al-Ahli, Arabie Saoudite' },
@@ -195,27 +195,27 @@ const teams = [
     }
   },
   // Les autres équipes (drapeau emoji, effectif à venir)
-  { name: 'Angola', flag: '🇦🇴', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Afrique du Sud', flag: '🇿🇦', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Bénin', flag: '🇧🇯', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Botswana', flag: '🇧🇼', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Burkina Faso', flag: '🇧🇫', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Cameroun', flag: '🇨🇲', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Comores', flag: '🇰🇲', flagImg: '', teamImg: '', coachImg: '' },
-  { name: "Côte d'Ivoire", flag: '🇨🇮', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Égypte', flag: '🇪🇬', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Gabon', flag: '🇬🇦', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Guinée équatoriale', flag: '🇬🇶', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Mali', flag: '🇲🇱', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Mozambique', flag: '🇲🇿', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Nigeria', flag: '🇳🇬', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Ouganda', flag: '🇺🇬', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'RD Congo', flag: '🇨🇩', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Soudan', flag: '🇸🇩', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Tanzanie', flag: '🇹🇿', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Tunisie', flag: '🇹🇳', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Zambie', flag: '🇿🇲', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Zimbabwe', flag: '🇿🇼', flagImg: '', teamImg: '', coachImg: '' }
+  { name: 'Angola', flag: '🇦🇴', flagImg: "../assets/flags/angola.jpg", teamImg: '', coachImg: '' },
+  { name: 'Afrique du Sud', flag: '🇿🇦', flagImg: 'flags/Afsud.jpg', teamImg: '', coachImg: '' },
+  { name: 'Bénin', flag: '🇧🇯', flagImg: "../assets/flags/benin.jpeg" , teamImg: '', coachImg: '' },
+  { name: 'Botswana', flag: '🇧🇼', flagImg: "../assets/flags/botswana.png", teamImg: '', coachImg: '' },
+  { name: 'Burkina Faso', flag: '🇧🇫', flagImg: "../assets/flags/burkinafasso.jpeg", teamImg: '', coachImg: '' },
+  { name: 'Cameroun', flag: '🇨🇲', flagImg: "../assets/flags/cameroon.jpeg", teamImg: '', coachImg: '' },
+  { name: 'Comores', flag: '🇰🇲', flagImg: 'flags/comores.jpg', teamImg: '', coachImg: '' },
+  { name: "Côte d'Ivoire", flag: '🇨🇮', flagImg: "../assets/flags/ivorycoast.jpeg" , teamImg: '', coachImg: '' },
+  { name: 'Égypte', flag: '🇪🇬', flagImg: 'flags/egypte.jpg', teamImg: '', coachImg: '' },
+  { name: 'Gabon', flag: '🇬🇦', flagImg: "../assets/flags/gabon.png", teamImg: '', coachImg: '' },
+  { name: 'Guinée équatoriale', flag: '🇬🇶', flagImg: "../assets/flags/equatorialguinea.png", teamImg: '', coachImg: '' },
+  { name: 'Mali', flag: '🇲🇱', flagImg: 'flags/mali.jpg', teamImg: '', coachImg: '' },
+  { name: 'Mozambique', flag: '🇲🇿', flagImg: "../assets/flags/mozambique.jpg", teamImg: '', coachImg: '' },
+  { name: 'Nigeria', flag: '🇳🇬', flagImg: 'flags/nigeria.jpg', teamImg: '', coachImg: '' },
+  { name: 'Ouganda', flag: '🇺🇬', flagImg: 'flags/uganda.png', teamImg: '', coachImg: '' },
+  { name: 'RD Congo', flag: '🇨🇩', flagImg: "../assets/flags/rdcongo.png", teamImg: '', coachImg: '' },
+  { name: 'Soudan', flag: '🇸🇩', flagImg: "../assets/flags/sudan.png", teamImg: '', coachImg: '' },
+  { name: 'Tanzanie', flag: '🇹🇿', flagImg: 'flags/Tanzanie.jpg', teamImg: '', coachImg: '' },
+  { name: 'Tunisie', flag: '🇹🇳', flagImg: 'flags/tunisie.jpg', teamImg: '', coachImg: '' },
+  { name: 'Zambie', flag: '🇿🇲', flagImg: 'flags/zambie.jpg', teamImg: '', coachImg: '' },
+  { name: 'Zimbabwe', flag: '🇿🇼', flagImg: 'flags/zimbabwe.jpg', teamImg: '', coachImg: '' }
 ];
 
 // Génération de la grille
