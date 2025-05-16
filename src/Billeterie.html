@@ -1,23 +1,40 @@
 <!DOCTYPE html>
+<!-- Déclaration du type de document HTML5 -->
 <html lang="fr">
+<!-- Balise racine avec spécification de la langue française -->
 <head>
+    <!-- En-tête du document contenant les métadonnées -->
     <meta charset="UTF-8">
+    <!-- Définition de l'encodage des caractères en UTF-8 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configuration de la vue pour le responsive design -->
     <title>Billetterie CAN 2025</title>
+    <!-- Titre de la page affiché dans l'onglet du navigateur -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Importation de Bootstrap 5.3.0 pour le style -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Importation de Font Awesome pour les icônes -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Importation de la feuille de style principale -->
     <link rel="stylesheet" href="billetterie.css">
+    <!-- Importation de la feuille de style spécifique à la billetterie -->
 </head>
 <body>
+<!-- Début du corps du document -->
 <nav class="navbar navbar-expand-lg navbar-dark">
+    <!-- Barre de navigation principale -->
     <div class="container">
+        <!-- Conteneur de la barre de navigation -->
         <a class="navbar-brand" href="#">CAN 2025</a>
+        <!-- Logo et nom du site -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <!-- Bouton hamburger pour le menu mobile -->
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Menu de navigation déroulant -->
             <ul class="navbar-nav ms-auto">
+                <!-- Liste des liens de navigation -->
                 <li class="nav-item">
                     <a class="nav-link" href="index.html">Accueil</a>
                 </li>
@@ -44,6 +61,7 @@
                 </li>
             </ul>
             <form class="d-flex ms-3 search-navbar-form">
+                <!-- Formulaire de recherche -->
                 <input type="text" class="form-control me-2" id="navbar-search-input" placeholder="Rechercher...">
                 <button class="btn btn-primary" type="button" id="navbar-search-btn">Rechercher</button>
             </form>
@@ -52,52 +70,79 @@
 </nav>
 
 <div class="header text-center">
+    <!-- En-tête de la page -->
     <div class="container">
         <h1><i class="fas fa-ticket-alt me-2"></i> Billetterie CAN Maroc 2025</h1>
+        <!-- Titre principal avec icône -->
         <p class="lead">Sélectionnez vos places pour vivre l'émotion du football africain</p>
+        <!-- Sous-titre -->
     </div>
 </div>
 
 <div class="main-content flex">
+    <!-- Contenu principal de la page -->
     <div class="stadium-container">
+        <!-- Section du plan du stade -->
         <h3 class="mb-3"><i class="fas fa-map-marked-alt me-2"></i> Plan du stade</h3>
+        <!-- Titre de la section avec icône -->
         <div class="stadium-layout" id="stadiumMap">
+            <!-- Conteneur du plan du stade -->
             <div class="field"></div>
+            <!-- Représentation du terrain -->
             <!-- Les tribunes seront ajoutées ici par JavaScript -->
         </div>
 
         <div class="mt-4">
+            <!-- Section de la légende -->
             <h5><i class="fas fa-info-circle me-2"></i> Légende :</h5>
+            <!-- Titre de la légende avec icône -->
             <div class="d-flex flex-wrap gap-3 mt-3 align-items-center">
+                <!-- Liste des catégories de places -->
                 <div class="legend-item"><span class="legend-dot standard"></span><span class="legend-label">Standard (300 MAD)</span></div>
+                <!-- Élément de légende pour les places standard -->
                 <div class="legend-item"><span class="legend-dot vip"></span><span class="legend-label">VIP (800 MAD)</span></div>
+                <!-- Élément de légende pour les places VIP -->
                 <div class="legend-item"><span class="legend-dot vvip"></span><span class="legend-label">VVIP (1200 MAD)</span></div>
+                <!-- Élément de légende pour les places VVIP -->
                 <div class="legend-item"><span class="legend-dot reserved"></span><span class="legend-label">Non disponible</span></div>
+                <!-- Élément de légende pour les places non disponibles -->
             </div>
         </div>
     </div>
 
     <div class="selection-card">
+        <!-- Section de sélection des places -->
         <h3 class="mb-4"><i class="fas fa-shopping-cart me-2"></i> Votre sélection</h3>
+        <!-- Titre de la section avec icône -->
 
         <div id="selectedSeatsContainer">
+            <!-- Conteneur des places sélectionnées -->
             <p class="text-muted">Aucune place sélectionnée</p>
+            <!-- Message par défaut -->
         </div>
 
         <hr>
+        <!-- Séparateur -->
 
         <div class="d-flex justify-content-between align-items-center mb-3">
+            <!-- Section du total -->
             <h5 class="mb-0">Total :</h5>
+            <!-- Label du total -->
             <h5 class="mb-0 price-tag" id="totalPrice">0 MAD</h5>
+            <!-- Affichage du montant total -->
         </div>
 
         <button id="checkoutBtn" class="btn btn-primary btn-checkout" disabled>
+            <!-- Bouton de paiement (désactivé par défaut) -->
             <i class="fas fa-credit-card me-2"></i> Procéder au paiement
+            <!-- Icône et texte du bouton -->
         </button>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Importation du script Bootstrap pour les fonctionnalités interactives -->
 <script src="billetterie.js"></script>
+<!-- Importation du script personnalisé pour la gestion de la billetterie -->
 </body>
 </html>
