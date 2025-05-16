@@ -1,0 +1,82 @@
+/* Plan du stade */
+.stadium-layout {
+  width: 100%;
+  min-width: 320px;
+  max-width: 700px;
+  aspect-ratio: 2.2 / 1;
+  min-height: 320px;
+  height: 420px;
+  background: radial-gradient(ellipse at center, #e8f5e9 60%, #c8e6c9 100%);
+  border-radius: 50% / 42%;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(44,62,80,0.10);
+  margin: 0 auto;
+  position: relative;
+}
+.field {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(15deg);
+  width: 260px;
+  height: 120px;
+  background: repeating-linear-gradient(90deg, #388e3c 0 18px, #43a047 18px 36px);
+  border: 6px solid #fff;
+  border-radius: 30% / 40%;
+  z-index: 2;
+  box-shadow: 0 0 24px 4px rgba(44,62,80,0.10);
+}
+.seat {
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(44,62,80,0.13);
+  border: 1.5px solid #fff;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7em;
+}
+.seat.vvip { background: linear-gradient(135deg, #8e24aa, #f3e5f5); border-color: #8e24aa; }
+.seat.vip { background: linear-gradient(135deg, #FFD700, #fffde7); border-color: #FFD700; }
+.seat.standard { background: #43a047; border-color: #388e3c; }
+.seat.reserved { background: #bdbdbd; border-color: #bdbdbd; cursor: not-allowed; }
+.seat.selected { outline: 2px solid #1976d2; z-index: 3; }
+.seat:hover:not(.reserved) {
+  z-index: 4;
+  box-shadow: 0 2px 12px #1976d2;
+  transform: scale(1.18);
+}
+.seat-tooltip {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: -30px;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.seat:hover .seat-tooltip { display: block; }
+.legend-item .seat { margin-right: 8px; }
+.legend-item { display: flex; align-items: center; margin-bottom: 8px; }
+.legend-label { font-size: 0.95em; }
+.legend-dot {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  margin-right: 8px;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(44,62,80,0.10);
+  vertical-align: middle;
+}
+.legend-dot.standard { background: #43a047; border-color: #388e3c; }
+.legend-dot.vip { background: linear-gradient(135deg, #FFD700, #fffde7); border-color: #FFD700; }
+.legend-dot.vvip { background: linear-gradient(135deg, #8e24aa, #f3e5f5); border-color: #8e24aa; }
+.legend-dot.reserved { background: #bdbdbd; border-color: #bdbdbd; } 

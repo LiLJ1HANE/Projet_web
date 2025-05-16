@@ -7,6 +7,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link href="paiement.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     .payment-card {
       border: none;
@@ -213,6 +215,10 @@
                   <i class="fas fa-lock me-2"></i>Payer maintenant
                 </button>
 
+                <button id="validatePaymentBtn" class="btn btn-success w-100 mt-4">
+                  <i class="fas fa-check-circle me-2"></i> Valider le paiement et générer mon ticket
+                </button>
+
                 <div class="text-center mt-3">
                   <small class="text-muted">
                     <i class="fas fa-shield-alt me-1"></i>
@@ -223,6 +229,24 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale Bootstrap pour confirmation et téléchargement du ticket -->
+<div class="modal fade" id="ticketModal" tabindex="-1" aria-labelledby="ticketModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ticketModalLabel">Votre ticket est prêt !</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>Votre ticket PDF a été généré.<br>Téléchargez-le et présentez-le à l'entrée du stade.</p>
+        <button id="downloadTicketBtn" class="btn btn-primary">
+          <i class="fas fa-download me-2"></i> Télécharger le ticket PDF
+        </button>
       </div>
     </div>
   </div>
@@ -296,5 +320,7 @@
     displayOrderSummary();
   });
 </script>
+
+<script src="paiement.js"></script>
 </body>
 </html>
