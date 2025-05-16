@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAN 2025 - Coupe d'Afrique des Nations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* Hero full screen */
+      .hero-wow {
+        position: relative;
+        min-height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+      }
+      .hero-bg-video {
+        position: absolute;
+        top: 0; left: 0; width: 100vw; height: 100vh;
+        object-fit: cover;
+        z-index: 0;
+        filter: brightness(0.7) saturate(1.1);
+      }
+      .hero-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100vw; height: 100vh;
+        background: linear-gradient(120deg, rgba(206,17,38,0.7) 0%, rgba(0,158,73,0.6) 100%);
+        z-index: 1;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: #fff;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2.5rem 1rem 1.5rem 1rem;
+        animation: fadeIn 1.2s;
+      }
+      .hero-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 3.5rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        text-shadow: 0 4px 32px rgba(0,0,0,0.18);
+        margin-bottom: 1.2rem;
+        animation: slideDown 1.1s;
+      }
+      @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-60px); }
+        to { opacity: 1; transform: none; }
+      }
+      .hero-slogan {
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-bottom: 2.2rem;
+        letter-spacing: 0.02em;
+        animation: fadeIn 2s;
+      }
+      .hero-cta {
+        display: flex;
+        gap: 1.2rem;
+        justify-content: center;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+      }
+      .hero-cta .btn {
+        font-size: 1.15rem;
+        padding: 0.9rem 2.2rem;
+        border-radius: 32px;
+        font-weight: bold;
+        box-shadow: 0 2px 12px rgba(44,62,80,0.13);
+        transition: background 0.2s, transform 0.1s;
+      }
+      .hero-cta .btn-primary {
+        background: linear-gradient(120deg, var(--primary-red), var(--primary-green));
+        border: none;
+        color: #fff;
+      }
+      .hero-cta .btn-primary:hover {
+        background: linear-gradient(120deg, var(--primary-green), var(--primary-red));
+        transform: scale(1.06);
+      }
+      .hero-cta .btn-outline-light {
+        border: 2px solid #fff;
+        color: #fff;
+        background: transparent;
+      }
+      .hero-cta .btn-outline-light:hover {
+        background: #fff;
+        color: var(--primary-red);
+        transform: scale(1.06);
+      }
+      /* Histoire glassmorphism */
+      .histoire-wow {
+        background: rgba(255,255,255,0.85);
+        border-radius: 22px;
+        box-shadow: 0 4px 24px rgba(44,62,80,0.10);
+        margin: -4rem auto 2.5rem auto;
+        padding: 2.5rem 1.5rem;
+        max-width: 800px;
+        backdrop-filter: blur(2.5px);
+        animation: fadeIn 1.2s;
+        position: relative;
+        z-index: 3;
+      }
+      .histoire-wow h2 {
+        color: var(--primary-red);
+        font-family: 'Playfair Display', serif;
+        font-weight: 800;
+        margin-bottom: 1.2rem;
+        font-size: 2.1rem;
+        letter-spacing: 0.03em;
+      }
+      .histoire-wow .fa-futbol {
+        color: var(--primary-green);
+        margin-right: 0.5em;
+      }
+      .histoire-wow p {
+        color: #222;
+        font-size: 1.13em;
+        line-height: 1.7;
+        text-align: justify;
+      }
+      /* Carrousel partenaires */
+      .carousel-partners {
+        background: rgba(255,255,255,0.93);
+        border-radius: 22px;
+        box-shadow: 0 4px 24px rgba(44,62,80,0.10);
+        margin: 2.5rem auto 1.5rem auto;
+        padding: 2.2rem 0.5rem 1.2rem 0.5rem;
+        max-width: 1200px;
+        overflow: hidden;
+        position: relative;
+        animation: fadeIn 1.1s;
+      }
+      .carousel-track {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        animation: scrollPartners 28s linear infinite;
+        will-change: transform;
+      }
+      @keyframes scrollPartners {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .carousel-partners img {
+        max-height: 70px;
+        max-width: 160px;
+        object-fit: contain;
+        filter: grayscale(1) brightness(0.8);
+        opacity: 0.8;
+        transition: filter 0.2s, opacity 0.2s, transform 0.18s;
+        margin: 0 1.2rem;
+      }
+      .carousel-partners img:hover {
+        filter: none;
+        opacity: 1;
+        transform: scale(1.09) translateY(-6px);
+        z-index: 2;
+      }
+      /* Footer moderne */
+      .footer-wow {
+        background: #181818;
+        color: #fff;
+        padding: 2.2rem 0 1.2rem 0;
+        text-align: center;
+        font-size: 1.05em;
+        margin-top: 2.5rem;
+      }
+      .footer-wow .socials {
+        margin-bottom: 1.1rem;
+      }
+      .footer-wow .socials a {
+        color: #fff;
+        margin: 0 0.7em;
+        font-size: 1.5em;
+        transition: color 0.2s;
+      }
+      .footer-wow .socials a:hover {
+        color: var(--primary-green);
+      }
+      @media (max-width: 900px) {
+        .hero-title { font-size: 2.1rem; }
+        .hero-slogan { font-size: 1.1rem; }
+        .histoire-wow { padding: 1.1rem 0.5rem; }
+        .carousel-partners img { max-height: 38px; max-width: 80px; }
+      }
+    </style>
+</head>
+<body class="homepage">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">CAN 2025</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="stades.html">Stades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="LeSaviezVous.html">Le Saviez-vous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="groupes.html">Groupes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="match.html">Matchs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="equipes.html">Équipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Billeterie.html">Boutique</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Quiz.html">Quiz</a>
+                    </li>
+                </ul>
+                <form class="d-flex ms-3 search-navbar-form">
+                    <input type="text" class="form-control me-2" id="navbar-search-input" placeholder="Rechercher...">
+                    <button class="btn btn-primary" type="button" id="navbar-search-btn">Rechercher</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div id="search-result-message" class="text-center fw-bold py-2" style="display:none; background:#fff; color:#222;"></div>
+
+    <!-- HERO WOW -->
+    <section class="hero-wow">
+      <video class="hero-bg-video" src="../assets/video.mp4" autoplay muted loop playsinline></video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">CAN 2025</h1>
+        <div class="hero-slogan" id="sloganType">La plus grande compétition de football africain</div>
+        <div class="hero-cta">
+          <a href="stades.html" class="btn btn-primary"><i class="fas fa-map-marker-alt me-2"></i>Découvrir les stades</a>
+          <a href="Billeterie.html" class="btn btn-outline-light"><i class="fas fa-ticket-alt me-2"></i>Billetterie</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTOIRE WOW -->
+    <section class="histoire-wow">
+      <h2><i class="fas fa-futbol"></i> L'Histoire de la CAN</h2>
+      <p>
+        La Coupe d'Afrique des Nations (CAN) est la compétition phare du football africain, organisée par la Confédération Africaine de Football (CAF) depuis 1957. Elle rassemble tous les deux ans les meilleures équipes nationales du continent pour une célébration unique de la passion, du talent et de la diversité africaine.<br><br>
+        Au fil des décennies, la CAN a vu émerger des légendes du football, des moments historiques et des exploits inoubliables. Elle est bien plus qu'un simple tournoi : c'est un symbole d'unité, de fierté et d'espoir pour des millions de supporters à travers l'Afrique et le monde.<br><br>
+        La compétition a évolué, passant de trois équipes lors de la première édition à 24 aujourd'hui, reflétant la croissance et la popularité du football africain. Chaque édition est l'occasion de découvrir de nouveaux talents, de vibrer au rythme des stades et de partager des émotions fortes.<br><br>
+        La CAN 2025 promet d'être exceptionnelle, avec des infrastructures modernes, des supporters passionnés et des équipes prêtes à écrire une nouvelle page de l'histoire du football africain.
+      </p>
+    </section>
+
+    <!-- PARTENAIRES CAROUSEL -->
+    <section class="carousel-partners">
+      <div class="carousel-track" id="carouselTrack">
+        <img src="../assets/logo-bank-al-maghrib.png" alt="Bank Al Maghrib">
+        <img src="../assets/CDG.svg.png" alt="CDG">
+        <img src="../assets/MORROCO.jpeg" alt="Morocco">
+        <img src="../assets/OCP-logo.jpg" alt="OCP">
+        <img src="../assets/puma.png" alt="Puma">
+        <img src="../assets/SNRT.jpg" alt="SNRT">
+        <img src="../assets/AF.png" alt="AF">
+        <img src="../assets/HAIER.png" alt="Haier">
+        <img src="../assets/Pepsi-logo.png" alt="Pepsi">
+        <img src="../assets/skoda.png" alt="Skoda">
+        <img src="../assets/at.png" alt="at">
+        <img src="../assets/inwi.png" alt="inwi">
+        <img src="../assets/Logo-Centrale-Danone.png" alt="Danone">
+        <img src="../assets/logo-dari.png" alt="Dari">
+        <img src="../assets/mcdonalds-logo-png_seeklogo-370359.png" alt="McDonalds">
+        <img src="../assets/Sanasid.jpeg" alt="Sanasid">
+        <img src="../assets/sidiAli.png" alt="Sidi Ali">
+        <img src="../assets/LCI.png" alt="LCI">
+        <img src="../assets/wzbook.jpg" alt="wzbook">
+        <!-- Dupliqué pour effet infini -->
+        <img src="../assets/logo-bank-al-maghrib.png" alt="Bank Al Maghrib">
+        <img src="../assets/CDG.svg.png" alt="CDG">
+        <img src="../assets/MORROCO.jpeg" alt="Morocco">
+        <img src="../assets/OCP-logo.jpg" alt="OCP">
+        <img src="../assets/puma.png" alt="Puma">
+        <img src="../assets/SNRT.jpg" alt="SNRT">
+        <img src="../assets/AF.png" alt="AF">
+        <img src="../assets/HAIER.png" alt="Haier">
+        <img src="../assets/Pepsi-logo.png" alt="Pepsi">
+        <img src="../assets/skoda.png" alt="Skoda">
+        <img src="../assets/at.png" alt="at">
+        <img src="../assets/inwi.png" alt="inwi">
+        <img src="../assets/Logo-Centrale-Danone.png" alt="Danone">
+        <img src="../assets/logo-dari.png" alt="Dari">
+        <img src="../assets/mcdonalds-logo-png_seeklogo-370359.png" alt="McDonalds">
+        <img src="../assets/Sanasid.jpeg" alt="Sanasid">
+        <img src="../assets/sidiAli.png" alt="Sidi Ali">
+        <img src="../assets/LCI.png" alt="LCI">
+        <img src="../assets/wzbook.jpg" alt="wzbook">
+      </div>
+    </section>
+
+    <!-- FOOTER WOW -->
+    <footer class="footer-wow">
+      <div class="socials">
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+      <div>© 2025 CAN Maroc. Tous droits réservés.</div>
+    </footer>
+
+    <!-- Bouton mode sombre global -->
+    <button class="darkmode-toggle" id="darkmodeToggle">
+      <i class="fas fa-moon"></i> <span id="darkmodeText">Mode sombre</span>
+    </button>
+    <script>
+    // Mode sombre global
+    function setDarkMode(on) {
+      document.body.classList.toggle('dark-mode', on);
+      localStorage.setItem('darkMode', on ? '1' : '0');
+      document.getElementById('darkmodeText').textContent = on ? 'Mode clair' : 'Mode sombre';
+      document.querySelector('.darkmode-toggle i').className = on ? 'fas fa-sun' : 'fas fa-moon';
+    }
+    const darkBtn = document.getElementById('darkmodeToggle');
+    darkBtn.addEventListener('click', function() {
+      setDarkMode(!document.body.classList.contains('dark-mode'));
+    });
+    // Init au chargement
+    if (localStorage.getItem('darkMode') === '1') setDarkMode(true);
+    // Slogan animé typewriter
+    const slogans = [
+      "La plus grande compétition de football africain",
+      "Vibrez au rythme de la CAN 2025 au Maroc !",
+      "Réservez vos places, vivez l'émotion !",
+      "Un événement, un continent, une passion."
+    ];
+    let sloganIdx = 0, charIdx = 0, isDeleting = false;
+    function typeSlogan() {
+      const el = document.getElementById('sloganType');
+      if (!el) return;
+      let current = slogans[sloganIdx];
+      if (isDeleting) {
+        el.textContent = current.substring(0, charIdx--);
+        if (charIdx < 0) {
+          isDeleting = false;
+          sloganIdx = (sloganIdx + 1) % slogans.length;
+          setTimeout(typeSlogan, 700);
+        } else {
+          setTimeout(typeSlogan, 30);
+        }
+      } else {
+        el.textContent = current.substring(0, charIdx++);
+        if (charIdx > current.length) {
+          isDeleting = true;
+          setTimeout(typeSlogan, 1200);
+        } else {
+          setTimeout(typeSlogan, 55);
+        }
+      }
+    }
+    typeSlogan();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

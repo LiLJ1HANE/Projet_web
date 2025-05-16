@@ -55,25 +55,108 @@
         .match-date-bar .heure {
             font-weight: bold;
         }
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(to right, var(--primary-black), var(--primary-red));
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--primary-white) !important;
+        }
+
+        .navbar-nav {
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            color: var(--primary-white) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem !important;
+            border-radius: 5px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-yellow) !important;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link.active {
+            background-color: var(--primary-red);
+            color: var(--primary-white) !important;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-nav {
+                padding: 1rem 0;
+            }
+            
+            .nav-link {
+                padding: 0.5rem 0 !important;
+            }
+        }
+        :root {
+            --primary-red: #CE1126;
+            --primary-green: #009E49;
+            --primary-yellow: #FCD116;
+            --primary-black: #000000;
+            --primary-white: #FFFFFF;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-green));
+            min-height: 100vh;
+        }
     </style>
 </head>
 <body class="bg-light">
 
     <!-- Barre de recherche style CAF -->
-    <nav class="navbar navbar-expand-lg caf-navbar mb-4">
-      <div class="container-fluid">
-        <a class="navbar-brand text-white fw-bold" href="#">
-          CAF<span class="text-white-50">online.com</span>
-        </a>
-        <form class="d-flex" role="search" onsubmit="event.preventDefault(); searchMatch();">
-          <input id="searchInput" class="form-control me-2" type="search" placeholder="Rechercher un match..." aria-label="Search">
-          <button class="btn btn-outline-light" type="submit">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
-              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-          </button>
-        </form>
-      </div>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">CAN 2025</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="stades.html">Stades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="LeSaviezVous.html">Le Saviez-vous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="groupes.html">Groupes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="match.html">Matchs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="equipes.html">Équipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Billeterie.html">Boutique</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Quiz.html">Quiz</a>
+                    </li>
+                </ul>
+                <form class="d-flex ms-3 search-navbar-form">
+                    <input type="text" class="form-control me-2" id="navbar-search-input" placeholder="Rechercher...">
+                    <button class="btn btn-primary" type="button" id="navbar-search-btn">Rechercher</button>
+                </form>
+            </div>
+        </div>
     </nav>
 
     <div class="container py-4">
@@ -116,14 +199,14 @@
                 heure: "13:00",
                 lieu: "À DÉFINIR",
                 arbitres: [
-                    { nom: "Arbitre Principal:Abdelhak Etchiali", image: "Abdelhak_Etchiali_(cropped).jpg" },
+                    { nom: "Arbitre Principal:Abdelhak Etchiali", image: "../assets/Abdelhak_Etchiali_(cropped).jpg" },
                     { nom: "Assistant 1:Kazzim Abiola", image: "Nigerian-Referees-Kazzim-Abiola-Samuel-Pwadutakam-Selected-For-CAF-CHAN-Pre-Competition-Preparations-In-Egypt1.jpg" }
                 ],
                 live: "#",
                 recap: "https://youtu.be/N4Iic4VTfjA",
                 article: {
                     titre: "Maroc vs Comores : Présentation du match",
-                    contenu: "Le Maroc affronte les Comores dans un match d’ouverture très attendu de la CAN 2025. Les Lions de l’Atlas, portés par un effectif talentueux et ambitieux, veulent frapper fort d’entrée. Les Comores, surprenants lors des dernières éditions, comptent jouer sans complexe. Une affiche prometteuse pour lancer la compétition sur un rythme intense.",
+                    contenu: "Le Maroc affronte les Comores dans un match d'ouverture très attendu de la CAN 2025. Les Lions de l'Atlas, portés par un effectif talentueux et ambitieux, veulent frapper fort d'entrée. Les Comores, surprenants lors des dernières éditions, comptent jouer sans complexe. Une affiche prometteuse pour lancer la compétition sur un rythme intense.",
                    
                 }
             },
@@ -149,7 +232,7 @@
                 recap: "https://youtu.be/2K8HjLt_Ns8",
                 article: {
                     titre: "Afrique du Sud vs Angola : Duel prometteur",
-                    contenu: "L’Afrique du Sud et l’Angola s’affrontent dans un match décisif pour la qualification en cette CAN 2025. Les Bafana Bafana, soutenus par leur public, comptent sur leur collectif solide pour faire la différence. L’Angola, bien organisé et efficace en transition, rêve de décrocher son ticket pour les phases finales. Une rencontre tendue où la moindre erreur pourrait coûter cher.",
+                    contenu: "L'Afrique du Sud et l'Angola s'affrontent dans un match décisif pour la qualification en cette CAN 2025. Les Bafana Bafana, soutenus par leur public, comptent sur leur collectif solide pour faire la différence. L'Angola, bien organisé et efficace en transition, rêve de décrocher son ticket pour les phases finales. Une rencontre tendue où la moindre erreur pourrait coûter cher.",
                   
                 }
             },
@@ -175,7 +258,7 @@
                 recap: "https://youtu.be/AwW9tsSoDcw",
                 article: {
                     titre: "Sénégal vs Botswana : Les Lions favoris",
-                    contenu: "Le Sénégal, grand favori de cette CAN 2025, affronte le Botswana avec l’objectif clair de confirmer son statut. Portés par des stars évoluant en Europe, les Lions de la Teranga comptent bien imposer leur domination dès le coup d’envoi. Le Botswana, outsider courageux, tentera de résister et de surprendre en contre. Un duel déséquilibré sur le papier, mais jamais joué d’avance.",
+                    contenu: "Le Sénégal, grand favori de cette CAN 2025, affronte le Botswana avec l'objectif clair de confirmer son statut. Portés par des stars évoluant en Europe, les Lions de la Teranga comptent bien imposer leur domination dès le coup d'envoi. Le Botswana, outsider courageux, tentera de résister et de surprendre en contre. Un duel déséquilibré sur le papier, mais jamais joué d'avance.",
                    
                 }
             },
@@ -201,7 +284,7 @@
                 recap: "#",
                 article: {
                     titre: "RD Congo vs Bénin : Match équilibré",
-                    contenu: "Un match très ouvert entre la RD Congo et le Bénin s’annonce dans cette CAN 2025. Les Léopards misent sur leur puissance physique et leur expérience continentale pour prendre l’avantage. Le Bénin, avec son jeu rapide et imprévisible, pourrait bien surprendre. Une rencontre équilibrée où chaque équipe aura ses chances de briller.",
+                    contenu: "Un match très ouvert entre la RD Congo et le Bénin s'annonce dans cette CAN 2025. Les Léopards misent sur leur puissance physique et leur expérience continentale pour prendre l'avantage. Le Bénin, avec son jeu rapide et imprévisible, pourrait bien surprendre. Une rencontre équilibrée où chaque équipe aura ses chances de briller.",
                  
                 }
             },
@@ -227,7 +310,7 @@
                 recap: "#",
                 article: {
                     titre: "Algérie vs Soudan : Les Fennecs en force",
-                    contenu: "L’Algérie part favorite face au Soudan pour ce match de poule de la CAN 2025. Avec un effectif expérimenté et une attaque redoutable, les Fennecs comptent bien imposer leur rythme dès les premières minutes. Le Soudan, de son côté, espère déjouer les pronostics en misant sur sa combativité. Une rencontre qui promet, mais où l’Algérie semble avoir les cartes en main..",
+                    contenu: "L'Algérie part favorite face au Soudan pour ce match de poule de la CAN 2025. Avec un effectif expérimenté et une attaque redoutable, les Fennecs comptent bien imposer leur rythme dès les premières minutes. Le Soudan, de son côté, espère déjouer les pronostics en misant sur sa combativité. Une rencontre qui promet, mais où l'Algérie semble avoir les cartes en main..",
                    
                 }
             },
