@@ -5,67 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmation - CAN 2025</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
-    <style>
-        .confirmation-card {
-            border: none;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .confirmation-header {
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-red));
-            color: white;
-            border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
-        }
-        .confirmation-icon {
-            font-size: 5rem;
-            color: var(--primary-green);
-            margin-bottom: 20px;
-            animation: scaleIn 0.5s ease-out;
-        }
-        .ticket-info {
-            background-color: var(--light-green);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .qr-container {
-            background-color: white;
-            border-radius: var(--border-radius);
-            padding: 20px;
-            box-shadow: var(--box-shadow);
-            display: inline-block;
-        }
-        @keyframes scaleIn {
-            from {
-                transform: scale(0);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        .info-list {
-            list-style: none;
-            padding: 0;
-        }
-        .info-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--light-green);
-        }
-        .info-list li:last-child {
-            border-bottom: none;
-        }
-        .info-list li::before {
-            content: "✓";
-            color: var(--primary-green);
-            margin-right: 10px;
-            font-weight: bold;
-        }
-    </style>
+    <link href="paiement.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 </head>
 <body>
 <div class="container py-5">
@@ -99,7 +40,7 @@
 
             <div class="mt-5">
                 <div class="qr-container">
-                    <div id="qrcode" class="mb-3"></div>
+                    <canvas id="qrcode" class="mb-3"></canvas>
                     <small class="text-muted">Code de réservation: <span id="reservationCode" class="fw-bold"></span></small>
                 </div>
             </div>
@@ -112,12 +53,12 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const orderDetails = document.getElementById('orderDetails');
         const reservationCodeElement = document.getElementById('reservationCode');
         const backToHomeBtn = document.getElementById('backToHome');
+        const qrcodeCanvas = document.getElementById('qrcode');
 
         // Récupérer les données du sessionStorage
         const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats')) || [];
@@ -143,16 +84,25 @@
         const reservationCode = generateReservationCode();
         reservationCodeElement.textContent = reservationCode;
 
-        // Générer le QR code
-        QRCode.toCanvas(document.getElementById('qrcode'), reservationCode, {
-            width: 150,
+        // Générer le QR code avec les informations de réservation
+        const qrData = {
+            code: reservationCode,
+            seats: selectedSeats.map(seat => `${seat.tribune}-${seat.number}`).join(','),
+            total: totalPrice + 20
+        };
+
+        QRCode.toCanvas(qrcodeCanvas, JSON.stringify(qrData), {
+            width: 200,
             margin: 2,
             color: {
                 dark: '#000000',
                 light: '#ffffff'
             }
         }, function(error) {
-            if (error) console.error(error);
+            if (error) {
+                console.error('Erreur lors de la génération du QR code:', error);
+                qrcodeCanvas.parentElement.innerHTML = '<p class="text-danger">Erreur lors de la génération du QR code</p>';
+            }
         });
 
         // Afficher les détails de la commande
@@ -160,32 +110,32 @@
             if (selectedSeats.length === 0) return;
 
             let html = `
-                    <div class="ticket-info text-start">
-                        <h5 class="mb-3">Détails de votre commande</h5>
-                `;
+                <div class="ticket-info text-start">
+                    <h5 class="mb-3">Détails de votre commande</h5>
+            `;
 
             selectedSeats.forEach(seat => {
                 html += `
-                        <div class="mb-2">
-                            <strong>${seat.tribune} - Place ${seat.number}</strong>
-                            <span class="float-end">${seat.price} MAD</span>
-                        </div>
-                    `;
+                    <div class="mb-2">
+                        <strong>${seat.tribune} - Place ${seat.number}</strong>
+                        <span class="float-end">${seat.price} MAD</span>
+                    </div>
+                `;
             });
 
             html += `
-                        <hr>
-                        <div class="mb-2">
-                            <strong>Frais de service</strong>
-                            <span class="float-end">20 MAD</span>
-                        </div>
-                        <hr>
-                        <div class="mb-2">
-                            <strong>Total payé</strong>
-                            <span class="float-end">${totalPrice + 20} MAD</span>
-                        </div>
+                    <hr>
+                    <div class="mb-2">
+                        <strong>Frais de service</strong>
+                        <span class="float-end">20 MAD</span>
                     </div>
-                `;
+                    <hr>
+                    <div class="mb-2">
+                        <strong>Total payé</strong>
+                        <span class="float-end">${totalPrice + 20} MAD</span>
+                    </div>
+                </div>
+            `;
 
             orderDetails.innerHTML = html;
         }

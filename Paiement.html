@@ -6,7 +6,7 @@
   <title>Paiement - CAN 2025</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="styles.css" rel="stylesheet">
+  <link href="paiement.css" rel="stylesheet">
   <style>
     .payment-card {
       border: none;
@@ -132,7 +132,7 @@
                 <div class="mb-4">
                   <label for="cardNumber" class="form-label">Numéro de carte</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456">
+                    <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
                     <span class="input-group-text">
                       <i class="fas fa-credit-card"></i>
                     </span>
@@ -142,11 +142,11 @@
                 <div class="row">
                   <div class="col-md-6 mb-4">
                     <label for="expiryDate" class="form-label">Date d'expiration</label>
-                    <input type="text" class="form-control" id="expiryDate" placeholder="MM/AA">
+                    <input type="text" class="form-control" id="expiryDate" placeholder="MM/AA" maxlength="5">
                   </div>
                   <div class="col-md-6 mb-4">
                     <label for="cvv" class="form-label">CVV</label>
-                    <input type="text" class="form-control" id="cvv" placeholder="123">
+                    <input type="text" class="form-control" id="cvv" placeholder="123" maxlength="3">
                   </div>
                 </div>
 
@@ -244,7 +244,7 @@
     function displayOrderSummary() {
       if (selectedSeats.length === 0) {
         orderSummary.innerHTML = '<p class="text-muted">Aucun article dans votre commande</p>';
-        window.location.href = 'Billeterie.html';
+        window.location.href = 'billetterie.html';
         return;
       }
 
@@ -268,10 +268,34 @@
       finalTotalElement.textContent = `${totalPrice + 20} MAD`;
     }
 
+    // Formatage du numéro de carte
+    const cardNumberInput = document.getElementById('cardNumber');
+    cardNumberInput.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      let formattedValue = '';
+      for (let i = 0; i < value.length; i++) {
+        if (i > 0 && i % 4 === 0) {
+          formattedValue += ' ';
+        }
+        formattedValue += value[i];
+      }
+      e.target.value = formattedValue;
+    });
+
+    // Formatage de la date d'expiration
+    const expiryDateInput = document.getElementById('expiryDate');
+    expiryDateInput.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 2) {
+        value = value.slice(0, 2) + '/' + value.slice(2);
+      }
+      e.target.value = value;
+    });
+
     // Gestion du paiement
     confirmPaymentBtn.addEventListener('click', function() {
       // Validation simple du formulaire
-      const cardNumber = document.getElementById('cardNumber').value;
+      const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
       const expiryDate = document.getElementById('expiryDate').value;
       const cvv = document.getElementById('cvv').value;
       const cardName = document.getElementById('cardName').value;
@@ -281,6 +305,30 @@
 
       if (!cardNumber || !expiryDate || !cvv || !cardName || !fullName || !email || !phone) {
         alert('Veuillez remplir tous les champs du formulaire.');
+        return;
+      }
+
+      // Validation du numéro de carte (16 chiffres)
+      if (cardNumber.length !== 16) {
+        alert('Le numéro de carte doit contenir 16 chiffres.');
+        return;
+      }
+
+      // Validation de la date d'expiration (format MM/AA)
+      if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+        alert('La date d\'expiration doit être au format MM/AA.');
+        return;
+      }
+
+      // Validation du CVV (3 chiffres)
+      if (!/^\d{3}$/.test(cvv)) {
+        alert('Le CVV doit contenir 3 chiffres.');
+        return;
+      }
+
+      // Validation de l'email
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Veuillez entrer une adresse email valide.');
         return;
       }
 
