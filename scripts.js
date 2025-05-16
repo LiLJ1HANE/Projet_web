@@ -74,9 +74,9 @@ const stades = [
     capacite: '45 000',
     ouverture: '1955',
     images: [
-      'images/casablanca.jpg',
-      'images/casablanca1.jpg',
-      'images/casablanca2.jpg'
+      'casablanca.jpg',
+      'casablanca1.jpg',
+      'casablanca2.jpg'
     ],
     adresse: 'Bd Omar Al Khayam, Casablanca',
     description: "Le stade mythique de Casablanca, fief du Raja et du Wydad, au cœur de la capitale économique.",
@@ -106,9 +106,9 @@ const stades = [
     capacite: '22 000',
     ouverture: '2003',
     images: [
-      'images/rabat-hassan.jpg',
-      'images/rabat-hassan1.jpg',
-      'images/rabat-hassan2.jpg'
+      'rabat-hassan.jpg',
+      'rabat-hassan1.jpg',
+      'rabat-hassan2.jpg'
     ],
     adresse: 'Avenue Annakhil, Rabat',
     description: "Un stade polyvalent de Rabat, souvent utilisé pour les matchs de football et d'autres événements sportifs.",
@@ -122,9 +122,9 @@ const stades = [
     capacite: '21 000',
     ouverture: '1983',
     images: [
-      'images/rabat-olympique.jpg',
-      'images/rabat-olympique1.jpg',
-      'images/rabat-olympique2.jpg'
+      'rabat-olympique.jpg',
+      'rabat-olympique1.jpg',
+      'rabat-olympique2.jpg'
     ],
     adresse: 'Avenue Ibn Sina, Rabat',
     description: "Annexe du grand complexe de Rabat, il accueille des compétitions et des entraînements de haut niveau.",
@@ -138,9 +138,9 @@ const stades = [
     capacite: '18 000',
     ouverture: '2010',
     images: [
-      'images/rabat-barid.jpg',
-      'images/rabat-barid1.jpg',
-      'images/rabat-barid2.jpg'
+      'rabat-barid.jpg',
+      'rabat-barid1.jpg',
+      'rabat-barid2.jpg'
     ],
     adresse: 'Quartier Al Barid, Rabat',
     description: "Un stade récent de Rabat, principalement utilisé pour le football et les compétitions locales.",
