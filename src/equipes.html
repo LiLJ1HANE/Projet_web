@@ -80,7 +80,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     const teams = [
-        { name: 'Maroc', flag: '🇲🇦', flagImg: "flags/maroc.jpg", teamImg: 'equipemaroc.jpg', coachImg: 'walid.jpg', coach: 'Walid Regragui',
+        {
+            name: 'Maroc',
+            flag: '🇲🇦',
+            flagImg: "flags/maroc.jpg",
+            teamImg: 'equipemaroc.jpg',
+            coachImg: 'walid.jpg',
+            coach: 'Walid Regragui',
             players: {
                 'Gardiens de but': [
                     { name: 'Yassine Bounou', club: 'Al Hilal, Arabie Saoudite' },
@@ -118,7 +124,13 @@
                 ]
             }
         },
-        { name: 'Algérie', flag: '🇩🇿', flagImg: "../assets/flags/algeria.jpeg", teamImg: 'algerie.jpeg', coachImg: 'vladimir.jpeg', coach: 'Vladimir Petkovic',
+        {
+            name: 'Algérie',
+            flag: '🇩🇿',
+            flagImg: "../assets/flags/algeria.jpeg",
+            teamImg: 'algerie.jpeg',
+            coachImg: 'vladimir.jpeg',
+            coach: 'Vladimir Petkovic',
             players: {
                 'Gardiens de but': [
                     { name: 'Alexis Guendouz', club: 'Persepolis FC, Iran' },
@@ -156,7 +168,13 @@
                 ]
             }
         },
-        { name: 'Sénégal', flag: '🇸🇳', flagImg: "../assets/flags/senegal.jpeg", teamImg: 'senegal.jpeg', coachImg: 'aliou.jpeg', coach: 'Aliou Cissé',
+        {
+            name: 'Sénégal',
+            flag: '🇸🇳',
+            flagImg: "../assets/flags/senegal.jpeg",
+            teamImg: 'senegal.jpeg',
+            coachImg: 'aliou.jpeg',
+            coach: 'Aliou Cissé',
             players: {
                 'Gardiens de but': [
                     { name: 'Édouard Mendy', club: 'Al-Ahli, Arabie Saoudite' },
@@ -194,7 +212,6 @@
                 ]
             }
         },
-        // Les autres équipes (drapeau emoji, effectif à venir)
         { name: 'Angola', flag: '🇦🇴', flagImg: "../assets/flags/angola.jpg", teamImg: '', coachImg: '' },
         { name: 'Afrique du Sud', flag: '🇿🇦', flagImg: 'flags/Afsud.jpg', teamImg: '', coachImg: '' },
         { name: 'Bénin', flag: '🇧🇯', flagImg: "../assets/flags/benin.jpeg" , teamImg: '', coachImg: '' },
@@ -218,36 +235,38 @@
         { name: 'Zimbabwe', flag: '🇿🇼', flagImg: 'flags/zimbabwe.jpg', teamImg: '', coachImg: '' }
     ];
 
-    // Génération de la grille
+    // Génération de la grille des équipes
     const teamsGrid = document.getElementById('teamsGrid');
     teams.forEach((team, idx) => {
         const col = document.createElement('div');
         col.className = 'col-6 col-sm-4 col-md-3 col-lg-2';
-        // Flip card structure
+
         const flipCard = document.createElement('div');
         flipCard.className = 'flip-card';
         flipCard.tabIndex = 0;
+
         const flipInner = document.createElement('div');
         flipInner.className = 'flip-card-inner';
-        // Front
+
         const front = document.createElement('div');
         front.className = 'flip-card-front';
         front.innerHTML = `
-    ${team.flagImg ? `<img class='team-flag-img' src='../assets/${team.flagImg}' alt='Drapeau ${team.name}'>` : `<div class='team-flag'>${team.flag}</div>`}
-    <div class='team-name'>${team.name}</div>
-    <div class='badge-pays'>${team.name}</div>
-  `;
-        // Back
+            ${team.flagImg ? `<img class='team-flag-img' src='../assets/${team.flagImg}' alt='Drapeau ${team.name}'>` : `<div class='team-flag'>${team.flag}</div>`}
+            <div class='team-name'>${team.name}</div>
+            <div class='badge-pays'>${team.name}</div>
+        `;
+
         const back = document.createElement('div');
         back.className = 'flip-card-back';
         back.innerHTML = `
-    ${team.teamImg ? `<img class='team-img' src='../assets/${team.teamImg}' alt='Equipe ${team.name}'>` : ''}
-    <div class='coach-block'>
-      ${team.coachImg ? `<img class='coach-img' src='../assets/${team.coachImg}' alt='Coach ${team.coach}'>` : ''}
-      <div><strong>Sélectionneur :</strong> ${team.coach ? team.coach : '-'}</div>
-    </div>
-    <button class='see-squad-btn' onclick='event.stopPropagation();showTeamModal(teams[${idx}])'>Voir effectif</button>
-  `;
+            ${team.teamImg ? `<img class='team-img' src='../assets/${team.teamImg}' alt='Equipe ${team.name}'>` : ''}
+            <div class='coach-block'>
+                ${team.coachImg ? `<img class='coach-img' src='../assets/${team.coachImg}' alt='Coach ${team.coach}'>` : ''}
+                <div><strong>Sélectionneur :</strong> ${team.coach ? team.coach : '-'}</div>
+            </div>
+            <button class='see-squad-btn' onclick='event.stopPropagation();showTeamModal(teams[${idx}])'>Voir effectif</button>
+        `;
+
         flipInner.appendChild(front);
         flipInner.appendChild(back);
         flipCard.appendChild(flipInner);
@@ -255,16 +274,20 @@
         teamsGrid.appendChild(col);
     });
 
+    // Fonction pour afficher le modal des joueurs
     function showTeamModal(team) {
         const modalLabel = document.getElementById('playersModalLabel');
         const modalBody = document.getElementById('playersModalBody');
         modalLabel.textContent = team.flag + ' ' + team.name;
+
         let html = '';
         let teamImgSrc = team.teamImg ? `../assets/${team.teamImg}` : '';
         let coachImgSrc = team.coachImg ? `../assets/${team.coachImg}` : '';
+
         if (teamImgSrc) {
             html += `<img class='team-img' src='${teamImgSrc}' alt='Photo équipe ${team.name}'>`;
         }
+
         if (coachImgSrc || team.coach) {
             html += `<div class='coach-block'>`;
             if (coachImgSrc) {
@@ -275,6 +298,7 @@
             }
             html += `</div>`;
         }
+
         if (team.players) {
             for (const [role, players] of Object.entries(team.players)) {
                 html += `<div class='player-role mt-3 mb-1'>${role}</div><ul class='player-list'>`;
@@ -288,9 +312,10 @@
             html += `<div class='text-center py-4'><i class='fas fa-users fa-2x mb-3 text-secondary'></i><br><strong>Effectif à venir</strong></div>`;
             modalBody.innerHTML = html;
         }
+
         const modal = new bootstrap.Modal(document.getElementById('playersModal'));
         modal.show();
     }
 </script>
 </body>
-</html> 
+</html>
