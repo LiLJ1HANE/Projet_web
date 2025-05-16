@@ -1,0 +1,202 @@
+:root {
+  --primary-green: #7FB069;
+  --primary-red: #E63946;
+  --border-radius: 10px;
+  --box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  --light-green: #F0F7F4;
+}
+
+/* Styles communs */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Styles pour la page de paiement */
+.payment-card {
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.payment-header {
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-red));
+  color: white;
+  border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.payment-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+  opacity: 0.1;
+}
+
+.form-section {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease;
+}
+
+.form-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.summary-section {
+  background-color: var(--light-green);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease;
+}
+
+.summary-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.input-group-text {
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-red));
+  color: white;
+  border: none;
+}
+
+.form-control {
+  border: 2px solid #eee;
+  padding: 12px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 0.25rem rgba(127, 176, 105, 0.25);
+}
+
+.btn-pay {
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-red));
+  border: none;
+  padding: 15px;
+  font-weight: bold;
+  color: white;
+  transition: all 0.3s ease;
+  border-radius: 30px;
+}
+
+.btn-pay:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.summary-item {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.summary-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.section-title {
+  color: var(--primary-green);
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title i {
+  font-size: 1.5rem;
+}
+
+.total-section {
+  background: white;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Styles pour la page de confirmation */
+.confirmation-card {
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.confirmation-header {
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-red));
+  color: white;
+  border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+}
+
+.confirmation-icon {
+  font-size: 5rem;
+  color: var(--primary-green);
+  margin-bottom: 20px;
+  animation: scaleIn 0.5s ease-out;
+}
+
+.ticket-info {
+  background-color: var(--light-green);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.qr-container {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--box-shadow);
+  display: inline-block;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+}
+
+.info-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--light-green);
+}
+
+.info-list li:last-child {
+  border-bottom: none;
+}
+
+.info-list li::before {
+  content: "✓";
+  color: var(--primary-green);
+  margin-right: 10px;
+  font-weight: bold;
+} 
