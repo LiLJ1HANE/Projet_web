@@ -61,7 +61,7 @@
         
         /* Style pour la barre de date des matchs */
         .match-date-bar {
-            background: #d3d3d3;
+            background: #b6f5c3;
             border-radius: 6px 6px 0 0;
             padding: 6px 12px;
             font-weight: 600;
@@ -69,13 +69,43 @@
             justify-content: space-between;
             align-items: center;
             font-size: 1.1rem;
-            color: #444;
+            color: #156943;
         }
         
         /* Style pour la date et l'heure dans la barre */
         .match-date-bar .date,
         .match-date-bar .heure {
             font-weight: bold;
+        }
+        
+        /* Ajoute dans styles.css si ce n'est pas déjà fait */
+        .navbar {
+            background: linear-gradient(90deg, #156943 0%, #1abc9c 100%);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .nav-link.active {
+            background-color: #1abc9c;
+            color: #fff !important;
+            border-radius: 5px;
+        }
+        .search-navbar-form .form-control {
+            border-radius: 20px 0 0 20px;
+            border-right: none;
+            box-shadow: none;
+        }
+        .search-navbar-form .btn {
+            background-color: #cf3e3e;
+            color: #fff;
+            border: none;
+            border-radius: 0 20px 20px 0;
+            transition: background 0.2s;
+        }
+        .search-navbar-form .btn:hover {
+            background-color: #1abc9c;
+            color: #fff;
         }
         
         /* Styles pour la navigation principale */
@@ -98,6 +128,7 @@
         .navbar-nav {
             gap: 0.5rem;
         }
+        
         
         /* Style pour les liens de navigation */
         .nav-link {
@@ -145,6 +176,35 @@
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, var(--primary-red), var(--primary-green));
             min-height: 100vh;
+        }
+
+        /* Pour que toutes les cartes aient la même hauteur */
+        #matchs-container {
+            align-items: stretch;
+        }
+
+        .match-card {
+            min-height: 520px; /* ajuste selon ton contenu */
+            height: 100%;
+            background: #e6ffe6; /* vert très clair */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: none;
+        }
+
+        .card.match-card .card-body {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Pour que la colonne prenne toute la hauteur */
+        #matchs-container > .col-md-6 {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 24px;
         }
     </style>
 </head>
@@ -204,9 +264,31 @@
         </div>
         
         <!-- Titre principal -->
-        <h1 class="text-center mb-4">Matchs de la Coupe d'Afrique</h1>
+        <h1 class="text-center mb-4 titre-matchs">Matchs de la Coupe d'Afrique</h1>
+        <style>
+            .titre-matchs {
+                color: #fff;
+                opacity: 0;
+                transform: translateY(-30px);
+                transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.4,0,0.2,1);
+                font-family: 'Montserrat', 'Arial', sans-serif;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+            .titre-matchs.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        </style>
+        <!-- Google Fonts Montserrat -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+        <script>
+            window.addEventListener('DOMContentLoaded', function() {
+                document.querySelector('.titre-matchs').classList.add('visible');
+            });
+        </script>
         <!-- Conteneur pour les cartes de match -->
-        <div id="matchs-container" class="row"></div>
+        <div id="matchs-container" class="row row-cols-1 row-cols-md-2"></div>
     </div>
 
     <!-- Inclusion de Bootstrap JS -->
