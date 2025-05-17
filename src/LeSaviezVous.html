@@ -1,175 +1,210 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualités CAN 2025</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+<!DOCTYPE html> <!-- Déclaration du type de document (HTML5) -->
+<html lang="fr"> <!-- Début du document HTML avec langue française -->
+<head> <!-- En-tête du document (métadonnées non visibles) -->
+    <meta charset="UTF-8"> <!-- Définit l'encodage des caractères en UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport pour le responsive design -->
+    <title>Actualités CAN 2025</title> <!-- Titre de la page (affiché dans l'onglet) -->
+
+    <!-- Liens vers les feuilles de style externes -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- Framework Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Bibliothèque d'icônes Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> <!-- Polices Google -->
+    <link rel="stylesheet" href="styles.css"> <!-- Feuille de style personnalisée -->
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#">CAN 2025</a>
+<body> <!-- Corps du document (contenu visible) -->
+
+<!-- Barre de navigation Bootstrap -->
+<nav class="navbar navbar-expand-lg navbar-dark"> <!-- Navbar sombre extensible -->
+    <div class="container"> <!-- Conteneur pour centrage du contenu -->
+        <a class="navbar-brand" href="#">CAN 2025</a> <!-- Logo/texte de la navbar -->
+
+        <!-- Bouton toggle pour mobile -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span> <!-- Icône hamburger -->
         </button>
+
+        <!-- Contenu de la navbar -->
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto"> <!-- Liste de navigation (alignée à droite) -->
+                <!-- Items de menu -->
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Accueil</a>
+                    <a class="nav-link" href="index.html">Accueil</a> <!-- Lien vers page Accueil -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="stades.html">Stades</a>
+                    <a class="nav-link" href="stades.html">Stades</a> <!-- Lien vers page Stades -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="LeSaviezVous.html">Le Saviez-vous</a>
+                    <a class="nav-link active" href="LeSaviezVous.html">Le Saviez-vous</a> <!-- Lien actif (page courante) -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="groupes.html">Groupes</a>
+                    <a class="nav-link" href="groupes.html">Groupes</a> <!-- Lien vers page Groupes -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="match.html">Matchs</a>
+                    <a class="nav-link" href="match.html">Matchs</a> <!-- Lien vers page Matchs -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="equipes.html">Équipes</a>
+                    <a class="nav-link" href="equipes.html">Équipes</a> <!-- Lien vers page Équipes -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="tenues.html">Tenues</a>
+                    <a class="nav-link" href="tenues.html">Tenues</a> <!-- Lien vers page Tenues -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Billeterie.html">Boutique</a>
+                    <a class="nav-link" href="Billeterie.html">Boutique</a> <!-- Lien vers page Boutique -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Quiz.html">Quiz</a>
+                    <a class="nav-link" href="Quiz.html">Quiz</a> <!-- Lien vers page Quiz -->
                 </li>
             </ul>
-            <form class="d-flex ms-3 search-navbar-form">
-                <input type="text" class="form-control me-2" id="navbar-search-input" placeholder="Rechercher...">
-                <button class="btn btn-primary" type="button" id="navbar-search-btn">Rechercher</button>
+
+            <!-- Formulaire de recherche -->
+            <form class="d-flex ms-3 search-navbar-form"> <!-- Formulaire aligné à droite -->
+                <input type="text" class="form-control me-2" id="navbar-search-input" placeholder="Rechercher..."> <!-- Champ de recherche -->
+                <button class="btn btn-primary" type="button" id="navbar-search-btn">Rechercher</button> <!-- Bouton de recherche -->
             </form>
         </div>
     </div>
 </nav>
-    
-    <h1 class="custom-title">Actualités CAN 2025</h1>
-    <style>
-        .custom-title {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            font-family: 'Playfair Display', 'Poppins', serif;
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin: 40px 0 30px 0;
-            text-align: center;
-            text-shadow: 0 4px 24px rgba(0,0,0,0.25), 0 1.5px 0 #222;
-            background: none;
-            border-radius: 0;
-            box-shadow: none;
-            padding: 0;
-            transition: 
-                color 0.4s, 
+
+<!-- Titre principal de la page -->
+<h1 class="custom-title">Actualités CAN 2025</h1>
+
+<!-- Style CSS intégré -->
+<style>
+    /* Style du titre personnalisé */
+    .custom-title {
+        display: flex; /* Disposition flexbox */
+        justify-content: center; /* Centrage horizontal */
+        align-items: center; /* Centrage vertical */
+        color: #fff; /* Couleur du texte (blanc) */
+        font-family: 'Playfair Display', 'Poppins', serif; /* Polices de caractères */
+        font-size: 3rem; /* Taille de police */
+        font-weight: 700; /* Epaisseur de police (gras) */
+        letter-spacing: 2px; /* Espacement entre les lettres */
+        margin: 40px 0 30px 0; /* Marges exterieures */
+        text-align: center; /* Alignement du texte */
+        text-shadow: 0 4px 24px rgba(0,0,0,0.25), 0 1.5px 0 #222; /* Ombre du texte */
+        background: none; /* Pas de fond */
+        border-radius: 0; /* Pas de bord arrondi */
+        box-shadow: none; /* Pas d'ombre */
+        padding: 0; /* Pas de marge intérieure */
+        transition: /* Transitions animées */
+                color 0.4s,
                 letter-spacing 0.5s,
                 text-shadow 0.5s;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(40px) scale(0.98);
-            animation: fadeInTitle 1.1s cubic-bezier(.4,2,.6,1) 0.2s forwards;
-        }
-        .custom-title:hover {
-            color: #ffe082;
-            letter-spacing: 4px;
-            text-shadow: 0 6px 32px rgba(0,0,0,0.35), 0 2px 0 #111;
-        }
-        @keyframes fadeInTitle {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        @media (max-width: 600px) {
-            .custom-title {
-                font-size: 2rem;
-                padding: 0;
-            }
-        }
+        cursor: pointer; /* Curseur en forme de main */
+        opacity: 0; /* Initialement invisible */
+        transform: translateY(40px) scale(0.98); /* Position de départ */
+        animation: fadeInTitle 1.1s cubic-bezier(.4,2,.6,1) 0.2s forwards; /* Animation */
+    }
 
-        /* Ajout du style pour la modale */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1050;
-            left: 0;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            overflow: auto;
-            background: rgba(0,0,0,0.7);
-            justify-content: center;
-            align-items: center;
+    /* Effet au survol */
+    .custom-title:hover {
+        color: #ffe082; /* Couleur jaune clair */
+        letter-spacing: 4px; /* Espacement accru */
+        text-shadow: 0 6px 32px rgba(0,0,0,0.35), 0 2px 0 #111; /* Ombre plus prononcée */
+    }
+
+    /* Définition de l'animation */
+    @keyframes fadeInTitle {
+        to {
+            opacity: 1; /* Devenir opaque */
+            transform: translateY(0) scale(1); /* Position finale */
         }
+    }
+
+    /* Adaptation mobile */
+    @media (max-width: 600px) {
+        .custom-title {
+            font-size: 2rem; /* Taille réduite */
+            padding: 0; /* Pas de marge intérieure */
+        }
+    }
+
+    /* Style des modales (fenêtres popup) */
+    .modal {
+        display: none; /* Cachée par défaut */
+        position: fixed; /* Position fixe */
+        z-index: 1050; /* Au-dessus des autres éléments */
+        left: 0; /* Alignement gauche */
+        top: 0; /* Alignement haut */
+        width: 100vw; /* Pleine largeur */
+        height: 100vh; /* Pleine hauteur */
+        overflow: auto; /* Scroll si besoin */
+        background: rgba(0,0,0,0.7); /* Fond semi-transparent */
+        justify-content: center; /* Centrage horizontal */
+        align-items: center; /* Centrage vertical */
+    }
+
+    /* Contenu de la modale */
+    .modal-content {
+        background: #fff; /* Fond blanc */
+        margin: auto; /* Centrage automatique */
+        border-radius: 10px; /* Coins arrondis */
+        max-width: 700px; /* Largeur maximale */
+        width: 90vw; /* 90% de la largeur de l'écran */
+        max-height: 90vh; /* 90% de la hauteur de l'écran */
+        overflow-y: auto; /* Scroll vertical si besoin */
+        box-shadow: 0 8px 40px rgba(0,0,0,0.3); /* Ombre portée */
+        position: relative; /* Position relative */
+        padding: 0; /* Pas de marge intérieure */
+        display: flex; /* Disposition flexbox */
+        flex-direction: column; /* Direction colonne */
+    }
+
+    /* En-tête de la modale */
+    .modal-header {
+        display: flex; /* Disposition flexbox */
+        justify-content: space-between; /* Espacement entre éléments */
+        align-items: center; /* Alignement vertical */
+        padding: 1.2em 2em 1em 2em; /* Marges intérieures */
+        border-bottom: 1px solid #eee; /* Bordure inférieure */
+        background: #f8f9fa; /* Fond gris clair */
+        border-radius: 10px 10px 0 0; /* Coins arrondis seulement en haut */
+    }
+
+    /* Bouton de fermeture */
+    .modal-close {
+        font-size: 2rem; /* Taille de police */
+        cursor: pointer; /* Curseur en main */
+        color: #333; /* Couleur du texte */
+        margin-left: 1em; /* Marge à gauche */
+    }
+
+    /* Corps de la modale */
+    .modal-body {
+        padding: 2em; /* Marges intérieures */
+    }
+
+    /* Image dans la modale */
+    .modal-image {
+        max-width: 100%; /* Largeur maximale */
+        height: auto; /* Hauteur automatique */
+        margin-bottom: 1.5em; /* Marge en bas */
+        border-radius: 8px; /* Coins arrondis */
+        display: block; /* Affichage en bloc */
+    }
+
+    /* Texte dans la modale */
+    .modal-text {
+        color: #222; /* Couleur de texte foncée */
+    }
+
+    /* Adaptation mobile des modales */
+    @media (max-width: 800px) {
         .modal-content {
-            background: #fff;
-            margin: auto;
-            border-radius: 10px;
-            max-width: 700px;
-            width: 90vw;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
-            position: relative;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-        }
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2em 2em 1em 2em;
-            border-bottom: 1px solid #eee;
-            background: #f8f9fa;
-            border-radius: 10px 10px 0 0;
-        }
-        .modal-close {
-            font-size: 2rem;
-            cursor: pointer;
-            color: #333;
-            margin-left: 1em;
+            max-width: 98vw; /* Largeur presque pleine */
+            width: 98vw; /* 98% de la largeur */
+            padding: 0; /* Pas de marge intérieure */
         }
         .modal-body {
-            padding: 2em;
+            padding: 1em; /* Marge intérieure réduite */
         }
-        .modal-image {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 1.5em;
-            border-radius: 8px;
-            display: block;
+        .modal-header {
+            padding: 1em; /* Marge intérieure réduite */
         }
-        .modal-text {
-            color: #222;
-        }
-        @media (max-width: 800px) {
-            .modal-content {
-                max-width: 98vw;
-                width: 98vw;
-                padding: 0;
-            }
-            .modal-body {
-                padding: 1em;
-            }
-            .modal-header {
-                padding: 1em;
-            }
-        }
-    </style>
-    
+    }
+</style>
+
     <div class="news-grid">
         <!-- Actualité 1 -->
         <article class="news-card" onclick="openModal('news1')">
@@ -182,7 +217,7 @@
                 </div>
             </div>
         </article>
-        
+
         <!-- Actualité 2 -->
         <article class="news-card" onclick="openModal('news2')">
             <img src="../assets/can2.png" alt="Polémique CAN" class="news-image">
@@ -194,7 +229,7 @@
                 </div>
             </div>
         </article>
-        
+
         <!-- Actualité 3 -->
         <article class="news-card" onclick="openModal('news3')">
             <img src="../assets/Capture d’écran 2025-05-05 à 00.55.34.png" alt="CAN U20 annulée" class="news-image">
@@ -239,7 +274,7 @@
             </div>
         </article>
     </div>
-    
+
 
     <!-- Modals -->
     <div id="news1-modal" class="modal">
@@ -254,9 +289,9 @@
 <p>
     L'attribution au Maroc de l'organisation de la phase finale de la Coupe d'Afrique des nations (CAN) en 2025 vient confirmer le retour en force du football marocain sur les scènes continentale et internationale ces dernières années, consacrant ainsi la stature du Royaume en tant que terre d'accueil des grands rendez-vous sportifs.
 
-</p>       
+</p>
 <br>
-             <p  style="font-size: large;"><strong>En savoir plus :</strong> 
+             <p  style="font-size: large;"><strong>En savoir plus :</strong>
                 <div class="detailed-paragraphs">
                     <p></p>
                         Le Maroc a été désigné ce mercredi hôte de la CAN-2025 à l'unanimité, à l'issue de la réunion du comité exécutif de la Confédération africaine de football (CAF), tenue au Caire. L'instance faitière du football africain avait décidé le retrait de l'organisation de cette édition à la Guinée "en raison du manque d'infrastructures et d'installations en Guinée capables d'accueillir une Coupe d'Afrique des Nations de classe mondiale".
@@ -314,7 +349,7 @@
                     position: relative;
                 }
                 </style>
-                
+
                     <p><em>Source : Le 360</em></p>
                 </div>
             </div>
@@ -335,7 +370,7 @@
 
 Réputé pour son riche héritage footballistique et son expérience éprouvée dans l'organisation d'événements internationaux, le Royaume chérifien est résolument prêt à offrir une vitrine spectaculaire du football africain.
 
-Une panoplie de stade de classe mondiale 
+Une panoplie de stade de classe mondiale
 
 Le Maroc se distingue par ses infrastructures sportives de premier plan, avec des stades ultramodernes ayant accueilli des compétitions prestigieuses, telles que les qualifications pour la Coupe du Monde de la FIFA et la Coupe du Monde des Clubs de la FIFA.
 
@@ -394,13 +429,13 @@ Avec ses infrastructures de classe mondiale, son hospitalité incomparable et un
 <p>
     La Fédération Botswanaise de Football (BFA) a annoncé cette semaine la nomination de l'entraîneur sud-africain Morena Ramoreboli à la tête des Zèbres, avec un contrat de deux ans.
 
-Après avoir mené le Botswana à une qualification historique pour la CAN CAF TotalEnergies, la deuxième seulement après celle de 2012, alors qu'il occupait le poste d'entraîneur intérimaire, Ramoreboli assume désormais la mission de diriger l'équipe nationale pour la CAN 2025 au Maroc. 
+Après avoir mené le Botswana à une qualification historique pour la CAN CAF TotalEnergies, la deuxième seulement après celle de 2012, alors qu'il occupait le poste d'entraîneur intérimaire, Ramoreboli assume désormais la mission de diriger l'équipe nationale pour la CAN 2025 au Maroc.
 
 Dans une interview exclusive accordée à CAFOnline.com, il partage ses ambitions pour les Zèbres, les défis qui l'attendent et sa vision pour insuffler une nouvelle dynamique au football botswanais à l'approche de cette compétition majeure.
 
 CAFOnline.com : Félicitations pour votre nomination en tant que sélectionneur du Botswana ! Que ressentez-vous en prenant ce poste avant une grande compétition comme la CAN 2025 ?
 Morena Ramoreboli : Merci beaucoup ! C'est un immense honneur d'être choisi comme entraîneur national du Botswana. Franchement, cela signifie que le pays attend beaucoup de moi. Comme je le dis souvent : "À qui l'on donne beaucoup, on demande beaucoup." La pression est là, c'est certain, mais je ferai tout mon possible pour atteindre de grands objectifs.
-</p>                
+</p>
     <p><strong>Raisons :</strong> Des problèmes d'infrastructure et des retards dans les préparations ont été cités comme principales causes. La CAF cherche actuellement un pays de remplacement.</p>
 
                     <p><em>Conséquences :</em> Plus de 15 équipes qualifiées se retrouvent sans compétition après des mois de préparation.</p>
@@ -422,13 +457,13 @@ Morena Ramoreboli : Merci beaucoup ! C'est un immense honneur d'être choisi com
 <p>
     La Fédération Botswanaise de Football (BFA) a annoncé cette semaine la nomination de l'entraîneur sud-africain Morena Ramoreboli à la tête des Zèbres, avec un contrat de deux ans.
 
-Après avoir mené le Botswana à une qualification historique pour la CAN CAF TotalEnergies, la deuxième seulement après celle de 2012, alors qu'il occupait le poste d'entraîneur intérimaire, Ramoreboli assume désormais la mission de diriger l'équipe nationale pour la CAN 2025 au Maroc. 
+Après avoir mené le Botswana à une qualification historique pour la CAN CAF TotalEnergies, la deuxième seulement après celle de 2012, alors qu'il occupait le poste d'entraîneur intérimaire, Ramoreboli assume désormais la mission de diriger l'équipe nationale pour la CAN 2025 au Maroc.
 
 Dans une interview exclusive accordée à CAFOnline.com, il partage ses ambitions pour les Zèbres, les défis qui l'attendent et sa vision pour insuffler une nouvelle dynamique au football botswanais à l'approche de cette compétition majeure.
 
 CAFOnline.com : Félicitations pour votre nomination en tant que sélectionneur du Botswana ! Que ressentez-vous en prenant ce poste avant une grande compétition comme la CAN 2025 ?
 Morena Ramoreboli : Merci beaucoup ! C'est un immense honneur d'être choisi comme entraîneur national du Botswana. Franchement, cela signifie que le pays attend beaucoup de moi. Comme je le dis souvent : "À qui l'on donne beaucoup, on demande beaucoup." La pression est là, c'est certain, mais je ferai tout mon possible pour atteindre de grands objectifs.
-</p>                
+</p>
 
                 </div>
             </div>
@@ -453,14 +488,14 @@ Morena Ramoreboli : Merci beaucoup ! C'est un immense honneur d'être choisi com
 
     Djimon Hounsou : Une fierté béninoise au sommet
     Icône incontestée du cinéma hollywoodien, Djimon Hounsou brille par son talent d'acteur et son flair de producteur, incarnant avec éclat l'excellence artistique sur la scène internationale. Né à Cotonou, au Bénin, il a su porter haut les couleurs de son pays d'origine à travers une carrière jalonnée de succès.
-    
+
      Avec des nominations aux Oscars pour ses rôles dans "Blood Diamond" et "In America," il est un exemple inspirant de la richesse culturelle et du talent africain sur la scène mondiale. Sa présence à cette cérémonie reflète l'importance de célébrer les racines africaines et de mettre en avant les valeurs d'excellence et de résilience qui caractérisent le continent.
-    
+
     Engagé pour les causes humanitaires, il utilise sa célébrité pour défendre des initiatives en faveur des droits humains et de l'Afrique. Sa carrière est marquée par sa capacité à transcender les rôles d'Africain ou d'immigré, montrant ainsi l'étendue de son talent et de son charisme.
-    
+
     Nabila Kilani : Une voix et un visage emblématiques du paysage médiatique marocain
     Née à Jerada, Nabila Kilani est une figure incontournable du paysage audiovisuel marocain. Passionnée dès son plus jeune âge, elle débute sa carrière à la télévision avec l'émission Al Qanat Assaghira sur RTM, avant de se distinguer en 2004 en finale de l'émission 15 ans, 15 talents sur 2M. Diplômée du Centre d'Audiovisuel et Multimédia de Rabat, elle enrichit rapidement son expérience en animant diverses émissions et en collaborant avec des ONG de renom comme la Fondation Lalla Asmae.
-    
+
     En 2007, elle devient la présentatrice phare de Star Academy Maghreb sur Nessma TV, confirmant son talent et sa notoriété. Nabila explore également le cinéma en 2009 dans Les Enfants Terribles du réalisateur Abdelkrim Derkaoui. Entre 2010 et 2013, elle anime Maroc Net sur Al Aoula, tout en poursuivant une carrière radiophonique sur Hit Radio, où son émission nocturne On t'écoute rencontre un vif succès.
 </p>
                 </div>
@@ -484,32 +519,32 @@ Morena Ramoreboli : Merci beaucoup ! C'est un immense honneur d'être choisi com
     La Confédération Africaine de Football (CAF) est ravie d'annoncer que le tirage au sort officiel de la Coupe d'Afrique des Nations CAF TotalEnergies, Maroc 2025 se déroulera dans le prestigieux cadre du Théâtre National Mohammed V de Rabat, le lundi 27 janvier, à 19h00 heure locale (18h00 GMT).
 
     Inauguré en 1961 par le roi Hassan II en hommage à son père, le Théâtre National Mohammed V est un joyau architectural situé au cœur de la capitale marocaine. Il incarne l'élégance et le riche patrimoine culturel du Maroc, un pays qui s'apprête à accueillir avec fierté une édition mémorable de la CAN.
-    
+
     Un moment clé pour les 24 nations qualifiées
     La cérémonie, véritable point de départ symbolique de la compétition, verra les 24 équipes qualifiées être réparties en six groupes pour la phase finale. Cet événement réunira des figures emblématiques du football africain, des représentants des fédérations, des médias internationaux, ainsi que des légendes sportives, promettant une ambiance exceptionnelle.
-    
+
     Un spectacle au croisement du sport et de la culture
     La CAF promet une soirée unique et pleine d'émotions, où le sport et la culture s'entrelaceront pour offrir un spectacle grandiose. Cette célébration reflétera la singularité de la culture marocaine et l'excellence de l'organisation de cette 35ᵉédition de la Coupe d'Afrique des Nations.
-    
+
     Les passionnés de football à travers le monde pourront vivre ce moment d'exception en direct sur les plateformes officielles de la CAF et auprès des diffuseurs partenaires, pour une expérience immersive inoubliable.</p>
                 </div>
             </div>
         </div>
     </div>
-    
-    
+
+
 
     <script>
         function openModal(newsId) {
             document.getElementById(`${newsId}-modal`).style.display = 'flex';
             document.body.style.overflow = 'hidden'; // Empêche le défilement de la page
         }
-        
+
         function closeModal(newsId) {
             document.getElementById(`${newsId}-modal`).style.display = 'none';
             document.body.style.overflow = 'auto'; // Rétablit le défilement
         }
-        
+
         // Fermer la modale en cliquant à l'extérieur
         window.onclick = function(event) {
             if (event.target.className === 'modal') {
