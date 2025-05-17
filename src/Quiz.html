@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Définition du type de document et de la langue -->
     <meta charset="UTF-8">
+    <!-- Configuration de la vue pour les appareils mobiles -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titre de la page -->
     <title>Quiz sur la CAN</title>
+    
+    <!-- Inclusion des feuilles de style externes -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="quiz.css">
     <link rel="stylesheet" href="styles.css">
+    <!-- Inclusion de la bibliothèque pour les effets de confettis -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
     <style>
-        
+        /* Style pour la bannière du quiz avec effet de flou et animation */
         .quiz-banner {
             width: 100vw;
             max-width: 100%;
@@ -25,11 +32,13 @@
             animation: bannerFloat 20s infinite alternate ease-in-out;
         }
 
+        /* Animation de flottement pour la bannière */
         @keyframes bannerFloat {
             0% { transform: scale(1.08) translateY(0); }
             100% { transform: scale(1.12) translateY(-10px); }
         }
 
+        /* Style pour la carte de résultat avec effet de verre */
         .result-card-wow {
             background: rgba(255,255,255,0.95);
             box-shadow: 0 8px 32px rgba(31,38,135,0.2);
@@ -44,22 +53,26 @@
             animation: cardPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        /* Animation d'apparition pour la carte de résultat */
         @keyframes cardPop {
             0% { transform: scale(0.8); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
 
+        /* Style pour l'emoji du résultat avec animation de rebond */
         .result-emoji {
             font-size: 4rem;
             margin-bottom: 1rem;
             animation: emojiBounce 1s infinite alternate;
         }
 
+        /* Animation de rebond pour l'emoji */
         @keyframes emojiBounce {
             0% { transform: translateY(0); }
             100% { transform: translateY(-10px); }
         }
 
+        /* Style pour l'affichage du score avec dégradé de couleur */
         .score-animated {
             font-size: 3rem;
             font-family: 'Russo One', Arial, sans-serif;
@@ -71,6 +84,7 @@
             text-shadow: 0 2px 10px rgba(127,176,105,0.3);
         }
 
+        /* Style pour les boutons de partage */
         .share-btns {
             margin-top: 2rem;
             display: flex;
@@ -78,6 +92,7 @@
             gap: 1rem;
         }
 
+        /* Style pour les boutons de partage individuels */
         .share-btns button {
             padding: 0.8rem 1.5rem;
             border: none;
@@ -91,11 +106,13 @@
             gap: 0.5rem;
         }
 
+        /* Effet de survol pour les boutons de partage */
         .share-btns button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
+        /* Style pour le bouton de recommencer */
         .btn-wow-restart {
             background: linear-gradient(45deg, #7FB069, #E63946);
             color: white;
@@ -109,11 +126,13 @@
             box-shadow: 0 4px 15px rgba(127,176,105,0.3);
         }
 
+        /* Effet de survol pour le bouton de recommencer */
         .btn-wow-restart:hover {
             transform: translateY(-2px) scale(1.05);
             box-shadow: 0 6px 20px rgba(127,176,105,0.4);
         }
 
+        /* Style pour les questions avec animation d'apparition */
         .question {
             animation: fadeInUp 0.7s;
             background: rgba(255,255,255,0.9);
@@ -125,10 +144,12 @@
             transition: transform 0.3s ease;
         }
 
+        /* Effet de survol pour les questions */
         .question:hover {
             transform: scale(1.02);
         }
 
+        /* Style pour les labels des réponses */
         .answers label {
             display: block;
             padding: 1rem;
@@ -140,12 +161,14 @@
             border: 2px solid transparent;
         }
 
+        /* Effet de survol pour les labels des réponses */
         .answers label:hover {
             background: rgba(255,255,255,0.95);
             transform: translateX(10px);
             border-color: #7FB069;
         }
 
+        /* Style pour les réponses sélectionnées */
         .answers input[type="radio"]:checked + label {
             background: linear-gradient(45deg, #7FB069, #E63946);
             color: white;
@@ -153,7 +176,7 @@
             box-shadow: 0 4px 15px rgba(127,176,105,0.3);
         }
 
-        /* Barre de progression en bas de page */
+        /* Style pour la barre de progression */
         .progress-container {
             position: fixed;
             bottom: 0;
@@ -164,6 +187,7 @@
             z-index: 1000;
         }
 
+        /* Style pour la barre de progression elle-même */
         .progress-bar {
             height: 100%;
             background: linear-gradient(90deg, #7FB069, #E63946);
@@ -172,6 +196,7 @@
             box-shadow: 0 0 10px rgba(127,176,105,0.5);
         }
 
+        /* Style pour la navigation entre les questions */
         .question-nav {
             display: flex;
             justify-content: space-between;
@@ -179,6 +204,7 @@
             gap: 1rem;
         }
 
+        /* Style pour les boutons de navigation */
         .question-nav button {
             padding: 0.8rem 2rem;
             border: none;
@@ -191,11 +217,13 @@
             box-shadow: 0 4px 15px rgba(127,176,105,0.3);
         }
 
+        /* Effet de survol pour les boutons de navigation */
         .question-nav button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(127,176,105,0.4);
         }
 
+        /* Style pour les boutons de navigation désactivés */
         .question-nav button:disabled {
             background: #ccc;
             cursor: not-allowed;
@@ -203,76 +231,85 @@
             box-shadow: none;
         }
 
-        /* Correction pour le cadre blanc */
+        /* Ajustements pour l'espacement et la mise en page */
         body {
-            padding-bottom: 20px; /* Espace pour la barre de progression */
+            padding-bottom: 20px;
         }
         
         .quiz-container {
-            min-height: calc(100vh - 200px); /* Ajustez selon vos besoins */
-            padding-bottom: 30px; /* Espace supplémentaire */
+            min-height: calc(100vh - 200px);
+            padding-bottom: 30px;
         }
         
         .result-card-wow {
-            margin-bottom: 50px; /* Espace avant la barre de progression */
+            margin-bottom: 50px;
         }
-        
     </style>
 </head>
 <body>
- <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#">CAN 2025</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="stades.html">Stades</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="LeSaviezVous.html">Le Saviez-vous</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="groupes.html">Groupes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="match.html">Matchs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="equipes.html">Équipes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="tenues.html">Tenues</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Billeterie.html">Boutique</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Quiz.html">Quiz</a>
-                </li>
-            </ul>
-            <form class="d-flex ms-3 search-navbar-form">
-                <input type="text" class="form-control me-2" id="navbar-search-input" placeholder="Rechercher...">
-                <button class="btn btn-primary" type="button" id="navbar-search-btn">Rechercher</button>
-            </form>
+    <!-- Barre de navigation principale -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <!-- Logo et nom du site -->
+            <a class="navbar-brand" href="#">CAN 2025</a>
+            <!-- Bouton hamburger pour le menu mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Menu de navigation -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Liste des liens de navigation -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="stades.html">Stades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="LeSaviezVous.html">Le Saviez-vous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="groupes.html">Groupes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="match.html">Matchs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="equipes.html">Équipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tenues.html">Tenues</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Billeterie.html">Boutique</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Quiz.html">Quiz</a>
+                    </li>
+                </ul>
+                <!-- Barre de recherche -->
+                <form class="d-flex ms-3 search-navbar-form">
+                    <input type="text" class="form-control me-2" id="navbar-search-input" placeholder="Rechercher...">
+                    <button class="btn btn-primary" type="button" id="navbar-search-btn">Rechercher</button>
+                </form>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+
+    <!-- En-tête du quiz avec titre et bannière -->
     <div class="quiz-header">
         <h1 class="quiz-title">Teste tes connaissances en football africain</h1>
         <img src="../assets/image.png" class="quiz-banner">
     </div>
 
+    <!-- Zone d'affichage des résultats -->
     <div id="resultArea" style="display:none; text-align:center; margin-bottom:30px;">
         <div class="result-card-wow" id="resultCardWow" style="display:none;">
             <div class="result-emoji" id="resultEmoji"></div>
             <div class="score-animated" id="scoreAnimated"></div>
             <div id="resultMessage"></div>
+            <!-- Boutons de partage sur les réseaux sociaux -->
             <div class="share-btns">
                 <button onclick="shareFB()"><i class="fab fa-facebook-f"></i> Partager</button>
                 <button class="twitter" onclick="shareTwitter()"><i class="fab fa-twitter"></i> Tweeter</button>
@@ -281,8 +318,10 @@
         </div>
     </div>
 
+    <!-- Conteneur principal du quiz -->
     <div class="quiz-container">
         <div id="quiz"></div>
+        <!-- Navigation entre les questions -->
         <div class="question-nav">
             <button id="prevBtn">Précédent</button>
             <button id="nextBtn">Suivant</button>
@@ -290,12 +329,13 @@
         </div>
     </div>
     
-    <!-- Barre de progression en bas de page -->
+    <!-- Barre de progression -->
     <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
     </div>
 
     <script>
+        // Données du quiz : questions, réponses et réponses correctes
         const quizData = [
             {
                 question: "Quel pays a remporté le plus de titres de la CAN?",
@@ -399,18 +439,22 @@
             }
         ];
 
+        // Variables globales pour suivre l'état du quiz
         let currentQuestion = 0;
         let userAnswers = new Array(quizData.length);
 
+        // Fonction pour construire et initialiser le quiz
         function buildQuiz() {
             showQuestion(currentQuestion);
             updateNavButtons();
         }
 
+        // Fonction pour afficher une question spécifique
         function showQuestion(index) {
             const quizContainer = document.getElementById('quiz');
             const q = quizData[index];
             const answers = [];
+            // Construction des options de réponse
             for (const letter in q.answers) {
                 answers.push(
                     `<label>
@@ -419,6 +463,7 @@
                     </label>`
                 );
             }
+            // Affichage de la question et des réponses
             quizContainer.innerHTML = `
                 <div class="question">
                     <h3>${index + 1}. ${q.question}</h3>
@@ -429,13 +474,14 @@
             attachProgressBarListeners();
         }
 
+        // Fonction pour mettre à jour les boutons de navigation
         function updateNavButtons() {
             document.getElementById('prevBtn').disabled = currentQuestion === 0;
             document.getElementById('nextBtn').style.display = currentQuestion === quizData.length - 1 ? 'none' : '';
             document.getElementById('submit').style.display = currentQuestion === quizData.length - 1 ? '' : 'none';
         }
 
-        // Navigation events
+        // Gestionnaires d'événements pour la navigation
         document.getElementById('prevBtn').onclick = function() {
             saveAnswer();
             if (currentQuestion > 0) {
@@ -444,6 +490,7 @@
                 updateNavButtons();
             }
         };
+
         document.getElementById('nextBtn').onclick = function() {
             saveAnswer();
             if (currentQuestion < quizData.length - 1) {
@@ -452,13 +499,14 @@
                 updateNavButtons();
             }
         };
+
         document.getElementById('submit').onclick = function() {
             saveAnswer();
             showResults();
         };
 
+        // Fonction pour réinitialiser le quiz
         document.getElementById('restartBtn').onclick = function() {
-            // Réinitialise les réponses et l'affichage
             userAnswers = new Array(quizData.length);
             currentQuestion = 0;
             document.getElementById('resultArea').style.display = 'none';
@@ -469,15 +517,17 @@
             buildQuiz();
         };
 
+        // Fonction pour sauvegarder la réponse de l'utilisateur
         function saveAnswer() {
             const selected = document.querySelector('.answers input[type="radio"]:checked');
             userAnswers[currentQuestion] = selected ? selected.value : undefined;
-            // Update progress bar
+            // Mise à jour de la barre de progression
             const answered = userAnswers.filter(a => a !== undefined).length;
             const progress = (answered / quizData.length) * 100;
             document.getElementById('progressBar').style.width = progress + '%';
         }
 
+        // Fonction pour mettre en évidence les réponses sélectionnées
         function highlightSelectedLabels() {
             document.querySelectorAll('.answers input[type="radio"]').forEach(radio => {
                 radio.addEventListener('change', function() {
@@ -489,10 +539,12 @@
             });
         }
 
+        // Fonction pour attacher les écouteurs d'événements à la barre de progression
         function attachProgressBarListeners() {
-            // Already handled in saveAnswer for this mode
+            // Déjà géré dans saveAnswer pour ce mode
         }
 
+        // Fonction pour afficher les résultats
         function showResults() {
             let numCorrect = 0;
             quizData.forEach((q, i) => {
@@ -505,11 +557,13 @@
             showResult(numCorrect, quizData.length);
         }
 
+        // Fonction pour afficher le résultat final avec animation
         function showResult(score, total) {
             let emoji = '😅';
             let message = '';
             let confettiColor = '#E63946';
 
+            // Détermination du message et de l'emoji en fonction du score
             if (score === total) {
                 emoji = '🏆';
                 message = "Incroyable ! Tu es un(e) expert(e) de la CAN !";
@@ -526,18 +580,21 @@
                 message = "Continue à apprendre ! La prochaine fois sera la bonne.";
             }
 
+            // Affichage de l'emoji et animation du score
             document.getElementById('resultEmoji').textContent = emoji;
             
             let current = 0;
             const scoreEl = document.getElementById('scoreAnimated');
             scoreEl.textContent = '0 / ' + total;
             
+            // Animation du compteur de score
             const interval = setInterval(() => {
                 if (current < score) {
                     current++;
                     scoreEl.textContent = current + ' / ' + total;
                 } else {
                     clearInterval(interval);
+                    // Effet de confettis pour les bons scores
                     if (score >= total * 0.7) {
                         confetti({
                             particleCount: 150,
@@ -553,7 +610,7 @@
             document.getElementById('resultCardWow').style.display = '';
         }
 
-        // Partage réseaux sociaux
+        // Fonctions de partage sur les réseaux sociaux
         function shareFB() {
             const url = encodeURIComponent(window.location.href);
             const txt = encodeURIComponent("J'ai testé mes connaissances sur la CAN !");
@@ -566,7 +623,7 @@
             window.open(`https://twitter.com/intent/tweet?url=${url}&text=${txt}`,'_blank');
         }
 
-        // Appel initial
+        // Initialisation du quiz au chargement de la page
         buildQuiz();
     </script>
 </body>

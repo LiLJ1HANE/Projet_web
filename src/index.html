@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Métadonnées et configuration de base -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAN 2025 - Coupe d'Afrique des Nations</title>
+    
+    <!-- Liens vers les feuilles de style externes -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    
     <style>
-      /* Hero full screen */
+      /* Section Hero - En-tête principal avec vidéo de fond */
       .hero-wow {
         position: relative;
         min-height: 100vh;
@@ -20,6 +24,8 @@
         justify-content: center;
         z-index: 1;
       }
+      
+      /* Configuration de la vidéo de fond */
       .hero-bg-video {
         position: absolute;
         top: 0; left: 0; width: 100vw; height: 100vh;
@@ -27,12 +33,16 @@
         z-index: 0;
         filter: brightness(0.7) saturate(1.1);
       }
+      
+      /* Superposition colorée sur la vidéo */
       .hero-overlay {
         position: absolute;
         top: 0; left: 0; width: 100vw; height: 100vh;
         background: linear-gradient(120deg, rgba(206,17,38,0.7) 0%, rgba(0,158,73,0.6) 100%);
         z-index: 1;
       }
+      
+      /* Contenu principal du hero */
       .hero-content {
         position: relative;
         z-index: 2;
@@ -44,6 +54,8 @@
         padding: 2.5rem 1rem 1.5rem 1rem;
         animation: fadeIn 1.2s;
       }
+      
+      /* Style du titre principal */
       .hero-title {
         font-family: 'Playfair Display', serif;
         font-size: 3.5rem;
@@ -53,10 +65,14 @@
         margin-bottom: 1.2rem;
         animation: slideDown 1.1s;
       }
+      
+      /* Animation de glissement vers le bas */
       @keyframes slideDown {
         from { opacity: 0; transform: translateY(-60px); }
         to { opacity: 1; transform: none; }
       }
+      
+      /* Style du slogan */
       .hero-slogan {
         font-size: 1.5rem;
         font-weight: 400;
@@ -64,6 +80,8 @@
         letter-spacing: 0.02em;
         animation: fadeIn 2s;
       }
+      
+      /* Section des boutons d'appel à l'action */
       .hero-cta {
         display: flex;
         gap: 1.2rem;
@@ -71,6 +89,8 @@
         margin-bottom: 2.5rem;
         flex-wrap: wrap;
       }
+      
+      /* Style des boutons */
       .hero-cta .btn {
         font-size: 1.15rem;
         padding: 0.9rem 2.2rem;
@@ -79,26 +99,35 @@
         box-shadow: 0 2px 12px rgba(44,62,80,0.13);
         transition: background 0.2s, transform 0.1s;
       }
+      
+      /* Style du bouton principal */
       .hero-cta .btn-primary {
         background: linear-gradient(120deg, var(--primary-red), var(--primary-green));
         border: none;
         color: #fff;
       }
+      
+      /* Effet de survol du bouton principal */
       .hero-cta .btn-primary:hover {
         background: linear-gradient(120deg, var(--primary-green), var(--primary-red));
         transform: scale(1.06);
       }
+      
+      /* Style du bouton secondaire */
       .hero-cta .btn-outline-light {
         border: 2px solid #fff;
         color: #fff;
         background: transparent;
       }
+      
+      /* Effet de survol du bouton secondaire */
       .hero-cta .btn-outline-light:hover {
         background: #fff;
         color: var(--primary-red);
         transform: scale(1.06);
       }
-      /* Histoire glassmorphism */
+      
+      /* Section Histoire avec effet glassmorphism */
       .histoire-wow {
         background: rgba(255,255,255,0.85);
         border-radius: 22px;
@@ -111,6 +140,8 @@
         position: relative;
         z-index: 3;
       }
+      
+      /* Style du titre de la section Histoire */
       .histoire-wow h2 {
         color: var(--primary-red);
         font-family: 'Playfair Display', serif;
@@ -119,17 +150,22 @@
         font-size: 2.1rem;
         letter-spacing: 0.03em;
       }
+      
+      /* Style de l'icône de football */
       .histoire-wow .fa-futbol {
         color: var(--primary-green);
         margin-right: 0.5em;
       }
+      
+      /* Style du texte de la section Histoire */
       .histoire-wow p {
         color: #222;
         font-size: 1.13em;
         line-height: 1.7;
         text-align: justify;
       }
-      /* Carrousel partenaires */
+      
+      /* Section Carrousel des partenaires */
       .carousel-partners {
         background: rgba(255,255,255,0.93);
         border-radius: 22px;
@@ -141,6 +177,8 @@
         position: relative;
         animation: fadeIn 1.1s;
       }
+      
+      /* Configuration du défilement des partenaires */
       .carousel-track {
         display: flex;
         align-items: center;
@@ -148,10 +186,14 @@
         animation: scrollPartners 28s linear infinite;
         will-change: transform;
       }
+      
+      /* Animation de défilement des partenaires */
       @keyframes scrollPartners {
         0% { transform: translateX(0); }
         100% { transform: translateX(-50%); }
       }
+      
+      /* Style des logos des partenaires */
       .carousel-partners img {
         max-height: 70px;
         max-width: 160px;
@@ -161,13 +203,16 @@
         transition: filter 0.2s, opacity 0.2s, transform 0.18s;
         margin: 0 1.2rem;
       }
+      
+      /* Effet de survol sur les logos des partenaires */
       .carousel-partners img:hover {
         filter: none;
         opacity: 1;
         transform: scale(1.09) translateY(-6px);
         z-index: 2;
       }
-      /* Footer moderne */
+      
+      /* Style du pied de page */
       .footer-wow {
         background: #181818;
         color: #fff;
@@ -176,18 +221,26 @@
         font-size: 1.05em;
         margin-top: 2.5rem;
       }
+      
+      /* Section des réseaux sociaux */
       .footer-wow .socials {
         margin-bottom: 1.1rem;
       }
+      
+      /* Style des liens des réseaux sociaux */
       .footer-wow .socials a {
         color: #fff;
         margin: 0 0.7em;
         font-size: 1.5em;
         transition: color 0.2s;
       }
+      
+      /* Effet de survol sur les liens des réseaux sociaux */
       .footer-wow .socials a:hover {
         color: var(--primary-green);
       }
+      
+      /* Media queries pour la responsivité */
       @media (max-width: 900px) {
         .hero-title { font-size: 2.1rem; }
         .hero-slogan { font-size: 1.1rem; }
@@ -197,6 +250,7 @@
     </style>
 </head>
 <body class="homepage">
+    <!-- Barre de navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">CAN 2025</a>
@@ -204,6 +258,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Menu de navigation -->
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link active" href="index.html">Accueil</a>
@@ -233,6 +288,7 @@
                         <a class="nav-link" href="Quiz.html">Quiz</a>
                     </li>
                 </ul>
+                <!-- Barre de recherche -->
                 <form class="d-flex ms-3 search-navbar-form">
                     <input type="text" class="form-control me-2" id="navbar-search-input" placeholder="Rechercher...">
                     <button class="btn btn-primary" type="button" id="navbar-search-btn">Rechercher</button>
@@ -240,9 +296,10 @@
             </div>
         </div>
     </nav>
+    <!-- Message de résultat de recherche -->
     <div id="search-result-message" class="text-center fw-bold py-2" style="display:none; background:#fff; color:#222;"></div>
 
-    <!-- HERO WOW -->
+    <!-- Section Hero avec vidéo de fond -->
     <section class="hero-wow">
       <video class="hero-bg-video" src="../assets/video.mp4" autoplay muted loop playsinline></video>
       <div class="hero-overlay"></div>
