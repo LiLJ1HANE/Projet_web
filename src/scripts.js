@@ -1,8 +1,8 @@
 function getStadiumImages(id) {
   return [
-    `assets/${id}.jpg`,
-    `assets/${id}1.jpg`,
-    `assets/${id}2.jpg`
+    `${id}.jpg`,
+    `${id}1.jpg`,
+    `${id}2.jpg`
   ];
 }
 
@@ -185,8 +185,49 @@ function createAvisSection(stade) {
   return html;
 }
 
+// Ajoute une fonction utilitaire pour filtrer les images existantes
+function filterExistingImages(images, callback) {
+  let loaded = 0;
+  const validImages = [];
+  if (images.length === 0) return callback([]);
+  images.forEach(src => {
+    const img = new window.Image();
+    img.onload = () => {
+      validImages.push(src);
+      loaded++;
+      if (loaded === images.length) callback(validImages);
+    };
+    img.onerror = () => {
+      loaded++;
+      if (loaded === images.length) callback(validImages);
+    };
+    img.src = src;
+  });
+}
+
+// Modifie createModal pour utiliser filterExistingImages
 function createModal(stade) {
-  // Carrousel d'images si plusieurs images
+  // On va filtrer dynamiquement les images existantes
+  const modalId = `modal${capitalize(stade.id)}`;
+  setTimeout(() => {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+    const carouselInner = modal.querySelector('.carousel-inner');
+    if (!carouselInner) return;
+    filterExistingImages(stade.images, function(validImages) {
+      if (validImages.length === 0) {
+        carouselInner.innerHTML = `<div class='carousel-item active'><img src='assets/stade-default.jpg' class='d-block w-100' alt='Image non disponible'></div>`;
+      } else {
+        carouselInner.innerHTML = validImages.map((img, i) => `
+          <div class="carousel-item${i === 0 ? ' active' : ''}">
+            <img src="${img}" class="d-block w-100" alt="${stade.nom} image ${i+1}">
+          </div>
+        `).join('');
+      }
+    });
+  }, 500);
+
+  // Carrousel d'images (structure initiale)
   let carousel = '';
   if (stade.images.length > 1) {
     carousel = `
@@ -194,11 +235,7 @@ function createModal(stade) {
         <h5>Galerie</h5>
         <div id="carousel${capitalize(stade.id)}" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            ${stade.images.map((img, i) => `
-              <div class="carousel-item${i === 0 ? ' active' : ''}">
-                <img src="${img}" class="d-block w-100" alt="${stade.nom} image ${i+1}" onerror="this.onerror=null;this.src='assets/stade-default.jpg';">
-              </div>
-            `).join('')}
+            <div class="carousel-item active"><img src="${stade.images[0]}" class="d-block w-100" alt="${stade.nom} image 1"></div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carousel${capitalize(stade.id)}" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -215,11 +252,11 @@ function createModal(stade) {
     carousel = `<img src="${stade.images[0]}" class="img-fluid mb-3" alt="${stade.nom}" onerror="this.onerror=null;this.src='assets/stade-default.jpg';">`;
   }
   return `
-  <div class="modal fade animate__animated animate__fadeIn" id="modal${capitalize(stade.id)}" tabindex="-1" aria-labelledby="modal${capitalize(stade.id)}Label" aria-hidden="true">
+  <div class="modal fade animate__animated animate__fadeIn" id="${modalId}" tabindex="-1" aria-labelledby="${modalId}Label" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modal${capitalize(stade.id)}Label">${stade.nom}</h5>
+          <h5 class="modal-title" id="${modalId}Label">${stade.nom}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
         </div>
         <div class="modal-body">
