@@ -3,11 +3,9 @@
 document.addEventListener('DOMContentLoaded', function() {
   const validateBtn = document.getElementById('validatePaymentBtn');
   const downloadBtn = document.getElementById('downloadTicketBtn');
-  let ticketData = null;
 
   // Récupère les infos du formulaire et du siège sélectionné
   function getTicketInfo() {
-    // Utilise les bons id du formulaire
     return {
       nom: document.getElementById('fullName')?.value || '',
       email: document.getElementById('email')?.value || '',
@@ -55,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Validation du paiement
   if (validateBtn) {
     validateBtn.addEventListener('click', function() {
-      ticketData = getTicketInfo();
       // Affiche la modale Bootstrap
       const modal = new bootstrap.Modal(document.getElementById('ticketModal'));
       modal.show();
@@ -65,7 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Téléchargement du ticket PDF
   if (downloadBtn) {
     downloadBtn.addEventListener('click', function() {
-      if (ticketData) generatePDF(ticketData);
+      const ticketData = getTicketInfo();
+      generatePDF(ticketData);
     });
   }
 }); 

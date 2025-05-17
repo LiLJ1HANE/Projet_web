@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tenues des équipes - CAN 2025</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .kits-header {
+      background: linear-gradient(90deg, #CE1126 0%, #009E49 100%);
+      color: #fff;
+      border-radius: 0 0 2rem 2rem;
+      box-shadow: 0 2px 16px rgba(30,60,114,0.08);
+      text-align: center;
+      padding: 3rem 1rem 2rem 1rem;
+      margin-bottom: 2rem;
+    }
+    .kits-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+    .kits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .kit-card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 24px rgba(44,62,80,0.10);
+      padding: 2rem 1.2rem 1.5rem 1.2rem;
+      text-align: center;
+      transition: transform 0.18s, box-shadow 0.18s;
+      position: relative;
+    }
+    .kit-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(30,60,114,0.15);
+    }
+    .kit-flag {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .kit-team-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.7rem;
+      color: #CE1126;
+    }
+    .kit-imgs {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .kit-imgs img {
+      height: 120px;
+      width: auto;
+      border-radius: 0.7rem;
+      box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+      background: #f8f9fa;
+      object-fit: contain;
+      border: 1.5px solid #eee;
+      transition: transform 0.18s;
+    }
+    .kit-imgs img:hover {
+      transform: scale(1.08) rotate(-2deg);
+    }
+    .kit-label {
+      font-size: 0.98rem;
+      color: #555;
+      margin-top: 0.3rem;
+    }
+    @media (max-width: 600px) {
+      .kits-header h1 { font-size: 1.3rem; }
+      .kit-imgs img { height: 80px; }
+    }
+    body.dark-mode .kit-card {
+      background: #232526;
+      color: #f1f1f1;
+    }
+    body.dark-mode .kit-team-name {
+      color: #FCD116;
+    }
+    body.dark-mode .kit-imgs img {
+      background: #181a1b;
+      border: 1.5px solid #333;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">CAN 2025</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="stades.html">Stades</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="LeSaviezVous.html">Le Saviez-vous</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="groupes.html">Groupes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="match.html">Matchs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="equipes.html">Équipes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="tenues.html">Tenues</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Billeterie.html">Boutique</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Quiz.html">Quiz</a>
+        </li>
+      </ul>
+      <form class="d-flex ms-3 search-navbar-form">
+        <input type="text" class="form-control me-2" id="navbar-search-input" placeholder="Rechercher...">
+        <button class="btn btn-primary" type="button" id="navbar-search-btn">Rechercher</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="kits-header">
+  <h1>Les Tenues des Équipes - CAN 2025</h1>
+  <p>Découvrez les maillots domicile et extérieur des équipes participantes à la CAN 2025 au Maroc.</p>
+</div>
+
+<div class="container">
+  <div class="kits-grid">
+    <!-- Maroc -->
+    <div class="kit-card">
+      <div class="kit-flag">MA</div>
+      <div class="kit-team-name">Maroc</div>
+      <div class="kit-imgs">
+        <div>
+          <img src="../assets/Maillot-Maroc1.jpg" alt="Maroc Domicile">
+          <div class="kit-label">Domicile</div>
+        </div>
+        <div>
+          <img src="../assets/Maillot-Maroc2.jpg" alt="Maroc Extérieur">
+          <div class="kit-label">Extérieur</div>
+        </div>
+      </div>
+    </div>
+    <!-- Algérie -->
+    <div class="kit-card">
+      <div class="kit-flag">DZ</div>
+      <div class="kit-team-name">Algérie</div>
+      <div class="kit-imgs">
+        <div>
+          <img src="../assets/Maillot-Algerie1.jpg" alt="Algérie Domicile">
+          <div class="kit-label">Domicile</div>
+        </div>
+        <div>
+          <img src="../assets/Maillot-Algerie2.jpg" alt="Algérie Extérieur">
+          <div class="kit-label">Extérieur</div>
+        </div>
+      </div>
+    </div>
+    <!-- Sénégal -->
+    <div class="kit-card">
+      <div class="kit-flag">SN</div>
+      <div class="kit-team-name">Sénégal</div>
+      <div class="kit-imgs">
+        <div>
+          <img src="../assets/Maillot-Senegal1.jpg" alt="Sénégal Domicile">
+          <div class="kit-label">Domicile</div>
+        </div>
+        <div>
+          <img src="../assets/Maillot-Senegal2.jpg" alt="Sénégal Extérieur">
+          <div class="kit-label">Extérieur</div>
+        </div>
+      </div>
+    </div>
+    <!-- Côte d'Ivoire -->
+    <div class="kit-card">
+      <div class="kit-flag">CI</div>
+      <div class="kit-team-name">Côte d'Ivoire</div>
+      <div class="kit-imgs">
+        <div>
+          <img src="../assets/Maillot-CotedIvoire1.jpg" alt="Côte d'Ivoire Domicile">
+          <div class="kit-label">Domicile</div>
+        </div>
+        <div>
+          <img src="../assets/Maillot-CotedIvoire2.jpg" alt="Côte d'Ivoire Extérieur">
+          <div class="kit-label">Extérieur</div>
+        </div>
+      </div>
+    </div>
+    <!-- Égypte -->
+    <div class="kit-card">
+      <div class="kit-flag">EG</div>
+      <div class="kit-team-name">Égypte</div>
+      <div class="kit-imgs">
+        <div>
+          <img src="../assets/Maillot-Egypte1.jpg" alt="Égypte Domicile">
+          <div class="kit-label">Domicile</div>
+        </div>
+        <div>
+          <img src="../assets/Maillot-Egypte2.jpg" alt="Égypte Extérieur">
+          <div class="kit-label">Extérieur</div>
+        </div>
+      </div>
+    </div>
+    <!-- Tunisie -->
+    <div class="kit-card">
+      <div class="kit-flag">TN</div>
+      <div class="kit-team-name">Tunisie</div>
+      <div class="kit-imgs">
+        <div>
+          <img src="../assets/Maillot-Tunisie1.jpg" alt="Tunisie Domicile">
+          <div class="kit-label">Domicile</div>
+        </div>
+        <div>
+          <img src="../assets/Maillot-Tunisie2.jpg" alt="Tunisie Extérieur">
+          <div class="kit-label">Extérieur</div>
+        </div>
+      </div>
+    </div>
+    <!-- Nigeria -->
+    <div class="kit-card">
+      <div class="kit-flag">NG</div>
+      <div class="kit-team-name">Nigeria</div>
+      <div class="kit-imgs">
+        <div>
+          <img src="../assets/Maillot-Nigeria1.jpg" alt="Nigeria Domicile">
+          <div class="kit-label">Domicile</div>
+        </div>
+        <div>
+          <img src="../assets/Maillot-Nigeria2.jpg" alt="Nigeria Extérieur">
+          <div class="kit-label">Extérieur</div>
+        </div>
+      </div>
+    </div>
+    <!-- Ajoute d'autres équipes ici si besoin -->
+  </div>
+</div>
+
+<!-- Bouton mode sombre global -->
+<button class="darkmode-toggle" id="darkmodeToggle">
+  <i class="fas fa-moon"></i> <span id="darkmodeText">Mode sombre</span>
+</button>
+<script>
+// Mode sombre global
+function setDarkMode(on) {
+  document.body.classList.toggle('dark-mode', on);
+  localStorage.setItem('darkMode', on ? '1' : '0');
+  document.getElementById('darkmodeText').textContent = on ? 'Mode clair' : 'Mode sombre';
+  document.querySelector('.darkmode-toggle i').className = on ? 'fas fa-sun' : 'fas fa-moon';
+}
+const darkBtn = document.getElementById('darkmodeToggle');
+darkBtn.addEventListener('click', function() {
+  setDarkMode(!document.body.classList.contains('dark-mode'));
+});
+// Init au chargement
+if (localStorage.getItem('darkMode') === '1') setDarkMode(true);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

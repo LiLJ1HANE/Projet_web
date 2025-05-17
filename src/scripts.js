@@ -1,3 +1,11 @@
+function getStadiumImages(id) {
+  return [
+    `assets/${id}.jpg`,
+    `assets/${id}1.jpg`,
+    `assets/${id}2.jpg`
+  ];
+}
+
 const stades = [
   {
     id: 'tanger',
@@ -5,11 +13,7 @@ const stades = [
     ville: 'Tanger',
     capacite: '75 000',
     ouverture: '2011',
-    images: [
-      'images/tanger.jpg',
-      'images/tanger2.jpg',
-      'images/tanger3.jpg'
-    ],
+    images: getStadiumImages('tanger'),
     adresse: 'Avenue Ibn Batouta, Tanger',
     description: "Le Grand Stade de Tanger est l'un des plus grands stades du Maroc, accueillant des matchs nationaux et internationaux, doté d'infrastructures modernes.",
     map: 'https://goo.gl/maps/8Qw6QwF8Qw6QwF8',
@@ -25,11 +29,7 @@ const stades = [
     ville: 'Rabat',
     capacite: '69 500',
     ouverture: '1983',
-    images: [
-      'images/rabat-abdellah.jpg',
-      'images/rabat-abdellah1.jpg',
-      'images/rabat-abdellah2.jpg'
-    ],
+    images: getStadiumImages('rabat-abdellah'),
     adresse: 'Avenue Ibn Sina, Rabat',
     description: "Le principal stade de Rabat, accueillant de nombreux événements sportifs et culturels majeurs.",
     map: 'https://goo.gl/maps/0Qw6QwF0Qw6QwF0',
@@ -41,11 +41,7 @@ const stades = [
     ville: 'Marrakech',
     capacite: '41 245',
     ouverture: '2011',
-    images: [
-      'images/marrakech.jpg',
-      'images/marrakech1.jpg',
-      'images/marrakech2.jpg'
-    ],
+    images: getStadiumImages('marrakech'),
     adresse: 'Route de Casablanca, Marrakech',
     description: "Un stade moderne situé à Marrakech, connu pour son architecture et son ambiance lors des grands matchs.",
     map: 'https://goo.gl/maps/1Qw6QwF1Qw6QwF1',
@@ -57,11 +53,7 @@ const stades = [
     ville: 'Agadir',
     capacite: '41 144',
     ouverture: '2013',
-    images: [
-      'images/agadir.jpg',
-      'images/agadir1.jpg',
-      'images/agadir2.jpg'
-    ],
+    images: getStadiumImages('agadir'),
     adresse: 'Quartier Tilila, Agadir',
     description: "Stade emblématique du sud marocain, il accueille de nombreux événements sportifs internationaux.",
     map: 'https://goo.gl/maps/2Qw6QwF2Qw6QwF2',
@@ -73,11 +65,7 @@ const stades = [
     ville: 'Casablanca',
     capacite: '45 000',
     ouverture: '1955',
-    images: [
-      'images/casablanca.jpg',
-      'images/casablanca1.jpg',
-      'images/casablanca2.jpg'
-    ],
+    images: getStadiumImages('casablanca'),
     adresse: 'Bd Omar Al Khayam, Casablanca',
     description: "Le stade mythique de Casablanca, fief du Raja et du Wydad, au cœur de la capitale économique.",
     map: 'https://goo.gl/maps/3Qw6QwF3Qw6QwF3',
@@ -89,11 +77,7 @@ const stades = [
     ville: 'Fès',
     capacite: '35 468',
     ouverture: '2007',
-    images: [
-      'images/fes.jpg',
-      'images/fes1.jpg',
-      'images/fes2.jpg'
-    ],
+    images: getStadiumImages('fes'),
     adresse: 'Route Sidi Hrazem, Fès',
     description: "Un stade moderne pour la ville impériale de Fès, accueillant de nombreux matchs nationaux.",
     map: 'https://goo.gl/maps/4Qw6QwF4Qw6QwF4',
@@ -105,11 +89,7 @@ const stades = [
     ville: 'Rabat',
     capacite: '22 000',
     ouverture: '2003',
-    images: [
-      'images/rabat-hassan.jpg',
-      'images/rabat-hassan1.jpg',
-      'images/rabat-hassan2.jpg'
-    ],
+    images: getStadiumImages('rabat-hassan'),
     adresse: 'Avenue Annakhil, Rabat',
     description: "Un stade polyvalent de Rabat, souvent utilisé pour les matchs de football et d'autres événements sportifs.",
     map: 'https://goo.gl/maps/5Qw6QwF5Qw6QwF5',
@@ -121,11 +101,7 @@ const stades = [
     ville: 'Rabat',
     capacite: '21 000',
     ouverture: '1983',
-    images: [
-      'images/rabat-olympique.jpg',
-      'images/rabat-olympique1.jpg',
-      'images/rabat-olympique2.jpg'
-    ],
+    images: getStadiumImages('rabat-olympique'),
     adresse: 'Avenue Ibn Sina, Rabat',
     description: "Annexe du grand complexe de Rabat, il accueille des compétitions et des entraînements de haut niveau.",
     map: 'https://goo.gl/maps/6Qw6QwF6Qw6QwF6',
@@ -137,11 +113,7 @@ const stades = [
     ville: 'Rabat',
     capacite: '18 000',
     ouverture: '2010',
-    images: [
-      'images/rabat-barid.jpg',
-      'images/rabat-barid1.jpg',
-      'images/rabat-barid2.jpg'
-    ],
+    images: getStadiumImages('rabat-barid'),
     adresse: 'Quartier Al Barid, Rabat',
     description: "Un stade récent de Rabat, principalement utilisé pour le football et les compétitions locales.",
     map: 'https://goo.gl/maps/7Qw6QwF7Qw6QwF7',
@@ -153,7 +125,7 @@ function createStadiumCard(stade) {
   return `
     <div class="col stadium-col" data-nom="${stade.nom.toLowerCase()}" data-ville="${stade.ville.toLowerCase()}">
       <div class="card h-100 stadium-card">
-        <img src="${stade.images[0]}" class="card-img-top img-fluid" alt="${stade.nom}">
+        <img src="${stade.images[0]}" class="card-img-top img-fluid" alt="${stade.nom}" onerror="this.onerror=null;this.src='assets/stade-default.jpg';">
         <div class="card-body">
           <div class="stadium-title">${stade.nom}</div>
           <ul class="list-unstyled mb-2">
@@ -224,7 +196,7 @@ function createModal(stade) {
           <div class="carousel-inner">
             ${stade.images.map((img, i) => `
               <div class="carousel-item${i === 0 ? ' active' : ''}">
-                <img src="${img}" class="d-block w-100" alt="${stade.nom} image ${i+1}">
+                <img src="${img}" class="d-block w-100" alt="${stade.nom} image ${i+1}" onerror="this.onerror=null;this.src='assets/stade-default.jpg';">
               </div>
             `).join('')}
           </div>
@@ -240,7 +212,7 @@ function createModal(stade) {
       </div>
     `;
   } else {
-    carousel = `<img src="${stade.images[0]}" class="img-fluid mb-3" alt="${stade.nom}">`;
+    carousel = `<img src="${stade.images[0]}" class="img-fluid mb-3" alt="${stade.nom}" onerror="this.onerror=null;this.src='assets/stade-default.jpg';">`;
   }
   return `
   <div class="modal fade animate__animated animate__fadeIn" id="modal${capitalize(stade.id)}" tabindex="-1" aria-labelledby="modal${capitalize(stade.id)}Label" aria-hidden="true">

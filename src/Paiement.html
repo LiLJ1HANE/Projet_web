@@ -211,12 +211,8 @@
                   </div>
                 </div>
 
-                <button id="confirmPayment" class="btn btn-pay btn-lg w-100 mt-4">
-                  <i class="fas fa-lock me-2"></i>Payer maintenant
-                </button>
-
-                <button id="validatePaymentBtn" class="btn btn-success w-100 mt-4">
-                  <i class="fas fa-check-circle me-2"></i> Valider le paiement et générer mon ticket
+                <button id="validateAndDownloadBtn" class="btn btn-success w-100 mb-2" disabled>
+                  <i class="bi bi-check-circle me-2"></i> Valider le paiement et générer mon ticket
                 </button>
 
                 <div class="text-center mt-3">
@@ -258,7 +254,7 @@
     const orderSummary = document.getElementById('orderSummary');
     const subtotalElement = document.getElementById('subtotal');
     const finalTotalElement = document.getElementById('finalTotal');
-    const confirmPaymentBtn = document.getElementById('confirmPayment');
+    const validateAndDownloadBtn = document.getElementById('validateAndDownloadBtn');
 
     // Récupérer les données du sessionStorage
     const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats')) || [];
@@ -292,32 +288,52 @@
       finalTotalElement.textContent = `${totalPrice + 20} MAD`;
     }
 
-    // Gestion du paiement
-    confirmPaymentBtn.addEventListener('click', function() {
-      // Validation simple du formulaire
-      const cardNumber = document.getElementById('cardNumber').value;
-      const expiryDate = document.getElementById('expiryDate').value;
-      const cvv = document.getElementById('cvv').value;
-      const cardName = document.getElementById('cardName').value;
-      const fullName = document.getElementById('fullName').value;
-      const email = document.getElementById('email').value;
-      const phone = document.getElementById('phone').value;
+    // Nouvelle validation basée sur les IDs
+    function isPaiementFormValid() {
+      // Paiement
+      const num = document.getElementById('cardNumber');
+      const exp = document.getElementById('expiryDate');
+      const cvv = document.getElementById('cvv');
+      const nomCarte = document.getElementById('cardName');
+      // Perso
+      const nom = document.getElementById('fullName');
+      const email = document.getElementById('email');
+      const tel = document.getElementById('phone');
+      return (
+        num && num.value.trim().length >= 12 &&
+        exp && exp.value.trim().length >= 4 &&
+        cvv && cvv.value.trim().length >= 3 &&
+        nomCarte && nomCarte.value.trim().length > 2 &&
+        nom && nom.value.trim().length > 2 &&
+        email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim()) &&
+        tel && tel.value.trim().length >= 8
+      );
+    }
+    function updatePaiementBtn() {
+      const btn = document.getElementById('validateAndDownloadBtn');
+      btn.disabled = !isPaiementFormValid();
+    }
+    // Ajoute l'écoute sur tous les champs du formulaire
+    ['input', 'change'].forEach(evt => {
+      document.querySelectorAll('input').forEach(input => {
+        input.addEventListener(evt, updatePaiementBtn);
+      });
+    });
 
-      if (!cardNumber || !expiryDate || !cvv || !cardName || !fullName || !email || !phone) {
-        alert('Veuillez remplir tous les champs du formulaire.');
+    // Action du bouton : afficher la modale ticket si valide
+    validateAndDownloadBtn.addEventListener('click', function(e) {
+      if (!isPaiementFormValid()) {
+        e.preventDefault();
         return;
       }
-
-      // Simulation de paiement réussi
-      alert('Paiement effectué avec succès ! Un email de confirmation vous a été envoyé.');
-
-      // Redirection vers la page de confirmation
-      sessionStorage.setItem('paymentSuccess', 'true');
-      window.location.href = 'ConfirmationPaiement.html';
+      // Affiche la modale Bootstrap
+      const ticketModal = new bootstrap.Modal(document.getElementById('ticketModal'));
+      ticketModal.show();
     });
 
     // Afficher le récapitulatif au chargement de la page
     displayOrderSummary();
+    updatePaiementBtn(); // Pour initialiser l'état du bouton
   });
 </script>
 
