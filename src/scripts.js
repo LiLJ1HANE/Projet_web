@@ -1,3 +1,4 @@
+// Fonction pour générer les noms des images d'un stade
 function getStadiumImages(id) {
   return [
     `${id}.jpg`,
@@ -6,6 +7,7 @@ function getStadiumImages(id) {
   ];
 }
 
+// Données des stades avec leurs informations détaillées
 const stades = [
   {
     id: 'tanger',
@@ -121,6 +123,7 @@ const stades = [
   }
 ];
 
+// Fonction pour créer une carte de stade
 function createStadiumCard(stade) {
   return `
     <div class="col stadium-col" data-nom="${stade.nom.toLowerCase()}" data-ville="${stade.ville.toLowerCase()}">
@@ -140,6 +143,7 @@ function createStadiumCard(stade) {
   `;
 }
 
+// Fonction pour créer les étoiles de notation
 function createStars(note) {
   let stars = '';
   for (let i = 1; i <= 5; i++) {
@@ -148,6 +152,7 @@ function createStars(note) {
   return stars;
 }
 
+// Fonction pour créer la section des avis
 function createAvisSection(stade) {
   const avis = stade.avis || [];
   let html = `<div class="avis-section mt-4"><h5>Avis des visiteurs</h5>`;
@@ -185,7 +190,7 @@ function createAvisSection(stade) {
   return html;
 }
 
-// Ajoute une fonction utilitaire pour filtrer les images existantes
+// Fonction pour filtrer les images existantes
 function filterExistingImages(images, callback) {
   let loaded = 0;
   const validImages = [];
@@ -205,9 +210,9 @@ function filterExistingImages(images, callback) {
   });
 }
 
-// Modifie createModal pour utiliser filterExistingImages
+// Fonction pour créer une modale de stade
 function createModal(stade) {
-  // On va filtrer dynamiquement les images existantes
+  // Filtrage dynamique des images existantes
   const modalId = `modal${capitalize(stade.id)}`;
   setTimeout(() => {
     const modal = document.getElementById(modalId);
@@ -227,7 +232,7 @@ function createModal(stade) {
     });
   }, 500);
 
-  // Carrousel d'images (structure initiale)
+  // Structure du carrousel d'images
   let carousel = '';
   if (stade.images.length > 1) {
     carousel = `
@@ -251,6 +256,8 @@ function createModal(stade) {
   } else {
     carousel = `<img src="${stade.images[0]}" class="img-fluid mb-3" alt="${stade.nom}" onerror="this.onerror=null;this.src='assets/stade-default.jpg';">`;
   }
+
+  // Structure complète de la modale
   return `
   <div class="modal fade animate__animated animate__fadeIn" id="${modalId}" tabindex="-1" aria-labelledby="${modalId}Label" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -282,11 +289,12 @@ function createModal(stade) {
   `;
 }
 
+// Fonction pour mettre en majuscule la première lettre
 function capitalize(str) {
   return str.replace(/(^|-)([a-z])/g, (m, p1, p2) => p1 + p2.toUpperCase());
 }
 
-// Recherche instantanée
+// Configuration de la recherche instantanée
 function setupSearch() {
   const input = document.getElementById('searchStadium');
   input.addEventListener('input', function() {
@@ -303,7 +311,7 @@ function setupSearch() {
   });
 }
 
-// Ajoute une référence globale à la carte et aux marqueurs si Leaflet est chargé
+// Initialisation de la carte Leaflet si disponible
 if (typeof L !== 'undefined' && document.getElementById('map')) {
   window.map = window.map || null;
   window.markers = window.markers || {};
@@ -332,7 +340,7 @@ if (typeof L !== 'undefined' && document.getElementById('map')) {
   });
 }
 
-// Fonction pour centrer la carte sur le stade (Leaflet)
+// Fonction pour centrer la carte sur un stade
 window.centerMapOnStadium = function(id) {
   if (window.map && window.markers && window.markers[id]) {
     const marker = window.markers[id];
@@ -341,7 +349,7 @@ window.centerMapOnStadium = function(id) {
   }
 };
 
-// Copier l'adresse
+// Fonction pour copier l'adresse
 window.copyAdresse = function(id) {
   const el = document.getElementById('adresse-' + id);
   if (el) {
@@ -351,7 +359,7 @@ window.copyAdresse = function(id) {
   }
 };
 
-// Partage du stade
+// Fonction pour partager un stade
 window.shareStadium = function(id) {
   const stade = stades.find(s => s.id === id);
   if (!stade) return;
@@ -360,7 +368,7 @@ window.shareStadium = function(id) {
   alert('Lien du stade copié dans le presse-papier !');
 };
 
-// Avis utilisateur (stocké localement)
+// Fonction pour soumettre un avis
 window.submitAvis = function(id, form) {
   const nom = form.nom.value.trim();
   const note = parseInt(form.note.value);
@@ -369,7 +377,7 @@ window.submitAvis = function(id, form) {
   let avis = JSON.parse(localStorage.getItem('avis-' + id) || '[]');
   avis.push({ nom, note, commentaire });
   localStorage.setItem('avis-' + id, JSON.stringify(avis));
-  // Recharge la modal
+  // Recharge la modale
   const stade = stades.find(s => s.id === id);
   if (stade) {
     stade.avis = (stade.avis || []).concat([{ nom, note, commentaire }]);
@@ -379,7 +387,7 @@ window.submitAvis = function(id, form) {
   return false;
 };
 
-// Mode sombre
+// Configuration du mode sombre
 function setupDarkMode() {
   const btn = document.createElement('button');
   btn.className = 'btn btn-dark position-fixed bottom-0 end-0 m-4 shadow';
@@ -394,19 +402,23 @@ function setupDarkMode() {
   };
 }
 
+// Initialisation au chargement du document
 document.addEventListener('DOMContentLoaded', () => {
-  // Génération dynamique des cartes
+  // Génération des cartes de stades
   const row = document.querySelector('.row.row-cols-1.row-cols-md-3.g-4');
   row.innerHTML = stades.map(createStadiumCard).join('');
-  // Génération des modals
+  
+  // Génération des modales
   const modalsContainer = document.getElementById('modals-stades');
-  // Charger les avis locaux
+  
+  // Chargement des avis locaux
   stades.forEach(stade => {
     const avisLocaux = JSON.parse(localStorage.getItem('avis-' + stade.id) || '[]');
     if (avisLocaux.length) {
       stade.avis = (stade.avis || []).concat(avisLocaux);
     }
   });
+  
   modalsContainer.innerHTML = stades.map(createModal).join('');
   setupSearch();
   setupDarkMode();

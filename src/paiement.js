@@ -1,10 +1,12 @@
 // Gestion du paiement et génération du ticket PDF
 
+// Initialisation au chargement du document
 document.addEventListener('DOMContentLoaded', function() {
+  // Récupération des boutons de validation et de téléchargement
   const validateBtn = document.getElementById('validatePaymentBtn');
   const downloadBtn = document.getElementById('downloadTicketBtn');
 
-  // Récupère les infos du formulaire et du siège sélectionné
+  // Fonction pour récupérer les informations du ticket depuis le formulaire et le stockage de session
   function getTicketInfo() {
     return {
       nom: document.getElementById('fullName')?.value || '',
@@ -16,10 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
 
-  // Génère le PDF avec jsPDF
+  // Fonction pour générer le PDF du ticket avec jsPDF
   function generatePDF(ticket) {
+    // Création d'un nouveau document PDF
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
+
+    // Configuration du titre et des informations du ticket
     doc.setFontSize(18);
     doc.text('Ticket CAN 2025', 20, 20);
     doc.setFontSize(12);
@@ -30,7 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
     doc.text(`Place: ${ticket.siege.tribune || ''} - ${ticket.siege.number || ''}`, 20, ticket.match ? 67 : 59);
     doc.text(`Prix: ${ticket.siege.price || ''} MAD`, 20, ticket.match ? 75 : 67);
     doc.text('Merci pour votre achat !', 20, ticket.match ? 93 : 85);
-    // Génère un QR code temporaire dans un div caché
+
+    // Génération du QR code pour le ticket
     const qrDiv = document.createElement('div');
     qrDiv.style.position = 'fixed';
     qrDiv.style.left = '-9999px';
@@ -40,6 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
       width: 80,
       height: 80
     });
+
+    // Ajout du QR code au PDF et sauvegarde
     setTimeout(() => {
       const qrImg = qrDiv.querySelector('img');
       if (qrImg) {
@@ -50,16 +58,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 500);
   }
 
-  // Validation du paiement
+  // Gestionnaire d'événement pour le bouton de validation du paiement
   if (validateBtn) {
     validateBtn.addEventListener('click', function() {
-      // Affiche la modale Bootstrap
+      // Affichage de la modale de confirmation
       const modal = new bootstrap.Modal(document.getElementById('ticketModal'));
       modal.show();
     });
   }
 
-  // Téléchargement du ticket PDF
+  // Gestionnaire d'événement pour le bouton de téléchargement du ticket
   if (downloadBtn) {
     downloadBtn.addEventListener('click', function() {
       const ticketData = getTicketInfo();

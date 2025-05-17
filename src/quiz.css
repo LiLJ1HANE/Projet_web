@@ -1,50 +1,55 @@
- .quiz-header {
-        position: relative;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    
+/* Style du conteneur d'en-tête du quiz */
+.quiz-header {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style du titre du quiz */
+.quiz-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    font-family: 'Russo One', sans-serif;
+    z-index: 1;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* Style de la barre de navigation */
+.navbar {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Style du conteneur principal */
+.container {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Media queries pour le titre du quiz */
+@media (max-width: 768px) {
     .quiz-title {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 3.5rem;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        font-family: 'Russo One', sans-serif;
-        z-index: 1;
-        width: 100%;
-        padding: 0 20px;
+        font-size: 2.5rem;
     }
-    
-    /* Pour le header/navbar */
-    .navbar {
-        padding-left: 0;
-        padding-right: 0;
+}
+
+@media (max-width: 576px) {
+    .quiz-title {
+        font-size: 2rem;
     }
-    
-    .container {
-        max-width: 100%;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-    
-    /* Ajustement responsive pour le titre */
-    @media (max-width: 768px) {
-        .quiz-title {
-            font-size: 2.5rem;
-        }
-    }
-    
-    @media (max-width: 576px) {
-        .quiz-title {
-            font-size: 2rem;
-        }
-    }
+}
+
+/* Style de base du corps de la page */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -52,6 +57,7 @@ body {
     padding: 20px;
 }
 
+/* Style de la barre de progression */
 .progress-container {
     width: 100%;
     background-color: #e0e0e0;
@@ -64,6 +70,7 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
+/* Style de l'en-tête du quiz */
 .quiz-header {
     width: 100vw;
     max-width: 100%;
@@ -72,6 +79,7 @@ body {
     margin-bottom: 0;
 }
 
+/* Style de la bannière du quiz */
 .quiz-banner {
     width: 100vw;
     max-width: 100%;
@@ -83,6 +91,7 @@ body {
     border: 0;
 }
 
+/* Style du titre h2 dans l'en-tête */
 .quiz-header h2 {
     margin: 0;
     padding: 20px 0 10px 0;
@@ -93,22 +102,25 @@ body {
     letter-spacing: 1px;
 }
 
+/* Style du conteneur du quiz */
 .quiz-container {
     max-width: 600px;
     margin: 0 auto;
-    margin-top: 50px; /* Add margin to avoid content hidden behind the bar */
+    margin-top: 50px;
     padding: 20px;
     background: white;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 100, 0, 0.1);
 }
 
+/* Style des titres h2 */
 h2 {
     color: #006400;
     text-align: center;
     margin-bottom: 20px;
 }
 
+/* Style des questions */
 .question {
     margin-bottom: 25px;
     padding: 15px;
@@ -117,10 +129,12 @@ h2 {
     border-left: 4px solid #006400;
 }
 
+/* Style des réponses */
 .answers {
     margin-top: 10px;
 }
 
+/* Style des labels des réponses */
 .answers label {
     display: block;
     margin-bottom: 10px;
@@ -128,23 +142,27 @@ h2 {
     transition: transform 0.3s, background-color 0.3s;
 }
 
+/* Effet de survol sur les labels */
 .answers label:hover {
     transform: translateX(5px);
     background-color: #f0fff0;
 }
 
+/* Style des réponses sélectionnées */
 .answers input[type="radio"]:checked + label,
 input[type="radio"]:checked + label {
     font-weight: bold;
     color: #006400;
 }
 
+/* Style des réponses sélectionnées avec classe */
 .answers label.selected-answer {
     font-weight: bold;
     color: #006400;
     background-color: #eaffea;
 }
 
+/* Style de la popup de résultat */
 .result-popup {
     display: none;
     position: fixed;
@@ -158,6 +176,7 @@ input[type="radio"]:checked + label {
     align-items: center;
 }
 
+/* Style du contenu de la popup */
 .result-content {
     background: white;
     padding: 30px 30px 0 30px;
@@ -168,12 +187,14 @@ input[type="radio"]:checked + label {
     position: relative;
 }
 
+/* Style du titre h3 dans la popup */
 .result-content h3 {
     color: #006400;
     margin-top: 0;
     font-size: 2.1rem;
 }
 
+/* Style du texte du score */
 #scoreText {
     font-size: 2.5rem;
     color: #1a7f37;
@@ -183,11 +204,13 @@ input[type="radio"]:checked + label {
     text-shadow: 0 2px 8px #eaffea;
 }
 
+/* Style du texte du message */
 #messageText {
     font-size: 1.1rem;
     margin-bottom: 20px;
 }
 
+/* Style du pied de la popup */
 .result-footer {
     border-top: 1px solid #e0e0e0;
     margin-top: 25px;
@@ -196,10 +219,12 @@ input[type="radio"]:checked + label {
     border-radius: 0 0 10px 10px;
 }
 
+/* Style des boutons de partage social */
 .social-share {
     margin-bottom: 0;
 }
 
+/* Style du bouton de fermeture */
 .close-btn {
     position: absolute;
     top: 18px;
@@ -215,10 +240,13 @@ input[type="radio"]:checked + label {
     z-index: 10;
     transition: color 0.2s;
 }
+
+/* Effet de survol sur le bouton de fermeture */
 .close-btn:hover {
     color: #d32f2f;
 }
 
+/* Style de l'emoji popup */
 .emoji-pop {
     position: fixed;
     left: 50%;
@@ -230,6 +258,7 @@ input[type="radio"]:checked + label {
     animation: emoji-pop-float 1.2s ease-out forwards;
 }
 
+/* Animation de l'emoji popup */
 @keyframes emoji-pop-float {
     0% {
         transform: translate(-50%, 0) scale(0.7);
@@ -249,6 +278,7 @@ input[type="radio"]:checked + label {
     }
 }
 
+/* Style de la barre de progression */
 .progress-bar {
     height: 10px;
     background-color: #4CAF50;
@@ -257,6 +287,7 @@ input[type="radio"]:checked + label {
     transition: width 0.5s;
 }
 
+/* Style des boutons de partage */
 .share-btn {
     background: #4267B2;
     color: white;
@@ -268,20 +299,29 @@ input[type="radio"]:checked + label {
     font-size: 15px;
     transition: background 0.2s;
 }
+
+/* Effet de survol sur les boutons de partage */
 .share-btn:hover {
     background: #29487d;
 }
+
+/* Style du dernier bouton de partage */
 .share-btn:last-child {
     background: #1da1f2;
 }
+
+/* Effet de survol sur le dernier bouton de partage */
 .share-btn:last-child:hover {
     background: #0d8ddb;
 }
+
+/* Style du texte de partage social */
 .social-share p {
     margin-bottom: 8px;
     font-weight: bold;
 }
 
+/* Style de la navigation des questions */
 .question-nav {
     display: flex;
     justify-content: space-between;
@@ -289,6 +329,7 @@ input[type="radio"]:checked + label {
     gap: 10px;
 }
 
+/* Style des boutons de navigation */
 .question-nav button {
     flex: 1;
     padding: 10px 0;
@@ -301,6 +342,7 @@ input[type="radio"]:checked + label {
     transition: background 0.2s;
 }
 
+/* Style des boutons de navigation désactivés */
 .question-nav button:disabled {
     background: #bdbdbd;
     cursor: not-allowed;
