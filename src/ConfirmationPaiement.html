@@ -1,13 +1,30 @@
 <!DOCTYPE html>
+<!-- Déclaration du type de document HTML5 -->
 <html lang="fr">
+<!-- Balise racine avec spécification de la langue française -->
 <head>
+    <!-- En-tête du document contenant les métadonnées -->
     <meta charset="UTF-8">
+    <!-- Définition de l'encodage des caractères en UTF-8 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configuration de la vue pour le responsive design -->
     <title>Confirmation - CAN 2025</title>
+    <!-- Titre de la page affiché dans l'onglet du navigateur -->
+    
+    <!-- Importation des feuilles de style externes -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Importation de Bootstrap 5.3.0 pour le style -->
     <link href="paiement.css" rel="stylesheet">
+    <!-- Importation de la feuille de style personnalisée -->
+    
+    <!-- Importation du script QR Code -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <!-- Script pour la génération de QR codes -->
+
     <style>
+        /* Styles personnalisés pour la page de confirmation */
+        
+        /* Style de la carte de confirmation */
         .confirmation-card {
             border: none;
             border-radius: var(--border-radius);
@@ -15,23 +32,31 @@
             max-width: 600px;
             margin: 0 auto;
         }
+
+        /* Style de l'en-tête de confirmation avec dégradé */
         .confirmation-header {
             background: linear-gradient(135deg, var(--primary-green), var(--primary-red));
             color: white;
             border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
         }
+
+        /* Style de l'icône de confirmation */
         .confirmation-icon {
             font-size: 5rem;
             color: var(--primary-green);
             margin-bottom: 20px;
             animation: scaleIn 0.5s ease-out;
         }
+
+        /* Style des informations du ticket */
         .ticket-info {
             background-color: var(--light-green);
             border-radius: var(--border-radius);
             padding: 20px;
             margin-bottom: 20px;
         }
+
+        /* Style du conteneur QR code */
         .qr-container {
             background-color: white;
             border-radius: var(--border-radius);
@@ -39,6 +64,8 @@
             box-shadow: var(--box-shadow);
             display: inline-block;
         }
+
+        /* Animation d'apparition de l'icône */
         @keyframes scaleIn {
             from {
                 transform: scale(0);
@@ -49,17 +76,25 @@
                 opacity: 1;
             }
         }
+
+        /* Style de la liste d'informations */
         .info-list {
             list-style: none;
             padding: 0;
         }
+
+        /* Style des éléments de la liste */
         .info-list li {
             padding: 10px 0;
             border-bottom: 1px solid var(--light-green);
         }
+
+        /* Suppression de la bordure du dernier élément */
         .info-list li:last-child {
             border-bottom: none;
         }
+
+        /* Style de la puce personnalisée */
         .info-list li::before {
             content: "✓";
             color: var(--primary-green);
@@ -69,26 +104,35 @@
     </style>
 </head>
 <body>
+<!-- Début du corps du document -->
 <div class="container py-5">
+    <!-- Conteneur principal avec padding vertical -->
     <div class="confirmation-card card">
+        <!-- Carte de confirmation -->
         <div class="card-header confirmation-header text-center">
+            <!-- En-tête de la carte -->
             <h3 class="mb-0">Paiement confirmé !</h3>
         </div>
         <div class="card-body text-center">
+            <!-- Corps de la carte -->
             <div class="confirmation-icon">
+                <!-- Icône SVG de confirmation -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                     <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
                 </svg>
             </div>
 
+            <!-- Message de confirmation -->
             <h4 class="mb-4">Merci pour votre achat !</h4>
             <p class="mb-4">Votre réservation pour la Coupe d'Afrique des Nations 2025 au Maroc a été confirmée. Un email de confirmation avec vos billets a été envoyé à votre adresse email.</p>
 
+            <!-- Zone des détails de commande -->
             <div id="orderDetails">
                 <!-- Rempli par JavaScript -->
             </div>
 
+            <!-- Section des informations importantes -->
             <div class="mt-4">
                 <h5>Informations importantes</h5>
                 <ul class="info-list text-start">
@@ -98,6 +142,7 @@
                 </ul>
             </div>
 
+            <!-- Section du QR code -->
             <div class="mt-5">
                 <div class="qr-container">
                     <canvas id="qrcode" class="mb-3"></canvas>
@@ -105,6 +150,7 @@
                 </div>
             </div>
 
+            <!-- Bouton de retour à l'accueil -->
             <button id="backToHome" class="btn btn-primary mt-4">
                 Retour à l'accueil
             </button>
@@ -112,26 +158,31 @@
     </div>
 </div>
 
+<!-- Importation des scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Script Bootstrap pour les fonctionnalités interactives -->
+
 <script>
+    // Script principal de gestion de la confirmation
     document.addEventListener('DOMContentLoaded', function() {
+        // Récupération des éléments DOM
         const orderDetails = document.getElementById('orderDetails');
         const reservationCodeElement = document.getElementById('reservationCode');
         const backToHomeBtn = document.getElementById('backToHome');
         const qrcodeCanvas = document.getElementById('qrcode');
 
-        // Récupérer les données du sessionStorage
+        // Récupération des données du sessionStorage
         const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats')) || [];
         const totalPrice = parseFloat(sessionStorage.getItem('totalPrice')) || 0;
         const paymentSuccess = sessionStorage.getItem('paymentSuccess');
 
-        // Vérifier si le paiement a réussi
+        // Vérification du statut du paiement
         if (!paymentSuccess) {
             window.location.href = 'billetterie.html';
             return;
         }
 
-        // Générer un code de réservation aléatoire
+        // Fonction de génération du code de réservation
         function generateReservationCode() {
             const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
             let result = '';
@@ -141,16 +192,18 @@
             return result;
         }
 
+        // Génération et affichage du code de réservation
         const reservationCode = generateReservationCode();
         reservationCodeElement.textContent = reservationCode;
 
-        // Générer le QR code avec les informations de réservation
+        // Préparation des données pour le QR code
         const qrData = {
             code: reservationCode,
             seats: selectedSeats.map(seat => `${seat.tribune}-${seat.number}`).join(','),
             total: totalPrice + 20
         };
 
+        // Génération du QR code
         QRCode.toCanvas(qrcodeCanvas, JSON.stringify(qrData), {
             width: 200,
             margin: 2,
@@ -165,7 +218,7 @@
             }
         });
 
-        // Afficher les détails de la commande
+        // Fonction d'affichage des détails de la commande
         function displayOrderDetails() {
             if (selectedSeats.length === 0) return;
 
@@ -174,6 +227,7 @@
                         <h5 class="mb-3">Détails de votre commande</h5>
                 `;
 
+            // Génération du HTML pour chaque siège
             selectedSeats.forEach(seat => {
                 html += `
                         <div class="mb-2">
@@ -183,6 +237,7 @@
                     `;
             });
 
+            // Ajout des frais et du total
             html += `
                         <hr>
                         <div class="mb-2">
@@ -200,9 +255,9 @@
             orderDetails.innerHTML = html;
         }
 
-        // Gestion du bouton de retour
+        // Gestionnaire d'événement pour le bouton de retour
         backToHomeBtn.addEventListener('click', function() {
-            // Nettoyer le sessionStorage
+            // Nettoyage du sessionStorage
             sessionStorage.removeItem('selectedSeats');
             sessionStorage.removeItem('totalPrice');
             sessionStorage.removeItem('paymentSuccess');
@@ -211,7 +266,7 @@
             window.location.href = 'index.html';
         });
 
-        // Afficher les détails au chargement de la page
+        // Affichage initial des détails
         displayOrderDetails();
     });
 </script>

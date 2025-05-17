@@ -66,234 +66,259 @@
     </div>
     <!-- Modal Joueurs -->
     <div class="modal fade" id="playersModal" tabindex="-1" aria-labelledby="playersModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="playersModalLabel">Joueurs</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body" id="playersModalBody">
-            <!-- Contenu dynamique -->
-          </div>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="playersModalLabel">Joueurs</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="playersModalBody">
+                    <!-- Contenu dynamique -->
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-const teams = [
-  { name: 'Maroc', flag: '🇲🇦', flagImg: "maroc.png", teamImg: 'equipemaroc.jpg', coachImg: 'walid.jpg', coach: 'Walid Regragui',
-    players: {
-      'Gardiens de but': [
-        { name: 'Yassine Bounou', club: 'Al Hilal, Arabie Saoudite' },
-        { name: 'Munir El Kajoui', club: 'RS Berkane' },
-        { name: 'Salaheddine Chihab', club: 'Maghreb Fès' },
-        { name: 'Ayoub El Khayati', club: 'AS FAR' }
-      ],
-      'Défenseurs': [
-        { name: 'Achraf Hakimi', club: 'Paris Saint-Germain, France' },
-        { name: 'Noussair Mazraoui', club: 'Manchester United, Angleterre' },
-        { name: 'Abdelkabir Abqar', club: 'Deportivo Alavés, Espagne' },
-        { name: 'Jamal Harkass', club: 'Wydad Casablanca' },
-        { name: 'Nayef Aguerd', club: 'Real Sociedad, Espagne' },
-        { name: 'Adam Massina', club: 'Torino, Italie' },
-        { name: 'Adam Aznou', club: 'Bayern Munich, Allemagne' },
-        { name: 'Yahya Attiat-Allah', club: 'Al Ahly, Égypte' }
-      ],
-      'Milieux de terrain': [
-        { name: 'Sofyan Amrabat', club: 'Fenerbahçe, Turquie' },
-        { name: 'Amir Richardson', club: 'Fiorentina, Italie' },
-        { name: 'Eliesse Ben Seghir', club: 'AS Monaco, France' },
-        { name: 'Oussama Targhaline', club: 'Le Havre, France' },
-        { name: 'Azzedine Ounahi', club: 'Panathinaïkos, Grèce' },
-        { name: 'Bilal El Khannouss', club: 'Leicester City, Angleterre' },
-        { name: 'Ismael Saibari', club: 'PSV Eindhoven, Pays-Bas' }
-      ],
-      'Attaquants': [
-        { name: 'Ilias Akhomach', club: 'Villarreal CF, Espagne' },
-        { name: 'Brahim Diaz', club: 'Real Madrid, Espagne' },
-        { name: 'Soufiane Rahimi', club: 'Al Ain, Émirats arabes unis' },
-        { name: 'Ayoub El Kaabi', club: 'Olympiacos, Grèce' },
-        { name: 'Youssef En-Nesyri', club: 'Fenerbahçe, Turquie' },
-        { name: 'Osame Sahraoui', club: 'Lille, France' },
-        { name: 'Abdessamad Ezzalzouli', club: 'Real Betis, Espagne' }
-      ]
-    }
-  },
-  { name: 'Algérie', flag: '🇩🇿', flagImg: '', teamImg: '', coachImg: '', coach: 'Vladimir Petkovic',
-    players: {
-      'Gardiens de but': [
-        { name: 'Alexis Guendouz', club: 'Persepolis FC, Iran' },
-        { name: 'Anthony Mandrea', club: 'SM Caen, France' },
-        { name: 'Alexandre Oukidja', club: 'FC Metz, France' }
-      ],
-      'Défenseurs': [
-        { name: 'Youcef Atal', club: 'Al-Sadd SC, Qatar' },
-        { name: 'Ryan Aït Nouri', club: 'Wolverhampton, Angleterre' },
-        { name: 'Ahmed Touba', club: 'KV Mechelen, Belgique' },
-        { name: 'Mohamed Amine Madani', club: 'JS Kabylie' },
-        { name: 'Aïssa Mandi', club: 'LOSC Lille, France' },
-        { name: 'Mohamed Amine Tougaï', club: 'ES Tunis, Tunisie' },
-        { name: 'Ramy Bensebaïni', club: 'Borussia Dortmund, Allemagne' },
-        { name: 'Mohamed Farsi', club: 'Columbus Crew, États-Unis' },
-        { name: 'Jaouen Hadjam', club: 'BSC Young Boys, Suisse' }
-      ],
-      'Milieux de terrain': [
-        { name: 'Ramiz Zerrouki', club: 'Feyenoord, Pays-Bas' },
-        { name: 'Adem Zorgane', club: 'Charleroi SC, Belgique' },
-        { name: 'Ahmed Kendouci', club: 'Cleopatra FC, Égypte' },
-        { name: 'Ibrahim Maza', club: 'Hertha Berlin, Allemagne' },
-        { name: 'Himad Abdelli', club: 'Angers SCO, France' }
-      ],
-      'Attaquants': [
-        { name: 'Mohamed Amine Amoura', club: 'VfL Wolfsburg, Allemagne' },
-        { name: 'Saïd Benrahma', club: 'Olympique Lyonnais, France' },
-        { name: 'Riyad Mahrez', club: 'Al-Ahli FC, Arabie Saoudite' },
-        { name: 'Yacine Benzia', club: 'Qarabag FK, Azerbaïdjan' },
-        { name: 'Baghdad Bounedjah', club: 'Al-Shamal SC, Qatar' },
-        { name: 'Amine Gouiri', club: 'Stade Rennais, France' },
-        { name: 'Amin Chiakha', club: 'FC Copenhague, Danemark' },
-        { name: 'Farès Chaïbi', club: 'Eintracht Francfort, Allemagne' },
-        { name: 'Bachir Belloumi', club: 'Hull City, Angleterre' }
-      ]
-    }
-  },
-  { name: 'Sénégal', flag: '🇸🇳', flagImg: '', teamImg: '', coachImg: '', coach: 'Aliou Cissé',
-    players: {
-      'Gardiens de but': [
-        { name: 'Édouard Mendy', club: 'Al-Ahli, Arabie Saoudite' },
-        { name: 'Mory Diaw', club: 'Clermont Foot, France' },
-        { name: 'Seny Dieng', club: 'Middlesbrough, Angleterre' }
-      ],
-      'Défenseurs': [
-        { name: 'Kalidou Koulibaly', club: 'Al-Hilal, Arabie Saoudite' },
-        { name: 'Abdou Diallo', club: 'Al-Arabi, Qatar' },
-        { name: 'Moussa Niakhaté', club: 'Olympique Lyonnais, France' },
-        { name: 'Abdoulaye Seck', club: 'Maccabi Haïfa, Israël' },
-        { name: 'Mikayil Ngor Faye', club: 'Stade Rennais, France' },
-        { name: 'Formose Mendy', club: 'FC Lorient, France' },
-        { name: 'Ismail Jakobs', club: 'AS Monaco, France' },
-        { name: 'Seydou Sano', club: 'Al-Gharafa, Qatar' },
-        { name: 'El Hadji Malick Diouf', club: 'Slavia Prague, République tchèque' }
-      ],
-      'Milieux de terrain': [
-        { name: 'Nampalys Mendy', club: 'RC Lens, France' },
-        { name: 'Pathé Ciss', club: 'Rayo Vallecano, Espagne' },
-        { name: 'Lamine Camara', club: 'AS Monaco, France' },
-        { name: 'Pape Matar Sarr', club: 'Tottenham Hotspur, Angleterre' },
-        { name: 'Pape Gueye', club: 'Villarreal CF, Espagne' },
-        { name: 'Habib Diarra', club: 'RC Strasbourg, France' },
-        { name: 'Idrissa Gueye', club: 'Everton, Angleterre' }
-      ],
-      'Attaquants': [
-        { name: 'Sadio Mané', club: 'Al-Nassr, Arabie Saoudite' },
-        { name: 'Ismaïla Sarr', club: 'Crystal Palace, Angleterre' },
-        { name: 'Habib Diallo', club: 'Damac FC, Arabie Saoudite' },
-        { name: 'Iliman Ndiaye', club: 'Everton, Angleterre' },
-        { name: 'Nicolas Jackson', club: 'Chelsea FC, Angleterre' },
-        { name: 'Cherif Ndiaye', club: 'Étoile Rouge de Belgrade, Serbie' },
-        { name: 'Abdallah Sima', club: 'Stade Brestois, France' }
-      ]
-    }
-  },
-  // Les autres équipes (drapeau emoji, effectif à venir)
-  { name: 'Angola', flag: '🇦🇴', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Afrique du Sud', flag: '🇿🇦', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Bénin', flag: '🇧🇯', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Botswana', flag: '🇧🇼', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Burkina Faso', flag: '🇧🇫', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Cameroun', flag: '🇨🇲', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Comores', flag: '🇰🇲', flagImg: '', teamImg: '', coachImg: '' },
-  { name: "Côte d'Ivoire", flag: '🇨🇮', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Égypte', flag: '🇪🇬', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Gabon', flag: '🇬🇦', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Guinée équatoriale', flag: '🇬🇶', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Mali', flag: '🇲🇱', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Mozambique', flag: '🇲🇿', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Nigeria', flag: '🇳🇬', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Ouganda', flag: '🇺🇬', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'RD Congo', flag: '🇨🇩', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Soudan', flag: '🇸🇩', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Tanzanie', flag: '🇹🇿', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Tunisie', flag: '🇹🇳', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Zambie', flag: '🇿🇲', flagImg: '', teamImg: '', coachImg: '' },
-  { name: 'Zimbabwe', flag: '🇿🇼', flagImg: '', teamImg: '', coachImg: '' }
-];
+    const teams = [
+        {
+            name: 'Maroc',
+            flag: '🇲🇦',
+            flagImg: "flags/maroc.jpg",
+            teamImg: 'equipemaroc.jpg',
+            coachImg: 'walid.jpg',
+            coach: 'Walid Regragui',
+            players: {
+                'Gardiens de but': [
+                    { name: 'Yassine Bounou', club: 'Al Hilal, Arabie Saoudite' },
+                    { name: 'Munir El Kajoui', club: 'RS Berkane' },
+                    { name: 'Salaheddine Chihab', club: 'Maghreb Fès' },
+                    { name: 'Ayoub El Khayati', club: 'AS FAR' }
+                ],
+                'Défenseurs': [
+                    { name: 'Achraf Hakimi', club: 'Paris Saint-Germain, France' },
+                    { name: 'Noussair Mazraoui', club: 'Manchester United, Angleterre' },
+                    { name: 'Abdelkabir Abqar', club: 'Deportivo Alavés, Espagne' },
+                    { name: 'Jamal Harkass', club: 'Wydad Casablanca' },
+                    { name: 'Nayef Aguerd', club: 'Real Sociedad, Espagne' },
+                    { name: 'Adam Massina', club: 'Torino, Italie' },
+                    { name: 'Adam Aznou', club: 'Bayern Munich, Allemagne' },
+                    { name: 'Yahya Attiat-Allah', club: 'Al Ahly, Égypte' }
+                ],
+                'Milieux de terrain': [
+                    { name: 'Sofyan Amrabat', club: 'Fenerbahçe, Turquie' },
+                    { name: 'Amir Richardson', club: 'Fiorentina, Italie' },
+                    { name: 'Eliesse Ben Seghir', club: 'AS Monaco, France' },
+                    { name: 'Oussama Targhaline', club: 'Le Havre, France' },
+                    { name: 'Azzedine Ounahi', club: 'Panathinaïkos, Grèce' },
+                    { name: 'Bilal El Khannouss', club: 'Leicester City, Angleterre' },
+                    { name: 'Ismael Saibari', club: 'PSV Eindhoven, Pays-Bas' }
+                ],
+                'Attaquants': [
+                    { name: 'Ilias Akhomach', club: 'Villarreal CF, Espagne' },
+                    { name: 'Brahim Diaz', club: 'Real Madrid, Espagne' },
+                    { name: 'Soufiane Rahimi', club: 'Al Ain, Émirats arabes unis' },
+                    { name: 'Ayoub El Kaabi', club: 'Olympiacos, Grèce' },
+                    { name: 'Youssef En-Nesyri', club: 'Fenerbahçe, Turquie' },
+                    { name: 'Osame Sahraoui', club: 'Lille, France' },
+                    { name: 'Abdessamad Ezzalzouli', club: 'Real Betis, Espagne' }
+                ]
+            }
+        },
+        {
+            name: 'Algérie',
+            flag: '🇩🇿',
+            flagImg: "../assets/flags/algeria.jpeg",
+            teamImg: 'algerie.jpeg',
+            coachImg: 'vladimir.jpeg',
+            coach: 'Vladimir Petkovic',
+            players: {
+                'Gardiens de but': [
+                    { name: 'Alexis Guendouz', club: 'Persepolis FC, Iran' },
+                    { name: 'Anthony Mandrea', club: 'SM Caen, France' },
+                    { name: 'Alexandre Oukidja', club: 'FC Metz, France' }
+                ],
+                'Défenseurs': [
+                    { name: 'Youcef Atal', club: 'Al-Sadd SC, Qatar' },
+                    { name: 'Ryan Aït Nouri', club: 'Wolverhampton, Angleterre' },
+                    { name: 'Ahmed Touba', club: 'KV Mechelen, Belgique' },
+                    { name: 'Mohamed Amine Madani', club: 'JS Kabylie' },
+                    { name: 'Aïssa Mandi', club: 'LOSC Lille, France' },
+                    { name: 'Mohamed Amine Tougaï', club: 'ES Tunis, Tunisie' },
+                    { name: 'Ramy Bensebaïni', club: 'Borussia Dortmund, Allemagne' },
+                    { name: 'Mohamed Farsi', club: 'Columbus Crew, États-Unis' },
+                    { name: 'Jaouen Hadjam', club: 'BSC Young Boys, Suisse' }
+                ],
+                'Milieux de terrain': [
+                    { name: 'Ramiz Zerrouki', club: 'Feyenoord, Pays-Bas' },
+                    { name: 'Adem Zorgane', club: 'Charleroi SC, Belgique' },
+                    { name: 'Ahmed Kendouci', club: 'Cleopatra FC, Égypte' },
+                    { name: 'Ibrahim Maza', club: 'Hertha Berlin, Allemagne' },
+                    { name: 'Himad Abdelli', club: 'Angers SCO, France' }
+                ],
+                'Attaquants': [
+                    { name: 'Mohamed Amine Amoura', club: 'VfL Wolfsburg, Allemagne' },
+                    { name: 'Saïd Benrahma', club: 'Olympique Lyonnais, France' },
+                    { name: 'Riyad Mahrez', club: 'Al-Ahli FC, Arabie Saoudite' },
+                    { name: 'Yacine Benzia', club: 'Qarabag FK, Azerbaïdjan' },
+                    { name: 'Baghdad Bounedjah', club: 'Al-Shamal SC, Qatar' },
+                    { name: 'Amine Gouiri', club: 'Stade Rennais, France' },
+                    { name: 'Amin Chiakha', club: 'FC Copenhague, Danemark' },
+                    { name: 'Farès Chaïbi', club: 'Eintracht Francfort, Allemagne' },
+                    { name: 'Bachir Belloumi', club: 'Hull City, Angleterre' }
+                ]
+            }
+        },
+        {
+            name: 'Sénégal',
+            flag: '🇸🇳',
+            flagImg: "../assets/flags/senegal.jpeg",
+            teamImg: 'senegal.jpeg',
+            coachImg: 'aliou.jpeg',
+            coach: 'Aliou Cissé',
+            players: {
+                'Gardiens de but': [
+                    { name: 'Édouard Mendy', club: 'Al-Ahli, Arabie Saoudite' },
+                    { name: 'Mory Diaw', club: 'Clermont Foot, France' },
+                    { name: 'Seny Dieng', club: 'Middlesbrough, Angleterre' }
+                ],
+                'Défenseurs': [
+                    { name: 'Kalidou Koulibaly', club: 'Al-Hilal, Arabie Saoudite' },
+                    { name: 'Abdou Diallo', club: 'Al-Arabi, Qatar' },
+                    { name: 'Moussa Niakhaté', club: 'Olympique Lyonnais, France' },
+                    { name: 'Abdoulaye Seck', club: 'Maccabi Haïfa, Israël' },
+                    { name: 'Mikayil Ngor Faye', club: 'Stade Rennais, France' },
+                    { name: 'Formose Mendy', club: 'FC Lorient, France' },
+                    { name: 'Ismail Jakobs', club: 'AS Monaco, France' },
+                    { name: 'Seydou Sano', club: 'Al-Gharafa, Qatar' },
+                    { name: 'El Hadji Malick Diouf', club: 'Slavia Prague, République tchèque' }
+                ],
+                'Milieux de terrain': [
+                    { name: 'Nampalys Mendy', club: 'RC Lens, France' },
+                    { name: 'Pathé Ciss', club: 'Rayo Vallecano, Espagne' },
+                    { name: 'Lamine Camara', club: 'AS Monaco, France' },
+                    { name: 'Pape Matar Sarr', club: 'Tottenham Hotspur, Angleterre' },
+                    { name: 'Pape Gueye', club: 'Villarreal CF, Espagne' },
+                    { name: 'Habib Diarra', club: 'RC Strasbourg, France' },
+                    { name: 'Idrissa Gueye', club: 'Everton, Angleterre' }
+                ],
+                'Attaquants': [
+                    { name: 'Sadio Mané', club: 'Al-Nassr, Arabie Saoudite' },
+                    { name: 'Ismaïla Sarr', club: 'Crystal Palace, Angleterre' },
+                    { name: 'Habib Diallo', club: 'Damac FC, Arabie Saoudite' },
+                    { name: 'Iliman Ndiaye', club: 'Everton, Angleterre' },
+                    { name: 'Nicolas Jackson', club: 'Chelsea FC, Angleterre' },
+                    { name: 'Cherif Ndiaye', club: 'Étoile Rouge de Belgrade, Serbie' },
+                    { name: 'Abdallah Sima', club: 'Stade Brestois, France' }
+                ]
+            }
+        },
+        { name: 'Angola', flag: '🇦🇴', flagImg: "../assets/flags/angola.jpg", teamImg: '', coachImg: '' },
+        { name: 'Afrique du Sud', flag: '🇿🇦', flagImg: 'flags/Afsud.jpg', teamImg: '', coachImg: '' },
+        { name: 'Bénin', flag: '🇧🇯', flagImg: "../assets/flags/benin.jpeg" , teamImg: '', coachImg: '' },
+        { name: 'Botswana', flag: '🇧🇼', flagImg: "../assets/flags/botswana.png", teamImg: '', coachImg: '' },
+        { name: 'Burkina Faso', flag: '🇧🇫', flagImg: "../assets/flags/burkinafasso.jpeg", teamImg: '', coachImg: '' },
+        { name: 'Cameroun', flag: '🇨🇲', flagImg: "../assets/flags/cameroon.jpeg", teamImg: '', coachImg: '' },
+        { name: 'Comores', flag: '🇰🇲', flagImg: 'flags/comores.jpg', teamImg: '', coachImg: '' },
+        { name: "Côte d'Ivoire", flag: '🇨🇮', flagImg: "../assets/flags/ivorycoast.jpeg" , teamImg: '', coachImg: '' },
+        { name: 'Égypte', flag: '🇪🇬', flagImg: 'flags/egypte.jpg', teamImg: '', coachImg: '' },
+        { name: 'Gabon', flag: '🇬🇦', flagImg: "../assets/flags/gabon.png", teamImg: '', coachImg: '' },
+        { name: 'Guinée équatoriale', flag: '🇬🇶', flagImg: "../assets/flags/equatorialguinea.png", teamImg: '', coachImg: '' },
+        { name: 'Mali', flag: '🇲🇱', flagImg: 'flags/mali.jpg', teamImg: '', coachImg: '' },
+        { name: 'Mozambique', flag: '🇲🇿', flagImg: "../assets/flags/mozambique.jpg", teamImg: '', coachImg: '' },
+        { name: 'Nigeria', flag: '🇳🇬', flagImg: 'flags/nigeria.jpg', teamImg: '', coachImg: '' },
+        { name: 'Ouganda', flag: '🇺🇬', flagImg: 'flags/uganda.png', teamImg: '', coachImg: '' },
+        { name: 'RD Congo', flag: '🇨🇩', flagImg: "../assets/flags/rdcongo.png", teamImg: '', coachImg: '' },
+        { name: 'Soudan', flag: '🇸🇩', flagImg: "../assets/flags/sudan.png", teamImg: '', coachImg: '' },
+        { name: 'Tanzanie', flag: '🇹🇿', flagImg: 'flags/Tanzanie.jpg', teamImg: '', coachImg: '' },
+        { name: 'Tunisie', flag: '🇹🇳', flagImg: 'flags/tunisie.jpg', teamImg: '', coachImg: '' },
+        { name: 'Zambie', flag: '🇿🇲', flagImg: 'flags/zambie.jpg', teamImg: '', coachImg: '' },
+        { name: 'Zimbabwe', flag: '🇿🇼', flagImg: 'flags/zimbabwe.jpg', teamImg: '', coachImg: '' }
+    ];
 
-// Génération de la grille
-const teamsGrid = document.getElementById('teamsGrid');
-teams.forEach((team, idx) => {
-  const col = document.createElement('div');
-  col.className = 'col-6 col-sm-4 col-md-3 col-lg-2';
-  // Flip card structure
-  const flipCard = document.createElement('div');
-  flipCard.className = 'flip-card';
-  flipCard.tabIndex = 0;
-  const flipInner = document.createElement('div');
-  flipInner.className = 'flip-card-inner';
-  // Front
-  const front = document.createElement('div');
-  front.className = 'flip-card-front';
-  front.innerHTML = `
-    ${team.flagImg ? `<img class='team-flag-img' src='../assets/${team.flagImg}' alt='Drapeau ${team.name}'>` : `<div class='team-flag'>${team.flag}</div>`}
-    <div class='team-name'>${team.name}</div>
-    <div class='badge-pays'>${team.name}</div>
-  `;
-  // Back
-  const back = document.createElement('div');
-  back.className = 'flip-card-back';
-  back.innerHTML = `
-    ${team.teamImg ? `<img class='team-img' src='../assets/${team.teamImg}' alt='Equipe ${team.name}'>` : ''}
-    <div class='coach-block'>
-      ${team.coachImg ? `<img class='coach-img' src='../assets/${team.coachImg}' alt='Coach ${team.coach}'>` : ''}
-      <div><strong>Sélectionneur :</strong> ${team.coach ? team.coach : '-'}</div>
-    </div>
-    <button class='see-squad-btn' onclick='event.stopPropagation();showTeamModal(teams[${idx}])'>Voir effectif</button>
-  `;
-  flipInner.appendChild(front);
-  flipInner.appendChild(back);
-  flipCard.appendChild(flipInner);
-  col.appendChild(flipCard);
-  teamsGrid.appendChild(col);
-});
+    // Génération de la grille des équipes
+    const teamsGrid = document.getElementById('teamsGrid');
+    teams.forEach((team, idx) => {
+        const col = document.createElement('div');
+        col.className = 'col-6 col-sm-4 col-md-3 col-lg-2';
 
-function showTeamModal(team) {
-  const modalLabel = document.getElementById('playersModalLabel');
-  const modalBody = document.getElementById('playersModalBody');
-  modalLabel.textContent = team.flag + ' ' + team.name;
-  let html = '';
-  let teamImgSrc = team.teamImg ? `../assets/${team.teamImg}` : '';
-  let coachImgSrc = team.coachImg ? `../assets/${team.coachImg}` : '';
-  if (teamImgSrc) {
-    html += `<img class='team-img' src='${teamImgSrc}' alt='Photo équipe ${team.name}'>`;
-  }
-  if (coachImgSrc || team.coach) {
-    html += `<div class='coach-block'>`;
-    if (coachImgSrc) {
-      html += `<img class='coach-img' src='${coachImgSrc}' alt='Coach ${team.coach}'>`;
+        const flipCard = document.createElement('div');
+        flipCard.className = 'flip-card';
+        flipCard.tabIndex = 0;
+
+        const flipInner = document.createElement('div');
+        flipInner.className = 'flip-card-inner';
+
+        const front = document.createElement('div');
+        front.className = 'flip-card-front';
+        front.innerHTML = `
+            ${team.flagImg ? `<img class='team-flag-img' src='../assets/${team.flagImg}' alt='Drapeau ${team.name}'>` : `<div class='team-flag'>${team.flag}</div>`}
+            <div class='team-name'>${team.name}</div>
+            <div class='badge-pays'>${team.name}</div>
+        `;
+
+        const back = document.createElement('div');
+        back.className = 'flip-card-back';
+        back.innerHTML = `
+            ${team.teamImg ? `<img class='team-img' src='../assets/${team.teamImg}' alt='Equipe ${team.name}'>` : ''}
+            <div class='coach-block'>
+                ${team.coachImg ? `<img class='coach-img' src='../assets/${team.coachImg}' alt='Coach ${team.coach}'>` : ''}
+                <div><strong>Sélectionneur :</strong> ${team.coach ? team.coach : '-'}</div>
+            </div>
+            <button class='see-squad-btn' onclick='event.stopPropagation();showTeamModal(teams[${idx}])'>Voir effectif</button>
+        `;
+
+        flipInner.appendChild(front);
+        flipInner.appendChild(back);
+        flipCard.appendChild(flipInner);
+        col.appendChild(flipCard);
+        teamsGrid.appendChild(col);
+    });
+
+    // Fonction pour afficher le modal des joueurs
+    function showTeamModal(team) {
+        const modalLabel = document.getElementById('playersModalLabel');
+        const modalBody = document.getElementById('playersModalBody');
+        modalLabel.textContent = team.flag + ' ' + team.name;
+
+        let html = '';
+        let teamImgSrc = team.teamImg ? `../assets/${team.teamImg}` : '';
+        let coachImgSrc = team.coachImg ? `../assets/${team.coachImg}` : '';
+
+        if (teamImgSrc) {
+            html += `<img class='team-img' src='${teamImgSrc}' alt='Photo équipe ${team.name}'>`;
+        }
+
+        if (coachImgSrc || team.coach) {
+            html += `<div class='coach-block'>`;
+            if (coachImgSrc) {
+                html += `<img class='coach-img' src='${coachImgSrc}' alt='Coach ${team.coach}'>`;
+            }
+            if (team.coach) {
+                html += `<div><strong>Sélectionneur :</strong> ${team.coach}</div>`;
+            }
+            html += `</div>`;
+        }
+
+        if (team.players) {
+            for (const [role, players] of Object.entries(team.players)) {
+                html += `<div class='player-role mt-3 mb-1'>${role}</div><ul class='player-list'>`;
+                players.forEach(p => {
+                    html += `<li><span>${p.name}</span> <span class='player-club'>(${p.club})</span></li>`;
+                });
+                html += '</ul>';
+            }
+            modalBody.innerHTML = html;
+        } else {
+            html += `<div class='text-center py-4'><i class='fas fa-users fa-2x mb-3 text-secondary'></i><br><strong>Effectif à venir</strong></div>`;
+            modalBody.innerHTML = html;
+        }
+
+        const modal = new bootstrap.Modal(document.getElementById('playersModal'));
+        modal.show();
     }
-    if (team.coach) {
-      html += `<div><strong>Sélectionneur :</strong> ${team.coach}</div>`;
-    }
-    html += `</div>`;
-  }
-  if (team.players) {
-    for (const [role, players] of Object.entries(team.players)) {
-      html += `<div class='player-role mt-3 mb-1'>${role}</div><ul class='player-list'>`;
-      players.forEach(p => {
-        html += `<li><span>${p.name}</span> <span class='player-club'>(${p.club})</span></li>`;
-      });
-      html += '</ul>';
-    }
-    modalBody.innerHTML = html;
-  } else {
-    html += `<div class='text-center py-4'><i class='fas fa-users fa-2x mb-3 text-secondary'></i><br><strong>Effectif à venir</strong></div>`;
-    modalBody.innerHTML = html;
-  }
-  const modal = new bootstrap.Modal(document.getElementById('playersModal'));
-  modal.show();
-}
 </script>
 </body>
-</html> 
+</html>
