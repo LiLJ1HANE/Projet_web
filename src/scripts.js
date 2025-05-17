@@ -16,7 +16,7 @@ const stades = [
     images: getStadiumImages('tanger'),
     adresse: 'Avenue Ibn Batouta, Tanger',
     description: "Le Grand Stade de Tanger est l'un des plus grands stades du Maroc, accueillant des matchs nationaux et internationaux, doté d'infrastructures modernes.",
-    map: 'https://goo.gl/maps/8Qw6QwF8Qw6QwF8',
+    map: 'https://maps.app.goo.gl/i2nMej1S5UDTn2tZ6',
     lat: 35.7636, lon: -5.8341,
     avis: [
       { nom: 'Yassine', note: 5, commentaire: 'Superbe ambiance et stade moderne !' },
@@ -32,7 +32,7 @@ const stades = [
     images: getStadiumImages('rabat-abdellah'),
     adresse: 'Avenue Ibn Sina, Rabat',
     description: "Le principal stade de Rabat, accueillant de nombreux événements sportifs et culturels majeurs.",
-    map: 'https://goo.gl/maps/0Qw6QwF0Qw6QwF0',
+    map: 'https://maps.app.goo.gl/KKXutDGUaXLeVXYL6',
     lat: 34.0101, lon: -6.8446
   },
   {
@@ -44,7 +44,7 @@ const stades = [
     images: getStadiumImages('marrakech'),
     adresse: 'Route de Casablanca, Marrakech',
     description: "Un stade moderne situé à Marrakech, connu pour son architecture et son ambiance lors des grands matchs.",
-    map: 'https://goo.gl/maps/1Qw6QwF1Qw6QwF1',
+    map: 'https://maps.app.goo.gl/qvNMj1WbAiZET6dh8',
     lat: 31.6847, lon: -8.0576
   },
   {
@@ -56,7 +56,7 @@ const stades = [
     images: getStadiumImages('agadir'),
     adresse: 'Quartier Tilila, Agadir',
     description: "Stade emblématique du sud marocain, il accueille de nombreux événements sportifs internationaux.",
-    map: 'https://goo.gl/maps/2Qw6QwF2Qw6QwF2',
+    map: 'https://maps.app.goo.gl/zBFtkT8z1SwrumfU9',
     lat: 30.4381, lon: -9.5836
   },
   {
@@ -68,7 +68,7 @@ const stades = [
     images: getStadiumImages('casablanca'),
     adresse: 'Bd Omar Al Khayam, Casablanca',
     description: "Le stade mythique de Casablanca, fief du Raja et du Wydad, au cœur de la capitale économique.",
-    map: 'https://goo.gl/maps/3Qw6QwF3Qw6QwF3',
+    map: 'https://maps.app.goo.gl/vXkrzp2UV6Sgw7fB6',
     lat: 33.5866, lon: -7.6426
   },
   {
@@ -80,7 +80,7 @@ const stades = [
     images: getStadiumImages('fes'),
     adresse: 'Route Sidi Hrazem, Fès',
     description: "Un stade moderne pour la ville impériale de Fès, accueillant de nombreux matchs nationaux.",
-    map: 'https://goo.gl/maps/4Qw6QwF4Qw6QwF4',
+    map: 'https://maps.app.goo.gl/SgeysAUxWvBj5y5y8',
     lat: 34.0433, lon: -4.9998
   },
   {
@@ -92,7 +92,7 @@ const stades = [
     images: getStadiumImages('rabat-hassan'),
     adresse: 'Avenue Annakhil, Rabat',
     description: "Un stade polyvalent de Rabat, souvent utilisé pour les matchs de football et d'autres événements sportifs.",
-    map: 'https://goo.gl/maps/5Qw6QwF5Qw6QwF5',
+    map: 'https://maps.app.goo.gl/dNPs6c9Qp1TXw7tL8',
     lat: 34.0202, lon: -6.8416
   },
   {
@@ -104,7 +104,7 @@ const stades = [
     images: getStadiumImages('rabat-olympique'),
     adresse: 'Avenue Ibn Sina, Rabat',
     description: "Annexe du grand complexe de Rabat, il accueille des compétitions et des entraînements de haut niveau.",
-    map: 'https://goo.gl/maps/6Qw6QwF6Qw6QwF6',
+    map: 'https://maps.app.goo.gl/V8VRZS2sB9xqF931A',
     lat: 34.0101, lon: -6.8446
   },
   {
@@ -116,7 +116,7 @@ const stades = [
     images: getStadiumImages('rabat-barid'),
     adresse: 'Quartier Al Barid, Rabat',
     description: "Un stade récent de Rabat, principalement utilisé pour le football et les compétitions locales.",
-    map: 'https://goo.gl/maps/7Qw6QwF7Qw6QwF7',
+    map: 'https://maps.app.goo.gl/X6GxnD7Z2y9W2NfNA',
     lat: 34.0250, lon: -6.8360
   }
 ];
