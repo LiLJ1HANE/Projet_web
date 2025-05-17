@@ -1,17 +1,26 @@
+<!-- Page des matchs de la Coupe d'Afrique des Nations 2025 -->
 <!DOCTYPE html>
 <html lang="fr">
+<!-- Balise HTML avec spécification de la langue française -->
 <head>
     <meta charset="UTF-8">
+    <!-- Définition de l'encodage des caractères -->
     <title>Matchs - Coupe d'Afrique</title>
-    <!-- Bootstrap CSS CDN -->
+    <!-- Titre de la page qui apparaît dans l'onglet du navigateur -->
+    
+    <!-- Inclusion de Bootstrap CSS via CDN pour le style -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
+        /* Styles pour les drapeaux des équipes */
         .flag {
             width: 40px;
             height: 28px;
             object-fit: cover;
             border-radius: 4px;
         }
+        
+        /* Styles pour les images des arbitres */
         .arbitre-img {
             width: 32px;
             height: 32px;
@@ -19,27 +28,38 @@
             object-fit: cover;
             margin-right: 8px;
         }
-    
+        
+        /* Style pour l'affichage des pourcentages */
         .pourcentage {
             font-size: 14px;
             color: #888;
         }
+        
+        /* Style pour les cartes de match */
         .match-card {
             margin-bottom: 32px;
         }
+        
+        /* Style pour la barre de navigation CAF */
         .caf-navbar {
             background-color: #156943;
             border-radius: 0 0 8px 8px;
         }
+        
+        /* Style pour le titre de la barre de navigation */
         .caf-navbar .navbar-brand {
             font-size: 2rem;
             letter-spacing: 2px;
         }
+        
+        /* Style pour le sous-titre de la barre de navigation */
         .caf-navbar .navbar-brand span {
             font-size: 1.2rem;
             font-weight: 400;
             letter-spacing: normal;
         }
+        
+        /* Style pour la barre de date des matchs */
         .match-date-bar {
             background: #d3d3d3;
             border-radius: 6px 6px 0 0;
@@ -51,11 +71,14 @@
             font-size: 1.1rem;
             color: #444;
         }
+        
+        /* Style pour la date et l'heure dans la barre */
         .match-date-bar .date,
         .match-date-bar .heure {
             font-weight: bold;
         }
-        /* Navigation */
+        
+        /* Styles pour la navigation principale */
         .navbar {
             background: linear-gradient(to right, var(--primary-black), var(--primary-red));
             padding: 1rem 0;
@@ -63,17 +86,20 @@
             top: 0;
             z-index: 1000;
         }
-
+        
+        /* Style pour le logo de la navigation */
         .navbar-brand {
             font-weight: bold;
             font-size: 1.5rem;
             color: var(--primary-white) !important;
         }
-
+        
+        /* Style pour la liste de navigation */
         .navbar-nav {
             gap: 0.5rem;
         }
-
+        
+        /* Style pour les liens de navigation */
         .nav-link {
             color: var(--primary-white) !important;
             font-weight: 500;
@@ -81,17 +107,20 @@
             padding: 0.5rem 1rem !important;
             border-radius: 5px;
         }
-
+        
+        /* Style pour l'effet hover sur les liens */
         .nav-link:hover {
             color: var(--primary-yellow) !important;
             background-color: rgba(255, 255, 255, 0.1);
         }
-
+        
+        /* Style pour le lien actif */
         .nav-link.active {
             background-color: var(--primary-red);
             color: var(--primary-white) !important;
         }
-
+        
+        /* Media query pour les écrans mobiles */
         @media (max-width: 991px) {
             .navbar-nav {
                 padding: 1rem 0;
@@ -101,6 +130,8 @@
                 padding: 0.5rem 0 !important;
             }
         }
+        
+        /* Définition des variables de couleurs principales */
         :root {
             --primary-red: #CE1126;
             --primary-green: #009E49;
@@ -108,6 +139,8 @@
             --primary-black: #000000;
             --primary-white: #FFFFFF;
         }
+        
+        /* Style général du body */
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, var(--primary-red), var(--primary-green));
@@ -116,16 +149,19 @@
     </style>
 </head>
 <body class="bg-light">
-
-    <!-- Barre de recherche style CAF -->
+    <!-- Barre de navigation principale -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
+            <!-- Logo et titre -->
             <a class="navbar-brand" href="#">CAN 2025</a>
+            <!-- Bouton hamburger pour mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <!-- Menu de navigation -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <!-- Liens de navigation -->
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Accueil</a>
                     </li>
@@ -151,6 +187,7 @@
                         <a class="nav-link" href="Quiz.html">Quiz</a>
                     </li>
                 </ul>
+                <!-- Barre de recherche -->
                 <form class="d-flex ms-3 search-navbar-form">
                     <input type="text" class="form-control me-2" id="navbar-search-input" placeholder="Rechercher...">
                     <button class="btn btn-primary" type="button" id="navbar-search-btn">Rechercher</button>
@@ -159,17 +196,22 @@
         </div>
     </nav>
 
+    <!-- Conteneur principal -->
     <div class="container py-4">
-         <div class="text-center mb-4">
+        <!-- Logo CAF -->
+        <div class="text-center mb-4">
             <img src="Capture d'écran 2025-05-11 142509.png" alt="CAF Logo" style="width:600px;max-width:100%;height:auto;">
         </div>
         
+        <!-- Titre principal -->
         <h1 class="text-center mb-4">Matchs de la Coupe d'Afrique</h1>
+        <!-- Conteneur pour les cartes de match -->
         <div id="matchs-container" class="row"></div>
     </div>
 
-    <!-- Bootstrap JS Bundle CDN -->
+    <!-- Inclusion de Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
         // Fonction pour formater la date en anglais style "Mon 12th May"
         function formatDate(dateStr) {
@@ -183,6 +225,7 @@
             return `${days[d.getDay()]} ${dayNum}${daySuffix(dayNum)} ${months[d.getMonth()]}`;
         }
 
+        // Données des matchs
         const matchs = [
             {
                 equipe1: {
@@ -342,21 +385,25 @@
             }
         ];
 
+        // Fonction pour afficher les matchs
         function renderMatchs(list = matchs) {
             const container = document.getElementById('matchs-container');
             container.innerHTML = "";
             list.forEach(match => {
                 let dateAffiche = formatDate(match.date);
                 let heureAffiche = match.heure || "";
+                // Template pour chaque carte de match
                 container.innerHTML += `
                 <div class="col-md-6">
-                    <!-- Barre date/heure style CAF -->
+                    <!-- Barre de date/heure -->
                     <div class="match-date-bar mb-0">
                         <span class="date">${dateAffiche}</span>
                         <span class="heure">${heureAffiche}</span>
                     </div>
+                    <!-- Carte du match -->
                     <div class="card match-card shadow-sm">
                         <div class="card-body">
+                            <!-- Affichage des équipes -->
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="text-center">
                                     <img src="${match.equipe1.drapeau}" alt="${match.equipe1.nom}" class="flag mb-1">
@@ -370,14 +417,17 @@
                                     <div class="pourcentage">${match.equipe2.pourcentage}%</div>
                                 </div>
                             </div>
+                            <!-- Informations du match -->
                             <div class="mb-2">
                                 <span class="badge bg-primary">Date : ${match.date}</span>
                                 <span class="badge bg-secondary">Lieu : ${match.lieu}</span>
                             </div>
+                            <!-- Boutons Live et Récap -->
                             <div class="mb-2">
                                 <a href="${match.live}" class="btn btn-danger btn-sm me-2" target="_blank">Live</a>
                                 <a href="${match.recap}" class="btn btn-success btn-sm" target="_blank">Vidéo Récap</a>
                             </div>
+                            <!-- Informations sur les arbitres -->
                             <div class="mb-2">
                                 <strong>Arbitres :</strong>
                                 ${match.arbitres.map(arbitre => `
@@ -387,9 +437,9 @@
                                     </span>
                                 `).join('')}
                             </div>
+                            <!-- Article sur le match -->
                             <div class="mt-3">
                                 <h5>${match.article.titre}</h5>
-    
                                 <p>${match.article.contenu}</p>
                             </div>
                         </div>
@@ -399,6 +449,7 @@
             });
         }
 
+        // Fonction de recherche des matchs
         function searchMatch() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const filtered = matchs.filter(match =>
@@ -409,7 +460,7 @@
             renderMatchs(filtered);
         }
 
-        // Affichage initial
+        // Affichage initial des matchs
         renderMatchs();
     </script>
 </body>
