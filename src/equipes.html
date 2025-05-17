@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Métadonnées de base -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Équipes participantes - CAN 2025</title>
+
+    <!-- Liens vers les feuilles de style -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<!-- Barre de navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="#">CAN 2025</a>
@@ -17,33 +22,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="stades.html">Stades</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="LeSaviezVous.html">Le Saviez-vous</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="groupes.html">Groupes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="match.html">Matchs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="equipes.html">Équipes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="tenues.html">Tenues</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Billeterie.html">Boutique</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Quiz.html">Quiz</a>
-                </li>
+                <!-- Les liens de navigation sont structurés de manière similaire -->
+                <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="stades.html">Stades</a></li>
+                <li class="nav-item"><a class="nav-link" href="LeSaviezVous.html">Le Saviez-vous</a></li>
+                <li class="nav-item"><a class="nav-link" href="groupes.html">Groupes</a></li>
+                <li class="nav-item"><a class="nav-link" href="match.html">Matchs</a></li>
+                <li class="nav-item"><a class="nav-link active" href="equipes.html">Équipes</a></li>
+                <li class="nav-item"><a class="nav-link" href="tenues.html">Tenues</a></li>
+                <li class="nav-item"><a class="nav-link" href="Billeterie.html">Boutique</a></li>
+                <li class="nav-item"><a class="nav-link" href="Quiz.html">Quiz</a></li>
             </ul>
             <form class="d-flex ms-3 search-navbar-form">
                 <input type="text" class="form-control me-2" id="navbar-search-input" placeholder="Rechercher...">
@@ -52,6 +40,8 @@
         </div>
     </div>
 </nav>
+
+<!-- Contenu principal -->
 <div class="main-content">
     <div class="header text-center">
         <div class="container">
@@ -59,12 +49,15 @@
             <p class="lead">Cliquez sur une équipe pour voir la liste des joueurs</p>
         </div>
     </div>
+
+    <!-- Grille des équipes -->
     <div class="container mb-5">
         <div class="row g-3" id="teamsGrid">
-            <!-- Les équipes seront injectées ici par JS -->
+            <!-- Les cartes des équipes seront ajoutées ici dynamiquement -->
         </div>
     </div>
-    <!-- Modal Joueurs -->
+
+    <!-- Modal pour afficher les joueurs -->
     <div class="modal fade" id="playersModal" tabindex="-1" aria-labelledby="playersModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -73,16 +66,20 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="playersModalBody">
-                    <!-- Contenu dynamique -->
+                    <!-- Contenu des joueurs sera injecté ici -->
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Scripts JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
+    // Tableau contenant toutes les données des équipes
     const teams = [
+        // Équipe du Maroc - structure détaillée avec tous les joueurs
         {
             name: 'Maroc',
             flag: '🇲🇦',
@@ -127,6 +124,8 @@
                 ]
             }
         },
+
+        // Équipe d'Algérie - structure similaire avec tous ses joueurs
         {
             name: 'Algérie',
             flag: '🇩🇿',
@@ -171,6 +170,8 @@
                 ]
             }
         },
+
+        // Équipe du Sénégal - structure similaire avec tous ses joueurs
         {
             name: 'Sénégal',
             flag: '🇸🇳',
@@ -215,6 +216,8 @@
                 ]
             }
         },
+
+        // Autres équipes (structure simplifiée sans liste de joueurs)
         { name: 'Angola', flag: '🇦🇴', flagImg: "../assets/flags/angola.jpg", teamImg: '', coachImg: '' },
         { name: 'Afrique du Sud', flag: '🇿🇦', flagImg: 'flags/Afsud.jpg', teamImg: '', coachImg: '' },
         { name: 'Bénin', flag: '🇧🇯', flagImg: "../assets/flags/benin.jpeg" , teamImg: '', coachImg: '' },
@@ -238,29 +241,38 @@
         { name: 'Zimbabwe', flag: '🇿🇼', flagImg: 'flags/zimbabwe.jpg', teamImg: '', coachImg: '' }
     ];
 
-    // Génération de la grille des équipes
+    // Fonction pour générer les cartes des équipes
     const teamsGrid = document.getElementById('teamsGrid');
-    teams.forEach((team, idx) => {
-        const col = document.createElement('div');
-        col.className = 'col-6 col-sm-4 col-md-3 col-lg-2';
 
+    // Pour chaque équipe dans le tableau teams...
+    teams.forEach((team, idx) => {
+        // Création d'une colonne Bootstrap
+        const col = document.createElement('div');
+        col.className = 'col-6 col-sm-4 col-md-3 col-lg-2'; // Responsive sur différentes tailles d'écran
+
+        // Création de la carte à retourner
         const flipCard = document.createElement('div');
         flipCard.className = 'flip-card';
-        flipCard.tabIndex = 0;
+        flipCard.tabIndex = 0; // Pour l'accessibilité
 
+        // Conteneur interne pour l'effet de retournement
         const flipInner = document.createElement('div');
         flipInner.className = 'flip-card-inner';
 
+        // Face avant de la carte
         const front = document.createElement('div');
         front.className = 'flip-card-front';
+        // Contenu HTML de la face avant (drapeau et nom de l'équipe)
         front.innerHTML = `
             ${team.flagImg ? `<img class='team-flag-img' src='../assets/${team.flagImg}' alt='Drapeau ${team.name}'>` : `<div class='team-flag'>${team.flag}</div>`}
             <div class='team-name'>${team.name}</div>
             <div class='badge-pays'>${team.name}</div>
         `;
 
+        // Face arrière de la carte
         const back = document.createElement('div');
         back.className = 'flip-card-back';
+        // Contenu HTML de la face arrière (photo équipe, entraîneur et bouton)
         back.innerHTML = `
             ${team.teamImg ? `<img class='team-img' src='../assets/${team.teamImg}' alt='Equipe ${team.name}'>` : ''}
             <div class='coach-block'>
@@ -270,6 +282,7 @@
             <button class='see-squad-btn' onclick='event.stopPropagation();showTeamModal(teams[${idx}])'>Voir effectif</button>
         `;
 
+        // Assemblage des éléments
         flipInner.appendChild(front);
         flipInner.appendChild(back);
         flipCard.appendChild(flipInner);
@@ -277,20 +290,26 @@
         teamsGrid.appendChild(col);
     });
 
-    // Fonction pour afficher le modal des joueurs
+    // Fonction pour afficher le modal avec les joueurs d'une équipe
     function showTeamModal(team) {
+        // Récupération des éléments du DOM
         const modalLabel = document.getElementById('playersModalLabel');
         const modalBody = document.getElementById('playersModalBody');
+
+        // Mise à jour du titre du modal avec le drapeau et le nom de l'équipe
         modalLabel.textContent = team.flag + ' ' + team.name;
 
+        // Construction du contenu HTML du modal
         let html = '';
         let teamImgSrc = team.teamImg ? `../assets/${team.teamImg}` : '';
         let coachImgSrc = team.coachImg ? `../assets/${team.coachImg}` : '';
 
+        // Ajout de l'image de l'équipe si disponible
         if (teamImgSrc) {
             html += `<img class='team-img' src='${teamImgSrc}' alt='Photo équipe ${team.name}'>`;
         }
 
+        // Ajout des informations sur l'entraîneur
         if (coachImgSrc || team.coach) {
             html += `<div class='coach-block'>`;
             if (coachImgSrc) {
@@ -302,9 +321,12 @@
             html += `</div>`;
         }
 
+        // Ajout de la liste des joueurs si disponible
         if (team.players) {
+            // Pour chaque catégorie de joueurs (gardiens, défenseurs...)
             for (const [role, players] of Object.entries(team.players)) {
                 html += `<div class='player-role mt-3 mb-1'>${role}</div><ul class='player-list'>`;
+                // Pour chaque joueur dans la catégorie
                 players.forEach(p => {
                     html += `<li><span>${p.name}</span> <span class='player-club'>(${p.club})</span></li>`;
                 });
@@ -312,10 +334,12 @@
             }
             modalBody.innerHTML = html;
         } else {
+            // Message si l'effectif n'est pas disponible
             html += `<div class='text-center py-4'><i class='fas fa-users fa-2x mb-3 text-secondary'></i><br><strong>Effectif à venir</strong></div>`;
             modalBody.innerHTML = html;
         }
 
+        // Affichage du modal avec Bootstrap
         const modal = new bootstrap.Modal(document.getElementById('playersModal'));
         modal.show();
     }
