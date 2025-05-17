@@ -303,31 +303,43 @@ function setupSearch() {
   });
 }
 
-// Carte Google Maps avec tous les stades
-let map, markers = {};
-function initMap() {
-  if (!window.google || !window.google.maps) return;
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 6,
-    center: { lat: 32.5, lng: -6.5 },
-    mapTypeId: 'roadmap',
-  });
-  stades.forEach(stade => {
-    const marker = new google.maps.Marker({
-      position: { lat: stade.lat, lng: stade.lon },
-      map,
-      title: stade.nom
-    });
-    markers[stade.id] = marker;
-    const infowindow = new google.maps.InfoWindow({
-      content: `<strong>${stade.nom}</strong><br>${stade.ville}<br><a href=\"#${stade.id}\">Voir la fiche</a>`
-    });
-    marker.addListener('click', () => {
-      infowindow.open(map, marker);
-    });
+// Ajoute une référence globale à la carte et aux marqueurs si Leaflet est chargé
+if (typeof L !== 'undefined' && document.getElementById('map')) {
+  window.map = window.map || null;
+  window.markers = window.markers || {};
+  document.addEventListener('DOMContentLoaded', function() {
+    if (!window.map) {
+      window.map = L.map('map').setView([32.5, -6.5], 6);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(window.map);
+      const stadesMap = [
+        { id: 'tanger', lat: 35.7636, lon: -5.8341 },
+        { id: 'rabat-abdellah', lat: 34.0101, lon: -6.8446 },
+        { id: 'marrakech', lat: 31.6847, lon: -8.0576 },
+        { id: 'agadir', lat: 30.4381, lon: -9.5836 },
+        { id: 'casablanca', lat: 33.5866, lon: -7.6426 },
+        { id: 'fes', lat: 34.0433, lon: -4.9998 },
+        { id: 'rabat-hassan', lat: 34.0202, lon: -6.8416 },
+        { id: 'rabat-olympique', lat: 34.0101, lon: -6.8446 },
+        { id: 'rabat-barid', lat: 34.0250, lon: -6.8360 }
+      ];
+      stadesMap.forEach(stade => {
+        const marker = L.marker([stade.lat, stade.lon]).addTo(window.map);
+        window.markers[stade.id] = marker;
+      });
+    }
   });
 }
-window.initMap = initMap;
+
+// Fonction pour centrer la carte sur le stade (Leaflet)
+window.centerMapOnStadium = function(id) {
+  if (window.map && window.markers && window.markers[id]) {
+    const marker = window.markers[id];
+    window.map.setView(marker.getLatLng(), 13, { animate: true });
+    marker.openPopup();
+  }
+};
 
 // Copier l'adresse
 window.copyAdresse = function(id) {
@@ -346,17 +358,6 @@ window.shareStadium = function(id) {
   const url = window.location.origin + window.location.pathname + '#' + id;
   navigator.clipboard.writeText(url);
   alert('Lien du stade copié dans le presse-papier !');
-};
-
-// Centrer la carte sur le stade
-window.centerMapOnStadium = function(id) {
-  const stade = stades.find(s => s.id === id);
-  if (!stade || !window.map) return;
-  map.setZoom(12);
-  map.panTo({ lat: stade.lat, lng: stade.lon });
-  if (markers[id]) {
-    new google.maps.event.trigger(markers[id], 'click');
-  }
 };
 
 // Avis utilisateur (stocké localement)
